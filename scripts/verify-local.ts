@@ -203,6 +203,8 @@ try {
   console.log(JSON.stringify({ passed: report }, null, 2));
 } finally {
   if (studentId) {
+    const student = await db.student.findUnique({ where: { id: studentId }, select: { email: true } });
+    if (student) await db.emailDelivery.deleteMany({ where: { recipient: student.email } });
     const attempts = await db.attempt.findMany({ where: { studentId }, select: { id: true } });
     await db.notification.deleteMany({ where: { attemptId: { in: attempts.map((a) => a.id) } } });
     await db.student.delete({ where: { id: studentId } });

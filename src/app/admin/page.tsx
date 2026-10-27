@@ -1,96 +1,29 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import type { ThemeConfig } from "@/lib/exam-config";
-
+import { Icon } from "@/components/icons";
+import { ExamMark } from "@/components/brand";
+import { portalDate } from "@/lib/portal";
 export default async function AdminHome() {
-  const exams = await prisma.examType.findMany({
-    orderBy: { createdAt: "asc" },
-    include: {
-      _count: { select: { enrollments: true, examVersions: true } },
-    },
-  });
-
-  const questionCounts = await Promise.all(
-    exams.map((e) =>
-      prisma.question.count({ where: { examVersion: { examTypeId: e.id } } }),
-    ),
-  );
-
-  return (
-    <div className="rise-in">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Exámenes</h1>
-          <p className="mt-1 text-sm text-ink-muted">
-            Catálogo de simuladores. Cada examen define su propia estructura,
-            preguntas y tema visual.
-          </p>
-        </div>
-        <Link
-          href="/admin/examenes/nuevo"
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white shadow-sm transition-[background-color,transform] duration-150 ease-(--ease-out) hover:bg-brand-strong active:scale-[0.97]"
-        >
-          + Nuevo examen
-        </Link>
-      </div>
-
-      {exams.length === 0 ? (
-        <div className="mt-10 rounded-xl border border-dashed border-line-strong px-8 py-14 text-center">
-          <p className="text-sm text-ink-muted">
-            Aún no hay exámenes. Crea el primero con “+ Nuevo examen”.
-          </p>
-        </div>
-      ) : (
-        <ul className="mt-8 grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-4">
-          {exams.map((exam, i) => {
-            const theme = exam.themeConfig as ThemeConfig;
-            return (
-              <li key={exam.id} className="stagger-in">
-                <Link
-                  href={`/admin/examenes/${exam.slug}/estructura`}
-                  className="hover-lift group block rounded-2xl border border-line bg-surface p-5 shadow-sm transition-[border-color,transform] duration-150 ease-(--ease-out) hover:border-line-strong hover:shadow-md"
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      aria-hidden
-                      className="size-3 rounded-full"
-                      style={{ backgroundColor: theme?.palette?.accent ?? "#999" }}
-                    />
-                    <h2 className="font-semibold tracking-tight group-hover:text-brand">
-                      {exam.name}
-                    </h2>
-                  </div>
-                  <p className="mt-2 line-clamp-2 min-h-10 text-sm leading-relaxed text-ink-muted">
-                    {exam.description}
-                  </p>
-                  <dl className="mt-4 flex flex-wrap gap-x-5 gap-y-1 border-t border-line pt-4 text-sm">
-                    <div className="flex gap-1.5">
-                      <dt className="text-ink-muted">Preguntas</dt>
-                      <dd className="font-medium">{questionCounts[i]}</dd>
-                    </div>
-                    <div className="flex gap-1.5">
-                      <dt className="text-ink-muted">Alumnos</dt>
-                      <dd className="font-medium">{exam._count.enrollments}</dd>
-                    </div>
-                    <div className="flex gap-1.5">
-                      <dt className="text-ink-muted">Versiones</dt>
-                      <dd className="font-medium">{exam._count.examVersions}</dd>
-                    </div>
-                  </dl>
-                  <p className="mt-3 text-xs text-ink-muted">
-                    {exam.sectionOrderMode === "FIXED"
-                      ? "Secciones en orden fijo"
-                      : "Tipos de pregunta intercalados"}
-                    {" · "}
-                    {exam.totalDurationMinutes} min
-                    {exam.hasAdaptiveLogic && " · adaptativo"}
-                  </p>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
-  );
+  const [exams,students,accesses,pending,finished,recent] = await Promise.all([
+    prisma.examType.findMany({orderBy:{createdAt:"asc"},include:{_count:{select:{enrollments:true,examVersions:true}}}}),
+    prisma.student.count(),prisma.enrollment.count({where:{isBlocked:false,student:{isActive:true}}}),
+    prisma.attempt.count({where:{status:"PENDING_REVIEW"}}),prisma.attempt.count({where:{status:"COMPLETED"}}),
+    prisma.attempt.findMany({where:{status:"PENDING_REVIEW"},take:4,orderBy:{completedAt:"asc"},include:{student:{select:{fullName:true}},examVersion:{select:{label:true,examType:{select:{name:true}}}}}}),
+  ]);
+  return <div className="rise-in"><section className="admin-hero"><div><span className="site-eyebrow">VERBO NEXT · CENTRO DE CONTROL</span><h1>Más claridad.<br />Mejor acompañamiento.</h1><p>Personas, accesos y resultados: todo lo que necesitas para que cada alumno tenga un siguiente paso.</p></div><div className="admin-hero-actions"><Link href="/admin/accesos" className="next-button next-button-lime">Gestionar accesos<Icon name="arrow" size={17} /></Link><Link className="text-link" href="/admin/alumnos">Agregar o editar alumnos<Icon name="users" size={16} /></Link></div></section>
+    <div className="admin-stats">{[
+      {title:"Alumnos",value:students,help:"Perfiles en la plataforma",href:"/admin/alumnos",icon:"users" as const},
+      {title:"Accesos activos",value:accesses,help:"Permisos habilitados",href:"/admin/accesos",icon:"lock" as const},
+      {title:"Por revisar",value:pending,help:"Intentos que necesitan tu mirada",href:"/admin/metricas",icon:"clock" as const},
+      {title:"Evaluaciones listas",value:finished,help:"Resultados completos",href:"/admin/metricas",icon:"check" as const},
+    ].map(s=><Link href={s.href} className="admin-stat" key={s.title}><span><Icon name={s.icon} size={17} />{s.title}</span><strong>{s.value}</strong><small>{s.help}</small></Link>)}</div>
+    <div className="admin-columns"><section className="admin-panel" id="examenes"><div className="admin-panel-title"><h2>Tus exámenes</h2><Link href="/admin/examenes/nuevo" className="text-link">+ Crear examen</Link></div>{exams.length?exams.map(e=><Link className="admin-exam" href={`/admin/examenes/${e.slug}/estructura`} key={e.id}><ExamMark slug={e.slug} name={e.name} /><div><h3>{e.name}</h3><p>{e._count.examVersions} versiones · {e._count.enrollments} alumnos · {e.totalDurationMinutes} min</p></div><Icon name="arrow" size={19} /></Link>):<p className="text-sm text-ink-muted">Crea tu primer examen para comenzar.</p>}<div className="admin-notice">Publicar una versión la hace elegible. Después, en <Link className="font-semibold underline" href="/admin/accesos">Accesos</Link>, decides quién la puede utilizar.</div></section>
+    <section className="admin-panel"><div className="admin-panel-title"><h2>Tu mesa de trabajo</h2><Icon name="target" size={20} /></div>{[
+      {href:"/admin/alumnos",icon:"users" as const,title:"Alumnos y profesores",text:"Perfiles, contraseñas y suspensión de cuentas"},
+      {href:"/admin/accesos",icon:"lock" as const,title:"Permisos por examen",text:"Asignaciones, códigos, versiones e intentos"},
+      {href:"/admin/metricas",icon:"chart" as const,title:"Revisión y seguimiento",text:"Respuestas, rúbricas y avances"},
+      {href:"/admin/correos",icon:"mail" as const,title:"Correos y avisos",text:"Estado de envíos y reintentos"},
+    ].map(s=><Link className="admin-shortcut" href={s.href} key={s.href}><span><Icon name={s.icon} /></span><div><strong>{s.title}</strong><p>{s.text}</p></div><Icon name="chevron" size={15} /></Link>)}</section></div>
+    <section className="admin-panel mt-6"><div className="admin-panel-title"><h2>La siguiente revisión</h2><Link href="/admin/metricas" className="text-link">Ver todas<Icon name="arrow" size={16} /></Link></div>{recent.length?recent.map(a=><Link key={a.id} href={`/admin/revision/${a.id}`} className="admin-shortcut"><span><Icon name="user" /></span><div><strong>{a.student.fullName}</strong><p>{a.examVersion.examType.name} · {a.examVersion.label}{a.completedAt?` · ${portalDate(a.completedAt)}`:""}</p></div><Icon name="arrow" size={18} /></Link>):<p className="text-sm leading-7 text-ink-muted">Todo al día. Cuando un alumno envíe respuestas para evaluar, aparecerán aquí.</p>}</section>
+  </div>;
 }

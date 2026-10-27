@@ -12,6 +12,7 @@ import { advanceRuntime, beginSpokenResponse, jumpRuntime, previousRuntime, runt
 import { closedPoints } from "@/lib/toefl-delivery";
 import { detMetadata, detPoints } from "@/lib/det-format";
 import { activeAttempt, AttemptError, writeAnswer } from "./attempt-service";
+import { queueAttemptEmails, scheduleEmails } from "@/lib/email";
 
 export type StudentActionResult<T = undefined> =
   | { ok: true; data?: T }
@@ -318,7 +319,9 @@ export async function completeAttempt(input: {
       const { state } = await activeAttempt(tx, input.attemptId, session.user.id);
       if (!state.finished) throw new AttemptError("Completa el recorrido del examen antes de enviarlo.");
       await gradeAttempt(tx, input.attemptId, { autoGrade: true });
+      await queueAttemptEmails(tx, input.attemptId, "submitted");
     });
+    scheduleEmails();
     return { ok: true };
   } catch (e) {
     return actionError(e, "No se pudo enviar el examen.");

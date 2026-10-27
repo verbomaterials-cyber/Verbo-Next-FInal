@@ -48,3 +48,10 @@ límite de Vercel. El favicon reutiliza el símbolo de Verbo en `src/app/icon.pn
 Antes de publicar: `npm test`, `npm run lint`, `npx tsc --noEmit` y
 `npm run build`. Después, verificar HTTPS, favicon, inicio de sesión, catálogo,
 asignación de acceso y persistencia de un intento en el entorno oficial.
+
+## Portal, constancias y correo
+
+El rediseño y las nuevas herramientas de administración se documentan en
+[Portal y notificaciones](portal-y-notificaciones.md). La migración aditiva
+`20261027000100_portal_access_email` incorpora el estado de las cuentas, el correo
+del profesor y la cola privada de envíos. No reemplaza el catálogo ni los datos.

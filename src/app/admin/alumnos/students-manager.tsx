@@ -12,6 +12,7 @@ import {
   resetStudentPassword,
   updateEnrollment,
   updateStudent,
+  notifyEnrollment,
 } from "@/lib/admin/student-actions";
 import {
   Badge,
@@ -23,6 +24,7 @@ import {
   Modal,
   Select,
 } from "@/components/ui";
+import { Icon } from "@/components/icons";
 
 type ExamTypeRow = {
   id: string;
@@ -46,17 +48,21 @@ type StudentRow = {
   id: string;
   fullName: string;
   email: string;
+  teacherEmail: string | null;
+  isActive: boolean;
   createdAt: string;
   attemptCount: number;
   enrollments: EnrollmentRow[];
 };
 
 export function StudentsManager({
+  mode = "students",
   query,
   examFilter,
   examTypes,
   students,
 }: {
+  mode?: "students" | "access";
   query: string;
   examFilter: string;
   examTypes: ExamTypeRow[];
@@ -71,7 +77,7 @@ export function StudentsManager({
     const qs = new URLSearchParams();
     if (q) qs.set("q", q);
     if (examen) qs.set("examen", examen);
-    router.push(`/admin/alumnos?${qs.toString()}`);
+    router.push(`/admin/${mode === "access" ? "accesos" : "alumnos"}?${qs.toString()}`);
   }
 
   async function handleDelete(s: StudentRow) {
@@ -90,21 +96,24 @@ export function StudentsManager({
   }
 
   return (
-    <div className="rise-in space-y-6">
+    <div className="rise-in space-y-6 admin-directory">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Alumnos</h1>
+          <h1 className="text-2xl font-semibold tracking-tight">{mode === "access" ? "Cada acceso, bajo control." : "Personas, antes que perfiles."}</h1>
           <p className="mt-1 text-sm text-ink-muted">
-            Altas, credenciales y accesos por examen.
+            {mode === "access" ? "Asigna exámenes, elige versiones, administra intentos y revoca permisos." : "Administra alumnos, contraseñas, profesores y el estado de cada cuenta."}
           </p>
         </div>
-        <Button onClick={() => setStudentModal({})}>+ Nuevo alumno</Button>
+        {mode === "students" ? <Button onClick={() => setStudentModal({})}>+ Nuevo alumno</Button> : <Link href="/admin/alumnos" className="text-link">Gestionar alumnos<Icon name="arrow" size={16} /></Link>}
       </div>
+
+      {mode === "access" && <div className="access-guide"><Icon name="lock" size={22} /><p>Selecciona <strong>Gestionar accesos</strong> junto a un alumno. Desde ahí puedes dar acceso, elegir simuladores, ampliar intentos, bloquear temporalmente o quitar el permiso. Sus resultados se conservan al quitar un acceso.</p></div>}
 
       <div className="flex flex-wrap gap-3">
         <Input
           type="search"
           placeholder="Buscar por nombre o email…"
+          aria-label="Buscar alumnos por nombre o correo"
           defaultValue={query}
           className="w-64"
           onKeyDown={(e) => {
@@ -152,6 +161,8 @@ export function StudentsManager({
                   <td className="px-4 py-3">
                     <p className="font-medium">{s.fullName}</p>
                     <p className="text-xs text-ink-muted">{s.email}</p>
+                    {!s.isActive && <Badge tone="warning">Cuenta suspendida</Badge>}
+                    {s.teacherEmail && <p className="mt-1 text-xs text-ink-muted">Profesor: {s.teacherEmail}</p>}
                   </td>
                   <td className="px-4 py-3">
                     {s.enrollments.length === 0 ? (
@@ -173,7 +184,7 @@ export function StudentsManager({
                     <div className="flex justify-end gap-1">
                       {s.enrollments.some((e) => e.examSlug === "toefl-ibt") && <Link href={`/admin/alumnos/${s.id}/progreso`} className="rounded-lg px-3 py-1.5 text-xs font-medium text-brand hover:bg-brand-soft">Progreso TOEFL</Link>}
                       <Button variant="outline" size="sm" onClick={() => setAccessModal(s)}>
-                        Accesos
+                        Gestionar accesos
                       </Button>
                       <Button variant="ghost" size="sm" onClick={() => setStudentModal({ editing: s })}>
                         Editar
@@ -211,6 +222,8 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
   const router = useRouter();
   const [fullName, setFullName] = useState(editing?.fullName ?? "");
   const [email, setEmail] = useState(editing?.email ?? "");
+  const [teacherEmail, setTeacherEmail] = useState(editing?.teacherEmail ?? "");
+  const [isActive, setIsActive] = useState(editing?.isActive ?? true);
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
@@ -222,7 +235,7 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
     setError(null);
 
     if (editing) {
-      const result = await updateStudent(editing.id, { fullName, email });
+      const result = await updateStudent(editing.id, { fullName, email, teacherEmail, isActive });
       if (!result.ok) {
         setError(result.error);
         setSaving(false);
@@ -233,7 +246,7 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
       return;
     }
 
-    const result = await createStudent({ fullName, email, password });
+    const result = await createStudent({ fullName, email, password, teacherEmail });
     if (!result.ok) {
       setError(result.error);
       setSaving(false);
@@ -247,7 +260,7 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
   async function handleResetPassword() {
     if (!editing) return;
     const label = password
-      ? `¿Poner "${password}" como nueva contraseña de ${editing.fullName}?`
+      ? `¿Asignar la nueva contraseña a ${editing.fullName}?`
       : `¿Generar una contraseña automática nueva para ${editing.fullName}?`;
     if (!confirm(`${label} La anterior dejará de funcionar.`)) return;
     const result = await resetStudentPassword(editing.id, password || undefined);
@@ -267,7 +280,7 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
             <p>{email}</p>
             <p className="mt-1 text-lg font-semibold tracking-wide">{newPassword}</p>
           </div>
-          <Button onClick={onClose}>Listo</Button>
+          <div className="flex flex-wrap gap-3"><Button onClick={onClose}>Listo</Button>{!editing && <Button variant="outline" onClick={() => { onClose(); router.push(`/admin/accesos?q=${encodeURIComponent(email)}`); }}>Asignar exámenes</Button>}</div>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -277,6 +290,9 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
           <Field label="Email" help="Es su usuario para iniciar sesión.">
             <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </Field>
+          <Field label="Correo del profesor (opcional)" help="Recibe avisos cuando este alumno completa una simulación. El correo no crea una cuenta de profesor."><Input type="email" value={teacherEmail} onChange={e => setTeacherEmail(e.target.value)} /></Field>
+          {editing && <Checkbox label="Cuenta activa" checked={isActive} onChange={e => setIsActive(e.target.checked)} />}
+          {editing && !isActive && <p className="text-sm text-ink-muted">La suspensión cierra sus sesiones e impide entrar; conserva sus respuestas y resultados.</p>}
           <Field
             label={editing ? "Nueva contraseña (opcional)" : "Contraseña"}
             help={
@@ -286,6 +302,8 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
             }
           >
             <Input
+              type="password"
+              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder={editing ? "Dejar vacío = automática" : "Ej. verbo2026 (mín. 6 caracteres)"}
@@ -328,6 +346,8 @@ function AccessManager({
   const [newExamId, setNewExamId] = useState("");
   const [newAttempts, setNewAttempts] = useState("4");
   const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+  const [newVersions, setNewVersions] = useState<string[]>([]);
 
   const availableExams = examTypes.filter(
     (e) => !student.enrollments.some((en) => en.examTypeId === e.id),
@@ -336,16 +356,19 @@ function AccessManager({
   async function run(action: () => Promise<{ ok: boolean; error?: string }>) {
     setBusy(true);
     setError(null);
-    const result = await action();
-    if (!result.ok) setError(result.error ?? "Error");
-    router.refresh();
-    setBusy(false);
+    try {
+      const result = await action();
+      if (!result.ok) setError(result.error ?? "No se pudo guardar.");
+      router.refresh();
+    } catch { setError("No se pudo conectar. Reintenta la operación."); }
+    finally { setBusy(false); }
   }
 
   return (
     <Modal open onClose={onClose} wide title={`Accesos — ${student.fullName}`}>
       <div className="space-y-5">
         <ErrorNote>{error}</ErrorNote>
+        {notice && <p role="status" className="access-guide">{notice}</p>}
 
         {student.enrollments.length === 0 && (
           <p className="text-sm text-ink-muted">Este alumno no tiene accesos todavía.</p>
@@ -361,6 +384,7 @@ function AccessManager({
                   {e.isBlocked && <Badge tone="warning">bloqueado</Badge>}
                 </div>
                 <div className="flex gap-1">
+                  <Button variant="ghost" size="sm" disabled={busy || e.isBlocked || !student.isActive} onClick={() => run(async () => { const result = await notifyEnrollment(e.id); if (result.ok) setNotice("Aviso en cola. Consulta su estado en Correos."); return result; })}>Enviar accesos por correo</Button>
                   <Button
                     variant="outline"
                     size="sm"
@@ -417,8 +441,9 @@ function AccessManager({
                   <div className="mt-1 flex items-center gap-2">
                     <Input
                       type="number"
-                      min={1}
+                      min={Math.max(1, e.attemptsUsed)}
                       defaultValue={e.attemptsAllowed}
+                      disabled={busy}
                       className="w-20"
                       onBlur={(ev) => {
                         const value = Number(ev.target.value);
@@ -441,7 +466,7 @@ function AccessManager({
                         key={v.id}
                         label={`${v.label}${v.isPublished ? "" : " (borrador)"}`}
                         checked={e.unlockedVersions.includes(v.id)}
-                        disabled={busy}
+                        disabled={busy || !v.isPublished}
                         onChange={(ev) =>
                           run(() =>
                             updateEnrollment(e.id, {
@@ -467,7 +492,7 @@ function AccessManager({
               <Field label="Examen">
                 <Select
                   value={newExamId}
-                  onChange={(e) => setNewExamId(e.target.value)}
+                  onChange={(e) => { setNewExamId(e.target.value); setNewVersions(examTypes.find(x => x.id === e.target.value)?.examVersions.filter(v => v.isPublished).map(v => v.id) ?? []); }}
                   className="w-56"
                 >
                   <option value="">Elegir…</option>
@@ -495,6 +520,7 @@ function AccessManager({
                       studentId: student.id,
                       examTypeId: newExamId,
                       attemptsAllowed: Number(newAttempts) || 1,
+                      unlockedVersions: newVersions,
                     }),
                   ).then(() => setNewExamId(""))
                 }
@@ -502,8 +528,9 @@ function AccessManager({
                 Dar acceso
               </Button>
             </div>
+            {newExamId && <div className="mt-4 space-y-2"><p className="text-xs text-ink-muted">Simuladores que se habilitarán</p>{examTypes.find(x => x.id === newExamId)?.examVersions.filter(v => v.isPublished).map(v => <Checkbox key={v.id} label={v.label} checked={newVersions.includes(v.id)} onChange={e => setNewVersions(e.target.checked ? [...newVersions, v.id] : newVersions.filter(id => id !== v.id))} />)}</div>}
             <p className="mt-2 text-xs text-ink-muted">
-              Se genera un código único y se desbloquean las versiones publicadas actuales.
+              Se genera un código único y solo se habilitan las versiones seleccionadas.
             </p>
           </div>
         )}

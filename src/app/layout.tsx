@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hanken_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./portal.css";
+import "./experience.css";
 
 const geistSans = Hanken_Grotesk({
   variable: "--font-geist-sans",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     default: "Verbo NEXT",
     template: "%s · Verbo NEXT",
   },
-  description: "Plataforma privada de simuladores de examen de Verbo Consulting.",
+  description: "Tu espacio de preparación, simulación y resultados con acompañamiento de Verbo Language Solutions.",
   robots: {
     index: false,
     follow: false,

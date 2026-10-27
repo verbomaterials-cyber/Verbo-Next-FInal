@@ -13,9 +13,11 @@ const studentLinks: { href: string; label: string; icon: IconName }[] = [
   { href: "/alumno/perfil", label: "Mi perfil", icon: "user" },
 ];
 const adminLinks: typeof studentLinks = [
-  { href: "/admin", label: "Exámenes", icon: "book" },
+  { href: "/admin", label: "Mi tablero", icon: "home" },
   { href: "/admin/alumnos", label: "Alumnos", icon: "users" },
+  { href: "/admin/accesos", label: "Accesos", icon: "lock" },
   { href: "/admin/metricas", label: "Métricas", icon: "chart" },
+  { href: "/admin/correos", label: "Correos", icon: "mail" },
 ];
 export function PortalShell({ children, name, role }: { children: ReactNode; name: string; role: "student" | "admin" }) {
   const path = usePathname(), menuRef = useRef<HTMLDetailsElement>(null);

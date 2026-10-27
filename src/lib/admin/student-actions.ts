@@ -9,6 +9,8 @@ import crypto from "crypto";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import type { ActionResult } from "./actions";
+import { enrollmentCreateZ, enrollmentPatchZ, studentInputZ, eventKey } from "./access-validation";
+import { queueEmail, scheduleEmails } from "@/lib/email";
 
 async function requireAdmin() {
   const session = await getServerSession(authOptions);
@@ -19,6 +21,7 @@ async function requireAdmin() {
 }
 
 function fail(error: unknown, fallback: string): { ok: false; error: string } {
+  if (error instanceof Error && ["El límite no puede ser menor a los intentos utilizados.", "Las versiones deben estar publicadas y pertenecer a este examen."].includes(error.message)) return { ok: false, error: error.message };
   if (error instanceof z.ZodError) {
     return { ok: false, error: error.issues.map((i) => i.message).join(" · ") };
   }
@@ -44,10 +47,7 @@ function generateAccessCode(): string {
 
 /* ═══════════════ Alumnos ═══════════════ */
 
-const studentInput = z.object({
-  fullName: z.string().min(2, "Nombre demasiado corto"),
-  email: z.string().email("Email inválido"),
-});
+const studentInput = studentInputZ;
 
 /** Vacío/omitido = generar una automática; si viene, se usa tal cual. */
 const passwordInput = z
@@ -62,15 +62,21 @@ export async function createStudent(
   try {
     await requireAdmin();
     const data = studentInput.parse(input);
+    if (await prisma.adminUser.findUnique({ where: { email: data.email }, select: { id: true } })) return { ok: false, error: "Este correo ya corresponde a una cuenta de administración." };
     const chosenPassword = passwordInput.parse(input.password);
     const password = chosenPassword || generatePassword();
-    await prisma.student.create({
+    await prisma.$transaction(async tx => {
+    const student = await tx.student.create({
       data: {
         fullName: data.fullName,
         email: data.email.toLowerCase().trim(),
         passwordHash: await bcrypt.hash(password, 12),
+        teacherEmail: data.teacherEmail || null,
       },
     });
+    await queueEmail(tx, { eventKey: `student:${student.id}:welcome`, recipient: student.email, subject: "Tu espacio está listo · Verbo NEXT", text: `Hola, ${student.fullName}.\n\nTu cuenta de Verbo NEXT está lista. Tu usuario es ${student.email}. Tu asesor te compartirá la contraseña por un canal privado y te avisará cuando tengas simuladores asignados.\n\nEntra en ${process.env.NEXTAUTH_URL ?? "https://next.verboacademic.com"}/login\n\nVerbo NEXT · Verbo Language Solutions` });
+    });
+    scheduleEmails();
     revalidatePath("/admin/alumnos");
     return { ok: true, data: { password } };
   } catch (e) {
@@ -85,11 +91,12 @@ export async function updateStudent(
   try {
     await requireAdmin();
     const data = studentInput.parse(input);
+    if (await prisma.adminUser.findUnique({ where: { email: data.email }, select: { id: true } })) return { ok: false, error: "Este correo ya corresponde a una cuenta de administración." };
     await prisma.student.update({
       where: { id },
-      data: { fullName: data.fullName, email: data.email.toLowerCase().trim() },
+      data: { fullName: data.fullName, email: data.email, teacherEmail: data.teacherEmail || null, ...(data.isActive !== undefined ? { isActive: data.isActive } : {}) },
     });
-    revalidatePath("/admin/alumnos");
+    revalidateAccess();
     return { ok: true };
   } catch (e) {
     return fail(e, "No se pudo actualizar el alumno.");
@@ -132,28 +139,33 @@ export async function createEnrollment(input: {
   studentId: string;
   examTypeId: string;
   attemptsAllowed: number;
+  unlockedVersions?: string[];
 }): Promise<ActionResult> {
   try {
     await requireAdmin();
-    if (input.attemptsAllowed < 1) {
-      return { ok: false, error: "Los intentos permitidos deben ser al menos 1." };
-    }
+    const data = enrollmentCreateZ.parse(input);
     // Por defecto se desbloquean todas las versiones publicadas actuales;
     // el admin puede recortar después (ej. reservar Simulador 3).
     const published = await prisma.examVersion.findMany({
       where: { examTypeId: input.examTypeId, isPublished: true },
       select: { id: true },
     });
-    await prisma.enrollment.create({
+    const versions = data.unlockedVersions ?? published.map(v => v.id);
+    if (versions.some(id => !published.some(v => v.id === id))) return { ok: false, error: "Selecciona versiones publicadas de este examen." };
+    await prisma.$transaction(async tx => {
+    const enrollment = await tx.enrollment.create({
       data: {
         studentId: input.studentId,
         examTypeId: input.examTypeId,
         accessCode: generateAccessCode(),
-        attemptsAllowed: input.attemptsAllowed,
-        unlockedVersions: published.map((v) => v.id),
+        attemptsAllowed: data.attemptsAllowed,
+        unlockedVersions: [...new Set(versions)],
       },
     });
-    revalidatePath("/admin/alumnos");
+    await queueAccessEmail(tx, enrollment.id, "Tus simuladores están listos · Verbo NEXT", `enrollment:${enrollment.id}:created`);
+    });
+    scheduleEmails();
+    revalidateAccess();
     return { ok: true };
   } catch (e) {
     return fail(e, "No se pudo crear el acceso.");
@@ -170,11 +182,20 @@ export async function updateEnrollment(
 ): Promise<ActionResult> {
   try {
     await requireAdmin();
-    if (patch.attemptsAllowed !== undefined && patch.attemptsAllowed < 1) {
-      return { ok: false, error: "Los intentos permitidos deben ser al menos 1." };
-    }
-    await prisma.enrollment.update({ where: { id }, data: patch });
-    revalidatePath("/admin/alumnos");
+    const data = enrollmentPatchZ.parse(patch);
+    await prisma.$transaction(async tx => {
+      await tx.$queryRaw`SELECT "id" FROM "Enrollment" WHERE "id" = ${id} FOR UPDATE`;
+      const enrollment = await tx.enrollment.findUniqueOrThrow({ where: { id } });
+      if (data.attemptsAllowed !== undefined && data.attemptsAllowed < enrollment.attemptsUsed) throw new Error("El límite no puede ser menor a los intentos utilizados.");
+      if (data.unlockedVersions) {
+        const valid = await tx.examVersion.count({ where: { id: { in: [...new Set(data.unlockedVersions)] }, examTypeId: enrollment.examTypeId, isPublished: true } });
+        if (valid !== new Set(data.unlockedVersions).size) throw new Error("Las versiones deben estar publicadas y pertenecer a este examen.");
+      }
+      await tx.enrollment.update({ where: { id }, data });
+      if (data.isBlocked === false && enrollment.isBlocked || data.unlockedVersions?.some(v => !enrollment.unlockedVersions.includes(v))) await queueAccessEmail(tx, id, "Tu acceso se ha actualizado · Verbo NEXT", eventKey(`enrollment:${id}:updated`));
+    });
+    scheduleEmails();
+    revalidateAccess();
     return { ok: true };
   } catch (e) {
     return fail(e, "No se pudo actualizar el acceso.");
@@ -188,7 +209,7 @@ export async function regenerateAccessCode(
     await requireAdmin();
     const accessCode = generateAccessCode();
     await prisma.enrollment.update({ where: { id }, data: { accessCode } });
-    revalidatePath("/admin/alumnos");
+    revalidateAccess();
     return { ok: true, data: { accessCode } };
   } catch (e) {
     return fail(e, "No se pudo regenerar el código.");
@@ -199,9 +220,30 @@ export async function deleteEnrollment(id: string): Promise<ActionResult> {
   try {
     await requireAdmin();
     await prisma.enrollment.delete({ where: { id } });
-    revalidatePath("/admin/alumnos");
+    revalidateAccess();
     return { ok: true };
   } catch (e) {
     return fail(e, "No se pudo eliminar el acceso.");
   }
+}
+
+function revalidateAccess() {
+  revalidatePath("/admin", "layout");
+  revalidatePath("/alumno", "layout");
+}
+
+async function queueAccessEmail(tx: Prisma.TransactionClient, id: string, subject: string, key: string) {
+  const enrollment = await tx.enrollment.findUniqueOrThrow({ where: { id }, include: { student: true, examType: true } });
+  if (enrollment.isBlocked || !enrollment.student.isActive) return;
+  const labels = await tx.examVersion.findMany({ where: { id: { in: enrollment.unlockedVersions }, isPublished: true }, select: { label: true } });
+  await queueEmail(tx, { eventKey: key, recipient: enrollment.student.email, subject, text: `Hola, ${enrollment.student.fullName}.\n\nTu acceso a ${enrollment.examType.name} está disponible.\nVersiones: ${labels.map(v => v.label).join(", ") || "Por asignar"}.\nIntentos disponibles: ${Math.max(0, enrollment.attemptsAllowed - enrollment.attemptsUsed)}.\nCódigo: ${enrollment.accessCode}\n\nEntra con tu cuenta en ${process.env.NEXTAUTH_URL ?? "https://next.verboacademic.com"}/alumno/examen/${enrollment.examType.slug}\n\nVerbo NEXT` });
+}
+
+export async function notifyEnrollment(id: string): Promise<ActionResult> {
+  try {
+    await requireAdmin();
+    await prisma.$transaction(tx => queueAccessEmail(tx, id, "Tus accesos · Verbo NEXT", eventKey(`enrollment:${id}:notice`)));
+    scheduleEmails();
+    return { ok: true };
+  } catch (error) { return fail(error, "No se pudo preparar el aviso."); }
 }

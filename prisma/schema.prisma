@@ -162,6 +162,8 @@ model Student {
   email        String   @unique
   passwordHash String // credencial generada por el admin
   createdAt    DateTime @default(now())
+  isActive     Boolean  @default(true)
+  teacherEmail String?
 
   enrollments Enrollment[]
   attempts    Attempt[]
@@ -260,4 +262,22 @@ model Recording {
   question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
 
   @@unique([attemptId, questionId])
+}
+
+// Transactional outbox. Passwords are never stored in email payloads.
+model EmailDelivery {
+  id         String   @id @default(cuid())
+  eventKey   String   @unique
+  recipient  String
+  subject    String
+  text       String
+  status     String   @default("PENDING")
+  attempts   Int      @default(0)
+  providerId String?
+  lastError  String?
+  lockedAt   DateTime?
+  createdAt  DateTime @default(now())
+  sentAt     DateTime?
+
+  @@index([status, createdAt])
 }

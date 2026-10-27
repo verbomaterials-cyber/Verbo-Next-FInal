@@ -10,6 +10,7 @@ import { z } from "zod";
 import { deliveryMetadata } from "@/lib/toefl-delivery";
 import { RUBRIC_VERSION, toeflRubrics } from "@/lib/toefl-rubrics";
 import { detMetadata, detRubric, detListeningRubric, DET_RUBRIC_VERSION } from "@/lib/det-format";
+import { queueAttemptEmails, scheduleEmails } from "@/lib/email";
 
 async function requireAdmin() {
   const session = await getServerSession(authOptions);
@@ -59,14 +60,17 @@ export async function reviewResponse(input: {
       },
     });
 
-    return gradeAttempt(tx, response.attempt.id, {
+    const result = await gradeAttempt(tx, response.attempt.id, {
       autoGrade: false,
     });
+    if (result.status === "COMPLETED") await queueAttemptEmails(tx, response.attempt.id, "reviewed");
+    return result;
     }, { timeout: 20000 });
 
     revalidatePath(`/admin/revision/${response.attempt.id}`);
     revalidatePath("/admin/metricas");
     revalidatePath(`/alumno/resultado/${response.attempt.id}`);
+    scheduleEmails();
     return { ok: true, data: { attemptStatus: status } };
   } catch (e) {
     console.error("reviewResponse", e);

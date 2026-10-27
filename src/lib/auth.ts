@@ -1,6 +1,7 @@
-import type { NextAuthOptions } from "next-auth";
+import type { NextAuthOptions, Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+import { createHash } from "node:crypto";
 import { prisma } from "@/lib/prisma";
 
 // Hash de relleno: se compara siempre aunque el email no exista,
@@ -31,7 +32,7 @@ export const authOptions: NextAuthOptions = {
         const student = await prisma.student.findUnique({ where: { email } });
         if (student) {
           const ok = await bcrypt.compare(credentials.password, student.passwordHash);
-          if (!ok) return null;
+          if (!ok || !student.isActive) return null;
           return { id: student.id, email: student.email, name: student.fullName, role: "STUDENT" as const };
         }
 
@@ -46,9 +47,18 @@ export const authOptions: NextAuthOptions = {
         token.uid = user.id;
         token.role = user.role;
       }
+      const account = token.role === "ADMIN"
+        ? await prisma.adminUser.findUnique({ where: { id: token.uid }, select: { passwordHash: true } })
+        : await prisma.student.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true } });
+      const stamp = account ? createHash("sha256").update(account.passwordHash).digest("hex") : "";
+      if (user) token.authStamp = stamp;
+      token.invalid = !account || ("isActive" in account && !account.isActive) || token.authStamp !== stamp;
       return token;
     },
     async session({ session, token }) {
+      // NextAuth's session route accepts an empty session; getServerSession returns null.
+      // Password resets and account suspension revoke previously issued sessions.
+      if (token.invalid) return null as unknown as Session;
       if (session.user) {
         session.user.id = token.uid;
         session.user.role = token.role;

@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui";
 import { delivered, deliveryMetadata, type RouteDecision } from "@/lib/toefl-delivery";
 import { rubricAssessmentZ } from "@/lib/toefl-rubrics";
 import { detMetadata, detDelivered, detAssessmentZ, detPoints } from "@/lib/det-format";
+import { PracticeCertificate } from "@/components/practice-certificate";
 
 export default async function ResultPage({
   params,
@@ -21,6 +22,7 @@ export default async function ResultPage({
   const attempt = await prisma.attempt.findUnique({
     where: { id: attemptId },
     include: {
+      student: { select: { fullName: true } },
       responses: { include: { question: { include: { questionType: true } } } },
       examVersion: {
         include: {
@@ -61,11 +63,12 @@ export default async function ResultPage({
   ).length;
 
   return (
-    <div className="rise-in mx-auto max-w-2xl">
+    <div className="rise-in mx-auto max-w-2xl result-content">
       <p className="text-sm text-ink-muted">
         {examType.name} · {attempt.examVersion.label}
       </p>
       <h1 className="mt-1 text-2xl font-semibold tracking-tight">Tus resultados</h1>
+      {!pending && <PracticeCertificate name={attempt.student.fullName} exam={examType.name} version={attempt.examVersion.label} attemptId={attempt.id} date={attempt.completedAt ?? attempt.startedAt} overallScore={attempt.overallScore} subscores={attempt.subscores} />}
 
       {pending && (
         <p className="mt-4 rounded-xl bg-brand-soft px-4 py-3 text-sm leading-relaxed text-brand">
