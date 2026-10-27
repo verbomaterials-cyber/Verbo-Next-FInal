@@ -71,7 +71,7 @@ try {
     include: { questions: { include: { questionType: { include: { section: true } } } } } });
   const password = randomBytes(16).toString("base64url");
   const student = await db.student.create({ data: { fullName: "Verificación local temporal",
-    email: `verify-${randomBytes(5).toString("hex")}@verbo.local`, passwordHash: await bcrypt.hash(password, 10) } });
+    email: `verify-${randomBytes(5).toString("hex")}@verbo.local`, teacherEmail: `teacher-${randomBytes(5).toString("hex")}@verbo.local`, passwordHash: await bcrypt.hash(password, 10) } });
   studentId = student.id;
   const enrollment = await db.enrollment.create({ data: { studentId, examTypeId: version.examTypeId,
     accessCode: randomBytes(6).toString("hex").toUpperCase(), attemptsAllowed: 1, unlockedVersions: [version.id] } });
@@ -160,6 +160,7 @@ try {
   const completions = await Promise.all([action("completeAttempt", { attemptId }, page), action("completeAttempt", { attemptId }, page)]);
   assert.ok(completions.every((result) => result.ok), "El envío simultáneo debe ser idempotente.");
   assert.equal((await db.attempt.findUniqueOrThrow({ where: { id: attemptId } })).status, "PENDING_REVIEW");
+  assert.equal(await db.emailDelivery.count({ where: { eventKey: { startsWith: `attempt:${attemptId}:submitted:` }, recipient: { in: [student.email, student.teacherEmail!] } } }), 2, "One submission notice per student and teacher despite concurrent submissions");
   report.push("Navegación idempotente, respuestas persistidas y examen enviado");
   const access = JSON.parse(await readFile(".local/access.json", "utf8"));
   await login(access.admin.email, access.admin.password);
@@ -171,6 +172,8 @@ try {
     assert.equal(reviewed.ok, true);
   }
   assert.equal((await db.attempt.findUniqueOrThrow({ where: { id: attemptId } })).status, "COMPLETED");
+  assert.equal(await db.emailDelivery.count({ where: { eventKey: { startsWith: `attempt:${attemptId}:reviewed:` }, recipient: { in: [student.email, student.teacherEmail!] } } }), 2, "Final review queues a notice for the student and teacher");
+  report.push("Avisos de envío y revisión para alumno y profesor, sin duplicados concurrentes");
   if (full) {
     const teacherProgress = await request(`/admin/alumnos/${studentId}/progreso`);
     assert.equal(teacherProgress.status, 200);
@@ -203,8 +206,8 @@ try {
   console.log(JSON.stringify({ passed: report }, null, 2));
 } finally {
   if (studentId) {
-    const student = await db.student.findUnique({ where: { id: studentId }, select: { email: true } });
-    if (student) await db.emailDelivery.deleteMany({ where: { recipient: student.email } });
+    const student = await db.student.findUnique({ where: { id: studentId }, select: { email: true, teacherEmail: true } });
+    if (student) await db.emailDelivery.deleteMany({ where: { recipient: { in: [student.email, ...(student.teacherEmail ? [student.teacherEmail] : [])] } } });
     const attempts = await db.attempt.findMany({ where: { studentId }, select: { id: true } });
     await db.notification.deleteMany({ where: { attemptId: { in: attempts.map((a) => a.id) } } });
     await db.student.delete({ where: { id: studentId } });
