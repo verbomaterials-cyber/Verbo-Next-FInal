@@ -1,20 +1,27 @@
 "use client";
-import { useState, type FormEvent } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { useEffect, useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
+import { getSession, signIn } from "next-auth/react";
 import { ErrorNote } from "@/components/ui";
 import { Icon } from "@/components/icons";
-import { safeCallbackPath } from "@/lib/portal";
+import { roleHome, safeCallbackPath } from "@/lib/portal";
 export function LoginForm() {
-  const router = useRouter(), searchParams = useSearchParams();
+  const router = useRouter();
   const [email, setEmail] = useState(""), [password, setPassword] = useState(""), [visible, setVisible] = useState(false);
   const [error, setError] = useState<string | null>(null), [loading, setLoading] = useState(false);
+  useEffect(() => {
+    // The public form can be served by the CDN. Validate an existing session
+    // separately before redirecting; invalid/suspended cookies cannot loop.
+    let mounted = true;
+    getSession().then(session => { if (mounted && session) router.replace(roleHome(session.user.role)); }).catch(() => {});
+    return () => { mounted = false; };
+  }, [router]);
   async function submit(e: FormEvent) {
     e.preventDefault(); if (loading) return; setError(null); setLoading(true);
     try {
       const result = await signIn("credentials", { email, password, redirect: false });
       if (!result || result.error || !result.ok) { setError("No pudimos entrar con esos datos. Revisa tu correo y contraseña e inténtalo de nuevo."); setLoading(false); return; }
-      router.push(safeCallbackPath(searchParams.get("callbackUrl"))); router.refresh();
+      router.push(safeCallbackPath(new URL(window.location.href).searchParams.get("callbackUrl"))); router.refresh();
     } catch { setError("No pudimos conectar. Comprueba tu conexión e inténtalo de nuevo."); setLoading(false); }
   }
   return <form onSubmit={submit} className="signin-form">
