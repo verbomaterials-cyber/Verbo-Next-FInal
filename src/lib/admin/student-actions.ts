@@ -11,6 +11,7 @@ import { prisma } from "@/lib/prisma";
 import type { ActionResult } from "./actions";
 import { enrollmentCreateZ, enrollmentPatchZ, studentInputZ, eventKey } from "./access-validation";
 import { queueEmail, scheduleEmails } from "@/lib/email";
+import { reserveAccountEmail, teacherAssignment, AccountInputError } from "./accounts";
 
 async function requireAdmin() {
   const session = await getServerSession(authOptions);
@@ -21,6 +22,7 @@ async function requireAdmin() {
 }
 
 function fail(error: unknown, fallback: string): { ok: false; error: string } {
+  if (error instanceof AccountInputError) return { ok: false, error: error.message };
   if (error instanceof Error && ["El límite no puede ser menor a los intentos utilizados.", "Las versiones deben estar publicadas y pertenecer a este examen."].includes(error.message)) return { ok: false, error: error.message };
   if (error instanceof z.ZodError) {
     return { ok: false, error: error.issues.map((i) => i.message).join(" · ") };
@@ -62,16 +64,17 @@ export async function createStudent(
   try {
     await requireAdmin();
     const data = studentInput.parse(input);
-    if (await prisma.adminUser.findUnique({ where: { email: data.email }, select: { id: true } })) return { ok: false, error: "Este correo ya corresponde a una cuenta de administración." };
     const chosenPassword = passwordInput.parse(input.password);
     const password = chosenPassword || generatePassword();
     await prisma.$transaction(async tx => {
+    await reserveAccountEmail(tx, data.email);
+    const assignment = await teacherAssignment(tx, data);
     const student = await tx.student.create({
       data: {
         fullName: data.fullName,
         email: data.email.toLowerCase().trim(),
         passwordHash: await bcrypt.hash(password, 12),
-        teacherEmail: data.teacherEmail || null,
+        ...assignment,
       },
     });
     await queueEmail(tx, { eventKey: `student:${student.id}:welcome`, recipient: student.email, subject: "Tu espacio está listo · Verbo NEXT", text: `Hola, ${student.fullName}.\n\nTu cuenta de Verbo NEXT está lista. Tu usuario es ${student.email}. Tu asesor te compartirá la contraseña por un canal privado y te avisará cuando tengas simuladores asignados.\n\nEntra en ${process.env.NEXTAUTH_URL ?? "https://next.verboacademic.com"}/login\n\nVerbo NEXT · Verbo Language Solutions` });
@@ -91,10 +94,14 @@ export async function updateStudent(
   try {
     await requireAdmin();
     const data = studentInput.parse(input);
-    if (await prisma.adminUser.findUnique({ where: { email: data.email }, select: { id: true } })) return { ok: false, error: "Este correo ya corresponde a una cuenta de administración." };
-    await prisma.student.update({
+    await prisma.$transaction(async tx => {
+    await reserveAccountEmail(tx, data.email, { kind: "student", id });
+    const current = await tx.student.findUniqueOrThrow({ where: { id } });
+    const assignment = await teacherAssignment(tx, data, current);
+    await tx.student.update({
       where: { id },
-      data: { fullName: data.fullName, email: data.email, teacherEmail: data.teacherEmail || null, ...(data.isActive !== undefined ? { isActive: data.isActive } : {}) },
+      data: { fullName: data.fullName, email: data.email, ...assignment, ...(data.isActive !== undefined ? { isActive: data.isActive } : {}) },
+    });
     });
     revalidateAccess();
     return { ok: true };
@@ -230,6 +237,7 @@ export async function deleteEnrollment(id: string): Promise<ActionResult> {
 function revalidateAccess() {
   revalidatePath("/admin", "layout");
   revalidatePath("/alumno", "layout");
+  revalidatePath("/profesor", "layout");
 }
 
 async function queueAccessEmail(tx: Prisma.TransactionClient, id: string, subject: string, key: string) {

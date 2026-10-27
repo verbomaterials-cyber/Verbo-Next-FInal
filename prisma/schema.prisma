@@ -164,9 +164,22 @@ model Student {
   createdAt    DateTime @default(now())
   isActive     Boolean  @default(true)
   teacherEmail String?
+  teacherId    String?
+  teacher      Teacher? @relation(fields: [teacherId], references: [id], onDelete: SetNull)
 
   enrollments Enrollment[]
   attempts    Attempt[]
+  @@index([teacherId])
+}
+
+model Teacher {
+  id           String   @id @default(cuid())
+  fullName     String
+  email        String   @unique
+  passwordHash String
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  students     Student[]
 }
 
 model Enrollment {
@@ -179,6 +192,11 @@ model Enrollment {
   isBlocked        Boolean  @default(false)
   unlockedVersions String[] // ids de ExamVersion desbloqueadas para este alumno
   createdAt        DateTime @default(now())
+  targetScore      Float?
+  targetDate       String? // calendar date YYYY-MM-DD, not a timezone-dependent instant
+  weeklyGoal       Int      @default(2)
+  focusSkills      Skill[]  @default([])
+  teacherNote      String?
 
   student  Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
   examType ExamType @relation(fields: [examTypeId], references: [id], onDelete: Cascade)

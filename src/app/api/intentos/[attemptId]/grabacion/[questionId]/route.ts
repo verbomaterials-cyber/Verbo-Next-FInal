@@ -90,7 +90,7 @@ export async function GET(_request: Request, { params }: Context) {
   if (!session) return new Response(null, { status: 401 });
   const { attemptId, questionId } = await params;
   const allowed = await prisma.attempt.findFirst({
-    where: { id: attemptId, ...(session.user.role === "ADMIN" ? {} : { studentId: session.user.id }) },
+    where: { id: attemptId, ...(session.user.role === "ADMIN" ? {} : session.user.role === "TEACHER" ? { student: { teacherId: session.user.id }, status: { not: "IN_PROGRESS" } } : { studentId: session.user.id }) },
     select: { id: true },
   });
   if (!allowed) return new Response(null, { status: 404 });

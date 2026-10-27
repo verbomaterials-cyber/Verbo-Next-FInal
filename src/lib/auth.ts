@@ -29,6 +29,12 @@ export const authOptions: NextAuthOptions = {
           return { id: admin.id, email: admin.email, name: "Administrador", role: "ADMIN" as const };
         }
 
+        const teacher = await prisma.teacher.findUnique({ where: { email } });
+        if (teacher) {
+          const ok = await bcrypt.compare(credentials.password, teacher.passwordHash);
+          if (!ok || !teacher.isActive) return null;
+          return { id: teacher.id, email: teacher.email, name: teacher.fullName, role: "TEACHER" as const };
+        }
         const student = await prisma.student.findUnique({ where: { email } });
         if (student) {
           const ok = await bcrypt.compare(credentials.password, student.passwordHash);
@@ -49,7 +55,9 @@ export const authOptions: NextAuthOptions = {
       }
       const account = token.role === "ADMIN"
         ? await prisma.adminUser.findUnique({ where: { id: token.uid }, select: { passwordHash: true } })
-        : await prisma.student.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true } });
+        : token.role === "TEACHER"
+          ? await prisma.teacher.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true } })
+          : await prisma.student.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true } });
       const stamp = account ? createHash("sha256").update(account.passwordHash).digest("hex") : "";
       if (user) token.authStamp = stamp;
       token.invalid = !account || ("isActive" in account && !account.isActive) || token.authStamp !== stamp;

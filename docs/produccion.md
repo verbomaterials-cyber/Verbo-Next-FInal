@@ -55,3 +55,8 @@ El rediseño y las nuevas herramientas de administración se documentan en
 [Portal y notificaciones](portal-y-notificaciones.md). La migración aditiva
 `20261027000100_portal_access_email` incorpora el estado de las cuentas, el correo
 del profesor y la cola privada de envíos. No reemplaza el catálogo ni los datos.
+
+La migración `20261027000200_teacher_study_plan` añade cuentas docentes,
+asignaciones explícitas y planes por examen. Es aditiva y conserva las cuentas y
+los intentos existentes. No convierte automáticamente los correos de avisos en
+permisos docentes. La autorización sigue en NextAuth y Prisma del servidor.

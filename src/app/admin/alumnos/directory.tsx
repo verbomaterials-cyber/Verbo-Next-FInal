@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Alumnos" };
 export async function StudentsDirectory({ searchParams, mode = "students" }: { searchParams: Promise<{ q?: string; examen?: string }>; mode?: "students" | "access" }) {
   const { q, examen } = await searchParams;
 
-  const [students, examTypes] = await Promise.all([
+  const [students, examTypes, teachers] = await Promise.all([
     prisma.student.findMany({
       where: {
         ...(q
@@ -41,11 +41,13 @@ export async function StudentsDirectory({ searchParams, mode = "students" }: { s
         },
       },
     }),
+    prisma.teacher.findMany({ orderBy: { fullName: "asc" }, select: { id: true, fullName: true, email: true, isActive: true } }),
   ]);
 
   return (
     <StudentsManager
       mode={mode}
+      teachers={teachers}
       query={q ?? ""}
       examFilter={examen ?? ""}
       examTypes={examTypes}
@@ -54,6 +56,7 @@ export async function StudentsDirectory({ searchParams, mode = "students" }: { s
         fullName: s.fullName,
         email: s.email,
         teacherEmail: s.teacherEmail,
+        teacherId: s.teacherId,
         isActive: s.isActive,
         createdAt: s.createdAt.toISOString().slice(0, 10),
         attemptCount: s._count.attempts,

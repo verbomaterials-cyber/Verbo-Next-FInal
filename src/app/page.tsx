@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { Brand } from "@/components/brand";
 import { Icon } from "@/components/icons";
+import { roleHome } from "@/lib/portal";
 
 const steps = [
   { icon: "target" as const, title: "Encuentra tu punto de partida.", text: "Un diagnóstico para entender tus habilidades y conversar con tu asesor sobre tu objetivo." },
@@ -11,7 +12,7 @@ const steps = [
 ];
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  const enter = session ? session.user.role === "ADMIN" ? "/admin" : "/alumno" : "/login";
+  const enter = session ? roleHome(session.user.role) : "/login";
   return <main className="next-site">
     <a href="#inicio" className="skip-link">Ir al contenido</a>
     <header className="site-nav"><Brand /><nav aria-label="Navegación principal"><a href="#experiencia">La experiencia</a><a href="#recorrido">Tu recorrido</a><Link href={enter} className="next-button">{session ? "Mi espacio" : "Iniciar sesión"}<Icon name="arrow" size={16} /></Link></nav></header>

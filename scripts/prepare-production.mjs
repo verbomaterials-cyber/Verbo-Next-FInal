@@ -7,7 +7,7 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { root, projectRef, productionOrigin, productionConnections, envValue } from "./production-target.mjs";
 
 const apply = process.argv.includes("--apply");
-const tableNames = ["ExamType", "Section", "QuestionType", "ExamVersion", "Question", "Student", "Enrollment", "AdminUser", "Attempt", "Response", "Notification", "Recording", "EmailDelivery"];
+const tableNames = ["ExamType", "Section", "QuestionType", "ExamVersion", "Question", "Student", "Enrollment", "AdminUser", "Attempt", "Response", "Notification", "Recording", "EmailDelivery", "Teacher"];
 const catalogModels = ["examType", "section", "questionType", "examVersion", "question"];
 const connections = await productionConnections();
 const remote = new PrismaClient({ datasourceUrl: connections.DIRECT_URL });
@@ -93,3 +93,4 @@ try {
   await remote.$disconnect();
   await local?.$disconnect();
 }
+

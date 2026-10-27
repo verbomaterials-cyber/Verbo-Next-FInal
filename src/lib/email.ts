@@ -2,6 +2,7 @@ import type { Prisma } from "@prisma/client";
 import { after } from "next/server";
 import { createPrivateKey, sign } from "node:crypto";
 import { prisma } from "@/lib/prisma";
+import { currentTeacherRecipient } from "@/lib/teacher/scope";
 export function emailConfiguration() {
   const bridge=!!(process.env.NEXT_EMAIL_BRIDGE_URL && process.env.NEXT_EMAIL_PRIVATE_KEY);
   const direct=!!(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL);
@@ -24,6 +25,22 @@ export async function flushEmails(limit=8) {
     });
     if(!delivery)break;
     try {
+      // Re-check queued notices after reassignment or suspension. An old failed
+      // message must not notify a teacher who no longer has this student.
+      const teacherNotice = /^attempt:([^:]+):(submitted|reviewed):teacher$/.exec(delivery.eventKey);
+      const teacherWelcome = /^teacher:([^:]+):welcome$/.exec(delivery.eventKey);
+      let authorized = true;
+      if (teacherNotice) {
+        const attempt = await prisma.attempt.findUnique({ where: { id: teacherNotice[1] }, select: { student: { select: { teacherId: true, teacherEmail: true, teacher: { select: { email: true, isActive: true } } } } } });
+        authorized = !!attempt && currentTeacherRecipient(attempt.student) === delivery.recipient;
+      } else if (teacherWelcome) {
+        const teacher = await prisma.teacher.findUnique({ where: { id: teacherWelcome[1] }, select: { email: true, isActive: true } });
+        authorized = !!teacher?.isActive && teacher.email === delivery.recipient;
+      }
+      if (!authorized) {
+        await prisma.emailDelivery.update({ where: { id: delivery.id }, data: { status: "CANCELED", lockedAt: null, lastError: "Aviso cancelado: la asignación o el estado de la cuenta cambió." } });
+        continue;
+      }
       let response:Response;
       if(process.env.NEXT_EMAIL_BRIDGE_URL && process.env.NEXT_EMAIL_PRIVATE_KEY) {
         const body=JSON.stringify({id:delivery.id,to:delivery.recipient,subject:delivery.subject,text:delivery.text,timestamp:Date.now()});
@@ -42,9 +59,12 @@ export async function flushEmails(limit=8) {
   return {sent,failed,configured:true};
 }
 export async function queueAttemptEmails(tx:Prisma.TransactionClient,attemptId:string,event:"submitted"|"reviewed") {
-  const attempt=await tx.attempt.findUniqueOrThrow({where:{id:attemptId},include:{student:true,examVersion:{include:{examType:true}}}});
+  const attempt=await tx.attempt.findUniqueOrThrow({where:{id:attemptId},include:{student:{include:{teacher:{select:{email:true,isActive:true}}}},examVersion:{include:{examType:true}}}});
   const student=attempt.student,exam=`${attempt.examVersion.examType.name} · ${attempt.examVersion.label}`;
   const origin=process.env.NEXTAUTH_URL??"https://next.verboacademic.com";
   await queueEmail(tx,{eventKey:`attempt:${attemptId}:${event}:student`,recipient:student.email,subject:event==="reviewed"?"Tu resultado está listo · Verbo NEXT":"Recibimos tu simulación · Verbo NEXT",text:`Hola, ${student.fullName}.\n\n${event==="reviewed"?"La revisión de tu simulación ha terminado. Ya puedes consultar tu resultado y tu constancia.":attempt.status==="PENDING_REVIEW"?"Recibimos tu simulación. Las respuestas abiertas están pendientes de revisión de tu profesor.":"Tu simulación ha terminado y tus resultados están disponibles."}\n\n${exam}\n${origin}/alumno/resultado/${attemptId}\n\nVerbo NEXT · Verbo Language Solutions`});
-  if(student.teacherEmail) await queueEmail(tx,{eventKey:`attempt:${attemptId}:${event}:teacher`,recipient:student.teacherEmail,subject:`${event==="reviewed"?"Revisión finalizada":"Simulación enviada"} · ${student.fullName}`,text:`${student.fullName} (${student.email}) ${event==="reviewed"?"ya tiene su resultado revisado.":"completó su simulación."}\n\n${exam}\nEstado: ${attempt.status==="PENDING_REVIEW"?"Pendiente de revisión":"Evaluación terminada"}.\n\nEl equipo autorizado puede consultar el intento en ${origin}/admin/revision/${attemptId}\n\nVerbo NEXT`});
+  const teacherRecipient=currentTeacherRecipient(student);
+  const reviewArea=student.teacherId?"profesor":"admin";
+  if(teacherRecipient) await queueEmail(tx,{eventKey:`attempt:${attemptId}:${event}:teacher`,recipient:teacherRecipient,subject:`${event==="reviewed"?"Revisión finalizada":"Simulación enviada"} · ${student.fullName}`,text:`${student.fullName} (${student.email}) ${event==="reviewed"?"ya tiene su resultado revisado.":"completó su simulación."}\n\n${exam}\nEstado: ${attempt.status==="PENDING_REVIEW"?"Pendiente de revisión":"Evaluación terminada"}.\n\nEl equipo autorizado puede consultar el intento en ${origin}/${reviewArea}/revision/${attemptId}\n\nVerbo NEXT`});
 }
+

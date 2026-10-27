@@ -1,0 +1,20 @@
+import Link from "next/link";
+import {StudyPlanForm} from "./study-plan-form";
+import {Icon} from "./icons";
+import {practiceScore,portalDate} from "@/lib/portal";
+import {mexicoWeek,focusAdvice,skillLabels} from "@/lib/study-plan";
+import type {loadStudyPlans} from "@/lib/student/plan-data";
+type Plan=Awaited<ReturnType<typeof loadStudyPlans>>[number];
+export function StudyPlanCard({plan,staff=false,reviewBase="/profesor/revision"}:{plan:Plan;staff?:boolean;reviewBase?:string}){
+  const score=practiceScore(plan.latestScore,"COMPLETED"),week=mexicoWeek();
+  const remaining = Math.max(0, plan.weeklyGoal - plan.submitted);
+  const achieved=plan.targetScore!==null&&score!==null&&Number(score.value)>=plan.targetScore;
+  return <section className="study-card"><div className="study-card-heading"><div><span className="site-eyebrow">TU RUTA DE PREPARACIÓN</span><h2>{plan.examType.name}</h2></div><span className="study-count"><Icon name="clock" size={16}/>{plan.submitted}/{plan.weeklyGoal} esta semana</span></div><p className="study-week">Del {portalDate(week.start)} al {portalDate(new Date(week.end.getTime()-86400000))} · hora de Ciudad de México</p><div role="meter" aria-label={`Simulaciones enviadas esta semana en ${plan.examType.name}`} aria-valuemin={0} aria-valuemax={plan.weeklyGoal} aria-valuenow={Math.min(plan.submitted,plan.weeklyGoal)} className="study-meter"><span style={{width:`${Math.min(100,plan.submitted/plan.weeklyGoal*100)}%`}}/></div><div className="study-numbers"><div><span>Meta de práctica</span><strong>{plan.targetScore??"Por definir"}</strong></div><div><span>Último resultado evaluado</span><strong>{score?.value??"—"}</strong></div><div><span>Fecha objetivo</span><strong className="study-target-date">{plan.targetDate?portalDate(new Date(plan.targetDate+"T12:00:00Z"),true):"A tu ritmo"}</strong></div></div>{achieved&&<p className="study-achieved"><Icon name="check" size={17}/>Tu último resultado alcanzó tu meta de práctica.</p>}
+    <ol className="study-steps"><li><span>01</span><div><h3>Prepara tu estrategia</h3><p>{plan.focusSkills.length?plan.focusSkills.map(skill=>skillLabels[skill]).join(" y ")+": tus prioridades para esta semana.":"Define hasta dos habilidades para concentrar tu preparación."}</p></div></li><li><span>02</span><div><h3>Practica con intención</h3><p>{plan.isBlocked?"El acceso está bloqueado; contacta a tu asesor.":plan.attemptsAllowed<=plan.attemptsUsed?"Has utilizado tus intentos disponibles. Tu asesor puede habilitar más.":`${remaining} ${remaining===1?"simulación más":"simulaciones más"} para completar tu objetivo semanal. Tienes ${Math.max(0,plan.attemptsAllowed-plan.attemptsUsed)} intentos disponibles.`}</p>{!staff&&!plan.isBlocked&&plan.attemptsAllowed>plan.attemptsUsed&&<Link className="text-link" href={`/alumno/examen/${plan.examType.slug}`}>Ir a mis simuladores<Icon name="arrow" size={16}/></Link>}</div></li><li><span>03</span><div><h3>Comprende y ajusta</h3><p>{plan.latest?.status==="PENDING_REVIEW"?"Tu último envío está en revisión. Tu profesor completará la evaluación.":"Revisa el resultado, tus respuestas y la orientación de tu profesor antes del siguiente intento."}</p>{plan.latest&&<Link className="text-link" href={staff?`${reviewBase}/${plan.latest.id}`:`/alumno/resultado/${plan.latest.id}`}>Ver último intento<Icon name="arrow" size={16}/></Link>}</div></li></ol>
+    {plan.focusSkills.length>0&&<div className="study-focus">{plan.focusSkills.map(skill=><article key={skill}><h3>{skillLabels[skill]}</h3><p>{focusAdvice[skill]}</p></article>)}</div>}
+    {plan.teacherNote&&<aside className="study-teacher-note"><Icon name="users" size={21}/><div><h3>La orientación de tu profesor</h3><p>{plan.teacherNote}</p></div></aside>}
+    <details className="study-settings"><summary>{staff?"Ajustar meta y orientar al alumno":"Personalizar mi meta y mi semana"}<Icon name="chevron" size={17}/></summary><StudyPlanForm plan={plan} slug={plan.examType.slug} staff={staff}/></details>
+  </section>;
+}
+
+

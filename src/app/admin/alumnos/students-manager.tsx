@@ -49,6 +49,7 @@ type StudentRow = {
   fullName: string;
   email: string;
   teacherEmail: string | null;
+  teacherId: string | null;
   isActive: boolean;
   createdAt: string;
   attemptCount: number;
@@ -56,12 +57,14 @@ type StudentRow = {
 };
 
 export function StudentsManager({
+  teachers,
   mode = "students",
   query,
   examFilter,
   examTypes,
   students,
 }: {
+  teachers: { id: string; fullName: string; email: string; isActive: boolean }[];
   mode?: "students" | "access";
   query: string;
   examFilter: string;
@@ -182,6 +185,7 @@ export function StudentsManager({
                   <td className="px-4 py-3 text-ink-muted">{s.createdAt}</td>
                   <td className="px-4 py-3">
                     <div className="flex justify-end gap-1">
+                      <Link href={`/admin/alumnos/${s.id}/plan`} className="rounded-lg px-3 py-1.5 text-xs font-medium text-brand hover:bg-brand-soft">Plan y avance</Link>
                       {s.enrollments.some((e) => e.examSlug === "toefl-ibt") && <Link href={`/admin/alumnos/${s.id}/progreso`} className="rounded-lg px-3 py-1.5 text-xs font-medium text-brand hover:bg-brand-soft">Progreso TOEFL</Link>}
                       <Button variant="outline" size="sm" onClick={() => setAccessModal(s)}>
                         Gestionar accesos
@@ -202,7 +206,7 @@ export function StudentsManager({
       )}
 
       {studentModal && (
-        <StudentForm editing={studentModal.editing} onClose={() => setStudentModal(null)} />
+        <StudentForm teachers={teachers} editing={studentModal.editing} onClose={() => setStudentModal(null)} />
       )}
 
       {accessModal && (
@@ -218,11 +222,12 @@ export function StudentsManager({
 
 /* ───────────── Alta / edición de alumno ───────────── */
 
-function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () => void }) {
+function StudentForm({ editing, onClose, teachers }: { editing?: StudentRow; onClose: () => void; teachers: { id: string; fullName: string; email: string; isActive: boolean }[] }) {
   const router = useRouter();
   const [fullName, setFullName] = useState(editing?.fullName ?? "");
   const [email, setEmail] = useState(editing?.email ?? "");
   const [teacherEmail, setTeacherEmail] = useState(editing?.teacherEmail ?? "");
+  const [teacherId, setTeacherId] = useState(editing?.teacherId ?? "");
   const [isActive, setIsActive] = useState(editing?.isActive ?? true);
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -235,7 +240,7 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
     setError(null);
 
     if (editing) {
-      const result = await updateStudent(editing.id, { fullName, email, teacherEmail, isActive });
+      const result = await updateStudent(editing.id, { fullName, email, teacherEmail, teacherId, isActive });
       if (!result.ok) {
         setError(result.error);
         setSaving(false);
@@ -246,7 +251,7 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
       return;
     }
 
-    const result = await createStudent({ fullName, email, password, teacherEmail });
+    const result = await createStudent({ fullName, email, password, teacherEmail, teacherId });
     if (!result.ok) {
       setError(result.error);
       setSaving(false);
@@ -290,7 +295,8 @@ function StudentForm({ editing, onClose }: { editing?: StudentRow; onClose: () =
           <Field label="Email" help="Es su usuario para iniciar sesión.">
             <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           </Field>
-          <Field label="Correo del profesor (opcional)" help="Recibe avisos cuando este alumno completa una simulación. El correo no crea una cuenta de profesor."><Input type="email" value={teacherEmail} onChange={e => setTeacherEmail(e.target.value)} /></Field>
+          <Field label="Profesor con acceso al panel" help="Puede ver el avance, orientar el plan y revisar los intentos enviados de este alumno."><Select value={teacherId} onChange={e => { setTeacherId(e.target.value); setTeacherEmail(""); }}><option value="">Sin profesor asignado</option>{teachers.map(t => <option key={t.id} value={t.id}>{t.fullName} · {t.email}{t.isActive ? "" : " (suspendido)"}</option>)}</Select></Field>
+          {!teacherId && <Field label="Correo de avisos (opcional)" help="Solo recibe notificaciones; no concede acceso al panel docente."><Input type="email" value={teacherEmail} onChange={e => setTeacherEmail(e.target.value)} /></Field>}
           {editing && <Checkbox label="Cuenta activa" checked={isActive} onChange={e => setIsActive(e.target.checked)} />}
           {editing && !isActive && <p className="text-sm text-ink-muted">La suspensión cierra sus sesiones e impide entrar; conserva sus respuestas y resultados.</p>}
           <Field

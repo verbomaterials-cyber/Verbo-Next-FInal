@@ -1,3 +1,4 @@
+export function roleHome(role: string) { return role === "ADMIN" ? "/admin" : role === "TEACHER" ? "/profesor" : "/alumno"; }
 export function safeCallbackPath(value: string | null) {
   return value && value.startsWith("/") && !value.startsWith("//") && !/[\\\u0000-\u001f]/.test(value) ? value : "/alumno";
 }

@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { roleHome } from "@/lib/portal";
 
 // Protección por rol: un STUDENT jamás alcanza /admin/*, y viceversa.
 // Las layouts de cada área repiten la verificación en el servidor
@@ -14,17 +15,12 @@ export default async function proxy(req: NextRequest) {
     return NextResponse.redirect(login);
   }
 
-  if (pathname.startsWith("/admin") && token.role !== "ADMIN") {
-    return NextResponse.redirect(new URL("/alumno", req.url));
-  }
-
-  if (pathname.startsWith("/alumno") && token.role !== "STUDENT") {
-    return NextResponse.redirect(new URL("/admin", req.url));
-  }
+  const required = pathname.startsWith("/admin") ? "ADMIN" : pathname.startsWith("/profesor") ? "TEACHER" : "STUDENT";
+  if (token.role !== required) return NextResponse.redirect(new URL(roleHome(token.role), req.url));
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/alumno/:path*"],
+  matcher: ["/admin/:path*", "/alumno/:path*", "/profesor/:path*"],
 };

@@ -10,8 +10,7 @@ mostrar un catálogo público; cada alumno ve sus exámenes asignados.
 - **Accesos:** buscar al alumno y abrir **Gestionar accesos**. Permite asignar un examen con versiones específicas e intentos, bloquear o quitar un permiso y regenerar su código. Quitar un permiso conserva los resultados. El límite nunca puede ser menor a los intentos utilizados.
 - **Correos:** revisar los últimos 50 avisos y procesar pendientes o reintentar errores recientes. “Aceptado” confirma aceptación por Resend; no confirma recepción en bandeja.
 
-El correo de profesor recibe avisos, pero no crea una cuenta ni concede permisos.
-Para abrir las revisiones se necesita una cuenta administrativa autorizada.
+El correo de avisos por sí solo no concede permisos. Las cuentas docentes se crean en Profesores y se asignan explícitamente al alumno.
 
 ## Resultados
 
@@ -69,3 +68,59 @@ La tabla está protegida con RLS y sin acceso para `anon` ni `authenticated`.
 
 Las verificaciones locales crean registros temporales propios y los eliminan.
 No ejecutan seeds ni reemplazan alumnos, exámenes o intentos existentes.
+
+
+## Profesores, metas y preparación semanal
+
+En **Administración → Profesores** se crean las cuentas docentes, se actualizan sus
+datos y se activan o suspenden. La contraseña se muestra una sola vez al crear o
+restablecer; el profesor recibe un correo de bienvenida sin la contraseña.
+
+En **Alumnos → Editar → Profesor con acceso al panel** se asigna una cuenta docente.
+El campo de correo de avisos permanece como alternativa para notificaciones y no
+concede acceso. Las asignaciones previas por correo no se convierten en permisos.
+
+El profesor utiliza el mismo login y entra a `/profesor`. Puede:
+
+- Consultar únicamente sus alumnos asignados, sus planes e intentos.
+- Revisar las respuestas y escuchar las grabaciones de intentos enviados.
+- Usar las mismas rúbricas y herramientas de revisión que la administración.
+- Ajustar metas y prioridades y escribir una orientación visible para el alumno.
+
+No puede crear cuentas, asignarse alumnos, modificar exámenes, conceder accesos ni
+abrir el registro de correos. La reasignación revoca su acceso anterior en cada
+consulta y mutación. Las revisiones bloquean la asignación durante su transacción
+para evitar que cambie mientras se guarda una evaluación. Suspender o restablecer
+la contraseña invalida las sesiones docentes. La tabla `Teacher` está protegida
+con RLS y sin permisos para los roles públicos de Supabase.
+
+**Alumno → Mi plan** muestra un plan por examen asignado:
+
+- Meta en la escala interna correspondiente: TOEFL 1–6 en pasos de 0.5; DET 0–100.
+- Fecha objetivo opcional y de una a siete simulaciones por semana.
+- Hasta dos habilidades prioritarias con orientación práctica.
+- Número real de intentos enviados durante la semana, incluyendo los pendientes
+  de revisión. La semana empieza el lunes en Ciudad de México; no incluye
+  intentos en curso, intentos ajenos ni los de semanas anteriores.
+- Último puntaje de práctica completamente evaluado y reconocimiento de la meta
+  cuando ese resultado la alcanza. Las escalas no se mezclan.
+- Orientación del profesor, que el alumno puede leer pero no modificar.
+
+El administrador también puede abrir **Alumnos → Plan y avance**. Las metas y
+el plan no cambian los tiempos, el contenido, los intentos permitidos ni las reglas
+del examen. El plan no crea sesiones de calendario ni recordatorios automáticos.
+
+Verificación adicional:
+
+- `node --test --import tsx tests/*.test.ts`: 63 pruebas automatizadas.
+- `node --env-file=.env.local --import tsx scripts/verify-teaching.ts`: flujo HTTP
+  completo de docentes, reasignación, audio privado, revisión, metas y notas.
+- La opción `--official` verifica el mismo flujo únicamente en la producción
+  fijada por `production-target.mjs`, con cuentas temporales y buzones de pruebas
+  de Resend. Limpia exclusivamente sus propios registros.
+
+
+Los avisos docentes pendientes vuelven a comprobar la asignación y el estado de
+la cuenta antes de enviarse. Si el profesor cambió o quedó suspendido, se marcan
+como cancelados; un reintento no envía el aviso anterior a quien perdió el acceso.
+

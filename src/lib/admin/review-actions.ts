@@ -11,10 +11,11 @@ import { deliveryMetadata } from "@/lib/toefl-delivery";
 import { RUBRIC_VERSION, toeflRubrics } from "@/lib/toefl-rubrics";
 import { detMetadata, detRubric, detListeningRubric, DET_RUBRIC_VERSION } from "@/lib/det-format";
 import { queueAttemptEmails, scheduleEmails } from "@/lib/email";
+import { canReviewStudent } from "@/lib/teacher/scope";
 
 async function requireAdmin() {
   const session = await getServerSession(authOptions);
-  if (!session || session.user.role !== "ADMIN") {
+  if (!session || !["ADMIN", "TEACHER"].includes(session.user.role)) {
     throw new Error("No autorizado");
   }
   return session;
@@ -35,14 +36,15 @@ export async function reviewResponse(input: {
   rubricScore?: number;
 }): Promise<ActionResult<{ attemptStatus: string }>> {
   try {
-    await requireAdmin();
+    const session = await requireAdmin();
 
     const data = z.object({ responseId: z.string().min(1), verdict: z.enum(["correct", "incorrect", "reviewed"]), reviewNotes: z.string().max(10000), rubricScore: z.number().int().min(0).max(5).optional() }).parse(input);
     const response = await prisma.response.findUnique({
       where: { id: input.responseId },
-      include: { attempt: { select: { id: true, status: true } }, question: { include: { questionType: true } } },
+      include: { attempt: { select: { id: true, status: true, studentId: true } }, question: { include: { questionType: true } } },
     });
     if (!response) return { ok: false, error: "Respuesta no encontrada." };
+    if (!await canReviewStudent(prisma, session.user, response.attempt.studentId)) return { ok: false, error: "No tienes acceso a esta revisión." };
     if (response.attempt.status === "IN_PROGRESS") return { ok: false, error: "Espera a que el alumno envíe el intento." };
     const det = detMetadata(response.question.promptContent);
     if (!["FREE_TEXT", "AUDIO_RECORDING"].includes(response.question.questionType.responseType) && det?.task!=="listen-complete") return { ok: false, error: "Esta respuesta no requiere revisión manual." };
@@ -50,6 +52,8 @@ export async function reviewResponse(input: {
     if (rubric && data.rubricScore === undefined) return { ok: false, error: "Selecciona una puntuación de rúbrica entre 0 y 5." };
 
     const { status } = await prisma.$transaction(async (tx) => {
+    await tx.$queryRaw`SELECT "id" FROM "Student" WHERE "id" = ${response.attempt.studentId} FOR SHARE`;
+    if (!await canReviewStudent(tx, session.user, response.attempt.studentId)) throw new Error("No autorizado.");
     await tx.$queryRaw`SELECT "id" FROM "Attempt" WHERE "id" = ${response.attempt.id} FOR UPDATE`;
     await tx.response.update({
       where: { id: input.responseId },
@@ -69,6 +73,7 @@ export async function reviewResponse(input: {
 
     revalidatePath(`/admin/revision/${response.attempt.id}`);
     revalidatePath("/admin/metricas");
+    revalidatePath("/profesor", "layout");
     revalidatePath(`/alumno/resultado/${response.attempt.id}`);
     scheduleEmails();
     return { ok: true, data: { attemptStatus: status } };
