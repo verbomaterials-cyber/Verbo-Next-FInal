@@ -1,12 +1,11 @@
 "use server";
-import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
-import { authOptions } from "../auth";
+import { getAppSession } from "../session";
 import { prisma } from "../prisma";
 import { profileNameZ } from "./profile-validation";
 
 export async function updateProfile(input: unknown) {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") return { ok: false as const, error: "Tu sesión expiró. Vuelve a iniciar sesión." };
   const parsed = profileNameZ.safeParse((input as { fullName?: unknown } | null)?.fullName);
   if (!parsed.success) return { ok: false as const, error: parsed.error.issues[0].message };

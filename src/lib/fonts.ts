@@ -19,18 +19,21 @@ import {
  */
 
 export const detDisplay = Bricolage_Grotesque({
+  preload: false,
   subsets: ["latin"],
   variable: "--font-det-display",
   display: "swap",
 });
 
 export const detBody = Hanken_Grotesk({
+  preload: false,
   subsets: ["latin"],
   variable: "--font-det-body",
   display: "swap",
 });
 
 export const toeflDisplay = Newsreader({
+  preload: false,
   subsets: ["latin"],
   variable: "--font-toefl-display",
   display: "swap",
@@ -38,6 +41,7 @@ export const toeflDisplay = Newsreader({
 });
 
 export const toeflBody = Libre_Franklin({
+  preload: false,
   subsets: ["latin"],
   variable: "--font-toefl-body",
   display: "swap",

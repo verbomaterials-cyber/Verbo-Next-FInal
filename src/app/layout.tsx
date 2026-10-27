@@ -10,6 +10,7 @@ const geistSans = Hanken_Grotesk({
 });
 
 const geistMono = Geist_Mono({
+  preload: false,
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });

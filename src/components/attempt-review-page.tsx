@@ -4,10 +4,10 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { Badge } from "@/components/ui";
 import { ReviewPanel } from "@/app/admin/revision/[attemptId]/review-panel";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 import { detMetadata, detAssessmentZ } from "@/lib/det-format";
+import { optimizedMedia } from "@/lib/media";
 
 export const metadata: Metadata = { title: "Revisión de intento" };
 
@@ -19,7 +19,7 @@ export default async function ReviewAttemptPage({
   params: Promise<{ attemptId: string }>;
 }) {
   const { attemptId } = await params;
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || !["ADMIN", "TEACHER"].includes(session.user.role)) redirect("/login");
   const teacher = session.user.role === "TEACHER";
 
@@ -82,7 +82,7 @@ export default async function ReviewAttemptPage({
               isCorrect: r.isCorrect,
               reviewNotes: r.reviewNotes,
               reviewAssessment: r.reviewAssessment,
-              promptContent: r.question.promptContent as Record<string, unknown>,
+              promptContent: optimizedMedia(r.question.promptContent) as Record<string, unknown>,
               answerContent: r.answerContent as Record<string, unknown>,
             }))}
           />

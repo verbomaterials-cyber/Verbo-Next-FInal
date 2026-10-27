@@ -1,8 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { gradeAttempt } from "@/lib/grading";
 import type { ActionResult } from "./actions";
@@ -14,7 +13,7 @@ import { queueAttemptEmails, scheduleEmails } from "@/lib/email";
 import { canReviewStudent } from "@/lib/teacher/scope";
 
 async function requireAdmin() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || !["ADMIN", "TEACHER"].includes(session.user.role)) {
     throw new Error("No autorizado");
   }

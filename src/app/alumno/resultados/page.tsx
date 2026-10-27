@@ -1,18 +1,17 @@
 import Link from "next/link";
-import { getServerSession } from "next-auth";
 import { Prisma } from "@prisma/client";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { AttemptActivity } from "@/components/attempt-activity";
 import { Icon } from "@/components/icons";
 export const metadata = { title: "Mis resultados" };
 export default async function ResultsPage({ searchParams }: { searchParams: Promise<{ examen?: string; estado?: string; pagina?: string }> }) {
-  const session = await getServerSession(authOptions), query = await searchParams;
+  const session = await getAppSession(), query = await searchParams;
   const exam = query.examen ?? "", status = ["COMPLETED", "PENDING_REVIEW", "IN_PROGRESS"].includes(query.estado ?? "") ? query.estado! as "COMPLETED" | "PENDING_REVIEW" | "IN_PROGRESS" : "";
   const requestedPage = Number(query.pagina), page = Number.isInteger(requestedPage) && requestedPage > 0 ? Math.min(requestedPage, 10000) : 1;
   const where: Prisma.AttemptWhereInput = { studentId: session!.user.id, ...(exam ? { examVersion: { examType: { slug: exam } } } : {}), ...(status ? { status } : {}) };
   const [attempts, count, enrollments] = await Promise.all([
-    prisma.attempt.findMany({ where, orderBy: [{ startedAt: "desc" }, { id: "desc" }], skip: (page - 1) * 12, take: 12, include: { examVersion: { select: { label: true, examType: { select: { name: true, slug: true } } } } } }),
+    prisma.attempt.findMany({ where, orderBy: [{ startedAt: "desc" }, { id: "desc" }], skip: (page - 1) * 12, take: 12, select: {id:true,status:true,startedAt:true,completedAt:true,overallScore:true,examVersion: { select: { label: true, examType: { select: { name: true, slug: true } } } } } }),
     prisma.attempt.count({ where }), prisma.enrollment.findMany({ where: { studentId: session!.user.id }, select: { examType: { select: { name: true, slug: true } } } }),
   ]);
   const paginationHref = (n: number) => `/alumno/resultados?${new URLSearchParams({ examen: exam, estado: status, pagina: String(n) })}`;

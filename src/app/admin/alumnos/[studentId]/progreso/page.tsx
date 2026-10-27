@@ -1,11 +1,10 @@
-import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { ToeflProgressReport } from "@/components/toefl-progress-report";
 export default async function StudentProgressPage({ params }: { params: Promise<{ studentId: string }> }) {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "ADMIN") redirect("/login");
   const { studentId } = await params;
   const student = await prisma.student.findUnique({ where: { id: studentId }, select: { fullName: true, email: true,

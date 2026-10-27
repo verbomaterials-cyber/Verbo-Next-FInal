@@ -1,10 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-import { getServerSession } from "next-auth";
+import { revalidatePath, updateTag } from "next/cache";
+import { EXAM_CONTENT_TAG } from "@/lib/exam-content";
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import {
   adminFieldSchemaZ,
@@ -18,7 +18,7 @@ export type ActionResult<T = undefined> =
   | { ok: false; error: string };
 
 async function requireAdmin() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "ADMIN") {
     throw new Error("No autorizado");
   }
@@ -48,6 +48,7 @@ function slugify(name: string): string {
 }
 
 function revalidateExam(slug: string) {
+  updateTag(EXAM_CONTENT_TAG);
   revalidatePath("/admin");
   revalidatePath(`/admin/examenes/${slug}`, "layout");
 }

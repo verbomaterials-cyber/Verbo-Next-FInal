@@ -9,7 +9,7 @@ export function AttemptActivity({ attempts }: { attempts: ActivityAttempt[] }) {
       <span className="activity-icon"><Icon name={active ? "play" : pending ? "clock" : "check"} size={19} /></span>
       <div className="activity-description"><strong>{attempt.examVersion.label}</strong><p>{attempt.examVersion.examType.name} · {portalDate(attempt.completedAt ?? attempt.startedAt, true)}</p></div>
       {score ? <p className="activity-score">{score.value}<small>{score.label}</small></p> : <span className={`status-pill ${active ? "status-pill-progress" : pending ? "status-pill-pending" : ""}`}>{active ? "En curso" : pending ? "En revisión" : "Finalizado"}</span>}
-      <Link className="activity-open" href={active ? `/alumno/intento/${attempt.id}` : `/alumno/resultado/${attempt.id}`} aria-label={`${active ? "Retomar" : "Ver resultado de"} ${attempt.examVersion.label}`}>{active ? "Retomar" : "Ver resultado"}<Icon name="chevron" size={16} /></Link>
+      <Link prefetch={false} className="activity-open" href={active ? `/alumno/intento/${attempt.id}` : `/alumno/resultado/${attempt.id}`} aria-label={`${active ? "Retomar" : "Ver resultado de"} ${attempt.examVersion.label}`}>{active ? "Retomar" : "Ver resultado"}<Icon name="chevron" size={16} /></Link>
     </li>;
   })}</ul>;
 }

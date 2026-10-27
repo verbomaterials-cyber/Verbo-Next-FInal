@@ -1,7 +1,6 @@
-import {getServerSession} from "next-auth";
 import {notFound,redirect} from "next/navigation";
 import Link from "next/link";
-import {authOptions} from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import {prisma} from "@/lib/prisma";
 import {staffStudentScope} from "@/lib/teacher/scope";
 import {portalDate,practiceScore} from "@/lib/portal";
@@ -10,7 +9,7 @@ import {StudyPlanCard} from "@/components/study-plan-card";
 import {Badge} from "@/components/ui";
 export const metadata={title:"Plan y avance del alumno"};
 export default async function StudentTeachingPage({params}:{params:Promise<{studentId:string}>}){
-  const session=await getServerSession(authOptions);if(!session||!["ADMIN","TEACHER"].includes(session.user.role))redirect("/login");
+  const session=await getAppSession();if(!session||!["ADMIN","TEACHER"].includes(session.user.role))redirect("/login");
   const {studentId}=await params;const student=await prisma.student.findFirst({where:{id:studentId,...staffStudentScope(session.user)},select:{id:true,fullName:true,email:true,isActive:true}});if(!student)notFound();
   const teacher=session.user.role==="TEACHER",reviewBase=teacher?"/profesor/revision":"/admin/revision";
   const [plans,attempts]=await Promise.all([loadStudyPlans(student.id),prisma.attempt.findMany({where:{studentId:student.id},take:30,orderBy:{startedAt:"desc"},select:{id:true,status:true,startedAt:true,completedAt:true,overallScore:true,examVersion:{select:{label:true,examType:{select:{name:true}}}}}})]);

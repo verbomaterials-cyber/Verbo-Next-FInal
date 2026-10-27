@@ -1,6 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { AccessCodeForm } from "./access-code-form";
 import { VersionCard } from "./version-card";
@@ -17,7 +16,7 @@ export default async function ExamSelectionPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") redirect("/login");
 
   const examType = await prisma.examType.findUnique({

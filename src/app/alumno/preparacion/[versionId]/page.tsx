@@ -1,6 +1,5 @@
-import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { hasExamAccess } from "@/lib/student/actions";
 import { EquipmentCheck } from "./equipment-check";
@@ -9,7 +8,7 @@ import { DET_FORMAT, detMetadata } from "@/lib/det-format";
 
 export default async function PreparationPage({ params }: { params: Promise<{ versionId: string }> }) {
   const { versionId } = await params;
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") redirect("/login");
   const version = await prisma.examVersion.findUnique({ where: { id: versionId },
     include: { examType: { select: { slug: true, name: true } }, _count: { select: { questions: true } }, questions: { take: 1, select: { promptContent: true } } } });

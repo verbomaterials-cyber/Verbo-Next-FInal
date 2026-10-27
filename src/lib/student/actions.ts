@@ -1,9 +1,8 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { getServerSession } from "next-auth";
 import { Prisma } from "@prisma/client";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { gradeAttempt } from "@/lib/grading";
 import { z } from "zod";
@@ -19,7 +18,7 @@ export type StudentActionResult<T = undefined> =
   | { ok: false; error: string };
 
 async function requireStudent() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") {
     throw new Error("No autorizado");
   }

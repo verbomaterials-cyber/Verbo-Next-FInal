@@ -3,6 +3,8 @@ import { advanceRuntime, beginSpokenResponse, createRuntime, readRuntime, type T
 import { detMetadata, detPoints } from "../det-format";
 import type { AdminFieldSchema } from "../exam-config";
 import { closedPoints, deliveryMetadata, moduleSeconds } from "../toefl-delivery";
+import { loadExamContent } from "../exam-content";
+import { optimizedMedia } from "../media";
 
 export class AttemptError extends Error {}
 
@@ -17,19 +19,12 @@ export async function activeAttempt(
     WHERE "id" = ${attemptId} AND "studentId" = ${studentId} FOR UPDATE
   `;
   if (!rows.length) throw new AttemptError("Intento no encontrado.");
-  const attempt = await tx.attempt.findUniqueOrThrow({
+  const row = await tx.attempt.findUniqueOrThrow({
     where: { id: attemptId },
-    include: {
-      responses: true,
-      examVersion: {
-        include: {
-          examType: true,
-          questions: { orderBy: { order: "asc" }, include: { questionType: { include: { section: true } } } },
-        },
-      },
-    },
+    include: { responses: true },
   });
-  if (attempt.status !== "IN_PROGRESS") throw new AttemptError("Este intento ya fue enviado.");
+  if (row.status !== "IN_PROGRESS") throw new AttemptError("Este intento ya fue enviado.");
+  const attempt = { ...row, examVersion: await loadExamContent(row.examVersionId, tx) };
   const enrollment = await tx.enrollment.findUnique({
     where: { studentId_examTypeId: { studentId, examTypeId: attempt.examVersion.examTypeId } },
   });
@@ -77,6 +72,9 @@ export async function activeAttempt(
     state = beginSpokenResponse(state, timedQuestions, Date.now());
     await tx.attempt.update({ where: { id: attemptId }, data: { runtimeState: state as Prisma.InputJsonValue } });
   }
+  // Existing attempts may have recorded the original WAV URL before deployment.
+  // Map it to the same asset URL used by the engine without granting a replay.
+  state = { ...state, playedAudio: optimizedMedia(state.playedAudio) };
   return { attempt, questions, timedQuestions, state };
 }
 

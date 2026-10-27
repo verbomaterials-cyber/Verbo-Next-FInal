@@ -1,6 +1,5 @@
 import { notFound, redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import type { AdminFieldSchema, ThemeConfig } from "@/lib/exam-config";
 import { examFontClass } from "@/lib/fonts";
@@ -12,6 +11,7 @@ import { themeConfigZ } from "@/lib/exam-config";
 import { delivered, deliveryMetadata } from "@/lib/toefl-delivery";
 import { detMetadata, detPublicPrompt } from "@/lib/det-format";
 import { DetEngine } from "@/components/exam/det-engine";
+import { loadExamContent } from "@/lib/exam-content";
 
 export default async function AttemptPage({
   params,
@@ -19,27 +19,17 @@ export default async function AttemptPage({
   params: Promise<{ attemptId: string }>;
 }) {
   const { attemptId } = await params;
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") redirect("/login");
 
-  const attempt = await prisma.attempt.findUnique({
-    where: { id: attemptId },
-    include: {
-      responses: true,
-      examVersion: {
-        include: {
-          examType: true,
-          questions: {
-            orderBy: { order: "asc" },
-            include: { questionType: { include: { section: true } } },
-          },
-        },
-      },
-    },
+  const row = await prisma.attempt.findUnique({
+    where: { id: attemptId, studentId: session.user.id },
+    include: { responses: true },
   });
 
-  if (!attempt || attempt.studentId !== session.user.id) notFound();
-  if (attempt.status !== "IN_PROGRESS") redirect(`/alumno/resultado/${attempt.id}`);
+  if (!row) notFound();
+  if (row.status !== "IN_PROGRESS") redirect(`/alumno/resultado/${row.id}`);
+  const attempt = { ...row, examVersion: await loadExamContent(row.examVersionId) };
 
   const examType = attempt.examVersion.examType;
   const questions = attempt.examVersion.questions;

@@ -1,12 +1,11 @@
-import { getServerSession } from "next-auth";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { hasExamAccess } from "@/lib/student/actions";
 import { ToeflProgressReport } from "@/components/toefl-progress-report";
 export default async function ProgressPage({ params }: { params: Promise<{ slug: string }> }) {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") redirect("/login");
   const { slug } = await params;
   if (slug !== "toefl-ibt") notFound();

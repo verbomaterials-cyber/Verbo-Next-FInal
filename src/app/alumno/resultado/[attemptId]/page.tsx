@@ -1,14 +1,14 @@
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { Badge } from "@/components/ui";
 import { delivered, deliveryMetadata, type RouteDecision } from "@/lib/toefl-delivery";
 import { rubricAssessmentZ } from "@/lib/toefl-rubrics";
 import { detMetadata, detDelivered, detAssessmentZ, detPoints } from "@/lib/det-format";
 import { PracticeCertificate } from "@/components/practice-certificate";
+import { loadExamContent } from "@/lib/exam-content";
 
 export default async function ResultPage({
   params,
@@ -16,24 +16,19 @@ export default async function ResultPage({
   params: Promise<{ attemptId: string }>;
 }) {
   const { attemptId } = await params;
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") redirect("/login");
 
-  const attempt = await prisma.attempt.findUnique({
-    where: { id: attemptId },
+  const row = await prisma.attempt.findUnique({
+    where: { id: attemptId, studentId: session.user.id },
     include: {
       student: { select: { fullName: true } },
       responses: { include: { question: { include: { questionType: true } } } },
-      examVersion: {
-        include: {
-          examType: true,
-          questions: { orderBy: { order: "asc" }, include: { questionType: true } },
-        },
-      },
     },
   });
-  if (!attempt || attempt.studentId !== session!.user.id) notFound();
-  if (attempt.status === "IN_PROGRESS") redirect(`/alumno/intento/${attempt.id}`);
+  if (!row) notFound();
+  if (row.status === "IN_PROGRESS") redirect(`/alumno/intento/${row.id}`);
+  const attempt = { ...row, examVersion: await loadExamContent(row.examVersionId) };
   const routes = (attempt.runtimeState as { routes?: Record<string, RouteDecision> } | null)?.routes ?? {};
   const detSelections=(attempt.runtimeState as {detSelections?:Record<string,string>}|null)?.detSelections??{};
   const det=attempt.examVersion.questions.some(q=>detMetadata(q.promptContent));
@@ -172,7 +167,7 @@ export default async function ResultPage({
                     {meta?.scored === false && <p className="mt-2 text-xs text-ink-muted">Reactivo de prueba: no suma puntos.</p>}
                     {det&&!open&&<p className="mt-2 text-xs text-ink-muted">Crédito de práctica: {assessment.success&&detMetadata(q.promptContent)?.task==="listen-complete"?(assessment.data.score/5*detPoints(q.promptContent as Record<string,unknown>,q.correctAnswer as Record<string,unknown>|null).possible).toFixed(2):r?.isCorrect===null?"por revisar":detPoints(q.promptContent as Record<string,unknown>,q.correctAnswer as Record<string,unknown>|null,(r?.answerContent??{})as Record<string,unknown>).earned.toFixed(2)} / {detPoints(q.promptContent as Record<string,unknown>,q.correctAnswer as Record<string,unknown>|null).possible}</p>}
                   </details>}
-                  {r && typeof (r.answerContent as Record<string, unknown>).audioUrl === "string" && (r.answerContent as Record<string, unknown>).recordingId != null && <audio controls className="mt-3 w-full" aria-label="Tu respuesta oral" src={String((r.answerContent as Record<string, unknown>).audioUrl)} />}
+                  {r && typeof (r.answerContent as Record<string, unknown>).audioUrl === "string" && (r.answerContent as Record<string, unknown>).recordingId != null && <audio preload="none" controls className="mt-3 w-full" aria-label="Tu respuesta oral" src={String((r.answerContent as Record<string, unknown>).audioUrl)} />}
 
                   {open && r && r.isCorrect === null && (
                     <p className="mt-2 rounded-lg bg-brand-soft px-3 py-2 text-sm text-brand">
@@ -249,7 +244,7 @@ function ReviewPrompt({ prompt, correct }: { prompt: Record<string, unknown>; co
     {typeof prompt._transcript==="string"&&<p><b>Transcripción: </b>{prompt._transcript}</p>}
     {Array.isArray(prompt.requiredPoints) && <ul className="list-disc pl-5">{prompt.requiredPoints.map((point, index) => <li key={index}>{String(point)}</li>)}</ul>}
     {Array.isArray(prompt.studentReplies) && prompt.studentReplies.map((reply, index) => { const entry = reply as { author: string; text: string }; return <p key={index}><b>{entry.author}: </b>{entry.text}</p>; })}
-    {typeof prompt.audioUrl === "string" && <audio controls className="w-full" src={prompt.audioUrl} aria-label="Audio de la consigna" />}
+    {typeof prompt.audioUrl === "string" && <audio preload="none" controls className="w-full" src={prompt.audioUrl} aria-label="Audio de la consigna" />}
     {typeof prompt.transcript === "string" && <p className="whitespace-pre-wrap"><b>Transcripción: </b>{prompt.transcript}</p>}
     {correct && <p><b>Solución: </b>{answerSummary(correct, prompt)}</p>}
   </div>;

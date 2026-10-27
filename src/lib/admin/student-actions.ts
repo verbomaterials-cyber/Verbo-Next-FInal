@@ -1,12 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { getServerSession } from "next-auth";
 import { Prisma } from "@prisma/client";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import type { ActionResult } from "./actions";
 import { enrollmentCreateZ, enrollmentPatchZ, studentInputZ, eventKey } from "./access-validation";
@@ -14,7 +13,7 @@ import { queueEmail, scheduleEmails } from "@/lib/email";
 import { reserveAccountEmail, teacherAssignment, AccountInputError } from "./accounts";
 
 async function requireAdmin() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "ADMIN") {
     throw new Error("No autorizado");
   }

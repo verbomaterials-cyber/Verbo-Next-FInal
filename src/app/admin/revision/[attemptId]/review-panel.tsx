@@ -85,7 +85,7 @@ function ResponseCard({ response }: { response: OpenResponse }) {
       </div>
 
       {typeof response.answerContent.audioUrl === "string" && response.answerContent.recordingId != null && (
-        <audio className="mt-3 w-full" controls src={response.answerContent.audioUrl} aria-label="Respuesta oral del alumno" />
+        <audio preload="none" className="mt-3 w-full" controls src={response.answerContent.audioUrl} aria-label="Respuesta oral del alumno" />
       )}
 
       <div className="mt-3 rounded-lg bg-background px-4 py-3 text-sm leading-relaxed">

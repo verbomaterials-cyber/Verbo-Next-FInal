@@ -1,13 +1,12 @@
-import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { portalDate } from "@/lib/portal";
 import { ProfileForm } from "./profile-form";
 import { Icon } from "@/components/icons";
 export const metadata = { title: "Mi perfil" };
 export default async function ProfilePage() {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   const student = await prisma.student.findUniqueOrThrow({ where: { id: session!.user.id }, include: { enrollments: { include: { examType: { select: { name: true, slug: true } } }, orderBy: { createdAt: "asc" } } } });
   const initials = student.fullName.trim().split(/\s+/).slice(0, 2).map(s => s[0]).join("");
   return <><div className="page-heading"><div><h1>Tu espacio, a tu nombre.</h1><p>Consulta tus datos y los accesos que acompañan tu preparación.</p></div></div><div className="profile-grid">

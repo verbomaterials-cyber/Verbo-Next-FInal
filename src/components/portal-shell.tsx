@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import Link from "next/link";
+import Link, { useLinkStatus } from "next/link";
 import { usePathname } from "next/navigation";
 import { Brand } from "./brand";
 import { Icon, type IconName } from "./icons";
@@ -26,6 +26,10 @@ const teacherLinks: typeof studentLinks = [
   { href: "/profesor/alumnos", label: "Mis alumnos", icon: "users" },
   { href: "/profesor/revisiones", label: "Revisiones", icon: "book" },
 ];
+function NavigationHint() {
+  const { pending } = useLinkStatus();
+  return <><span aria-hidden="true" className={`portal-navigation-hint ${pending ? "is-pending" : ""}`} />{pending && <span role="status" className="sr-only">Cargando página…</span>}</>;
+}
 export function PortalShell({ children, name, role }: { children: ReactNode; name: string; role: "student" | "admin" | "teacher" }) {
   const path = usePathname(), menuRef = useRef<HTMLDetailsElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -47,17 +51,17 @@ export function PortalShell({ children, name, role }: { children: ReactNode; nam
     <aside className="portal-sidebar">
       <Brand href={home} inverse />
       <p className="sidebar-context">{role === "student" ? "Tu espacio de preparación" : role === "teacher" ? "Espacio docente" : "Espacio de administración"}</p>
-      <nav aria-label="Navegación principal" className="portal-nav">{links.map(item => <Link href={item.href} key={item.href} aria-current={active(item.href) ? "page" : undefined}><Icon name={item.icon} /><span>{item.label}</span>{active(item.href) && <span className="nav-active-dot" />}</Link>)}</nav>
-      <div className="sidebar-bottom"><p>Un paso más cerca<br /><strong>de tu siguiente meta.</strong></p><Link href={role === "student" ? "/alumno/ayuda" : "https://verbolanguagesolutions.com/next"}><Icon name="help" size={18} />{role === "student" ? "Guía y ayuda" : "Ver sitio Verbo"}<Icon name="arrow" size={16} /></Link><span>VERBO LANGUAGE SOLUTIONS</span></div>
+      <nav aria-label="Navegación principal" className="portal-nav">{links.map(item => <Link prefetch={false} href={item.href} key={item.href} aria-current={active(item.href) ? "page" : undefined}><Icon name={item.icon} /><span>{item.label}</span><NavigationHint />{active(item.href) && <span className="nav-active-dot" />}</Link>)}</nav>
+      <div className="sidebar-bottom"><p>Un paso más cerca<br /><strong>de tu siguiente meta.</strong></p><Link prefetch={false} href={role === "student" ? "/alumno/ayuda" : "https://verbolanguagesolutions.com/next"}><Icon name="help" size={18} />{role === "student" ? "Guía y ayuda" : "Ver sitio Verbo"}<Icon name="arrow" size={16} /></Link><span>VERBO LANGUAGE SOLUTIONS</span></div>
     </aside>
     <div className="portal-body">
       <header className="portal-topbar"><div className="portal-mobile-brand"><Brand href={home} /></div><p className="portal-breadcrumb">{role === "admin" ? "Administración" : role === "teacher" ? "Acompañamiento docente" : "Mi preparación"}<span>/</span><strong>{title}</strong></p>
-        <details className="profile-menu" ref={menuRef} onToggle={e => setMenuOpen(e.currentTarget.open)}><summary aria-label="Abrir menú de cuenta"><span className="avatar">{initials}</span><span className="account-name">{name}<small>{role === "student" ? "Miembro de Verbo NEXT" : role === "teacher" ? "Profesor" : "Administrador"}</small></span><Icon name="chevron" size={14} className="account-chevron" /></summary><div className="account-dropdown">{role === "student" && <><Link href="/alumno/perfil" onClick={() => { if (menuRef.current) menuRef.current.open = false; }}><Icon name="user" size={17} />Mi perfil</Link><Link href="/alumno/ayuda" onClick={() => { if (menuRef.current) menuRef.current.open = false; }}><Icon name="help" size={17} />Guía y ayuda</Link></>}<SignOutButton /></div></details>
+        <details className="profile-menu" ref={menuRef} onToggle={e => setMenuOpen(e.currentTarget.open)}><summary aria-label="Abrir menú de cuenta"><span className="avatar">{initials}</span><span className="account-name">{name}<small>{role === "student" ? "Miembro de Verbo NEXT" : role === "teacher" ? "Profesor" : "Administrador"}</small></span><Icon name="chevron" size={14} className="account-chevron" /></summary><div className="account-dropdown">{role === "student" && <><Link prefetch={false} href="/alumno/perfil" onClick={() => { if (menuRef.current) menuRef.current.open = false; }}><Icon name="user" size={17} />Mi perfil</Link><Link prefetch={false} href="/alumno/ayuda" onClick={() => { if (menuRef.current) menuRef.current.open = false; }}><Icon name="help" size={17} />Guía y ayuda</Link></>}<SignOutButton /></div></details>
       </header>
       <main id="portal-content" className="portal-content" tabIndex={-1}><div className="portal-route" key={path}>{children}</div></main>
-      <footer className="portal-footer"><span>Hecho para tu siguiente paso.</span><span>Simulación independiente · <Link href="/creditos-audio">Créditos</Link></span></footer>
+      <footer className="portal-footer"><span>Hecho para tu siguiente paso.</span><span>Simulación independiente · <Link prefetch={false} href="/creditos-audio">Créditos</Link></span></footer>
     </div>
-    <nav className="portal-mobile-nav" aria-label="Navegación móvil">{links.map(item => <Link key={item.href} href={item.href} aria-current={active(item.href) ? "page" : undefined}><Icon name={item.icon} size={21} /><span>{item.label}</span></Link>)}</nav>
+    <nav className="portal-mobile-nav" aria-label="Navegación móvil">{links.map(item => <Link prefetch={false} key={item.href} href={item.href} aria-current={active(item.href) ? "page" : undefined}><Icon name={item.icon} size={21} /><span>{item.label}</span><NavigationHint /></Link>)}</nav>
   </div>;
 }
 

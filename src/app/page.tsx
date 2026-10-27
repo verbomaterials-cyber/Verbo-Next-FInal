@@ -1,21 +1,17 @@
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { Brand } from "@/components/brand";
 import { Icon } from "@/components/icons";
-import { roleHome } from "@/lib/portal";
 
 const steps = [
   { icon: "target" as const, title: "Encuentra tu punto de partida.", text: "Un diagnóstico para entender tus habilidades y conversar con tu asesor sobre tu objetivo." },
   { icon: "clock" as const, title: "Entrena con intención.", text: "Practica el formato, administra tu tiempo y conoce el ritmo del examen que estás preparando." },
   { icon: "chart" as const, title: "Haz visible tu avance.", text: "Revisa tus respuestas, recibe retroalimentación y guarda una constancia de tus resultados de práctica." },
 ];
-export default async function Home() {
-  const session = await getServerSession(authOptions);
-  const enter = session ? roleHome(session.user.role) : "/login";
+export default function Home() {
+  const enter = "/login";
   return <main className="next-site">
     <a href="#inicio" className="skip-link">Ir al contenido</a>
-    <header className="site-nav"><Brand /><nav aria-label="Navegación principal"><a href="#experiencia">La experiencia</a><a href="#recorrido">Tu recorrido</a><Link href={enter} className="next-button">{session ? "Mi espacio" : "Iniciar sesión"}<Icon name="arrow" size={16} /></Link></nav></header>
+    <header className="site-nav"><Brand /><nav aria-label="Navegación principal"><a href="#experiencia">La experiencia</a><a href="#recorrido">Tu recorrido</a><Link href={enter} className="next-button">Iniciar sesión<Icon name="arrow" size={16} /></Link></nav></header>
     <section className="site-hero" id="inicio">
       <div className="site-hero-copy"><span className="site-eyebrow"><i />TU SIGUIENTE GRAN PASO</span><h1>Tu meta tiene<br />un siguiente<br /><em>nivel.</em></h1><p>Prepárate con estrategia. Practica con propósito. Llega al día de tu examen con la confianza de saber cómo has avanzado.</p><div className="site-actions"><Link href={enter} className="next-button">Entrar a mi preparación<Icon name="arrow" size={18} /></Link><a href="#experiencia" className="text-link">Descubre Verbo NEXT<Icon name="chevron" size={15} /></a></div><span className="site-footnote"><Icon name="lock" size={14} />Un espacio privado, preparado para ti.</span></div>
       <div className="site-hero-art" aria-label="Tu recorrido: diagnóstico, práctica y resultados"><div className="site-art-orbit" /><span className="site-float-tag"><Icon name="users" size={17} />Con acompañamiento Verbo</span><div className="site-path-card"><span className="site-eyebrow">TU PREPARACIÓN, CON DIRECCIÓN</span><h2>Un paso más cerca.</h2><p>Cada práctica cuenta una parte de tu historia.</p><ol>{["Conoce tu punto de partida", "Practica a tu ritmo", "Comprende tus resultados"].map((s, i) => <li key={s}><span>{i === 0 ? <Icon name="check" size={17} /> : `0${i + 1}`}</span><div><strong>{s}</strong><small>{["Diagnóstico y orientación", "Simulaciones y tiempo real", "Revisión con tu asesor"][i]}</small></div>{i === 0 && <span className="site-path-check"><Icon name="check" size={17} /></span>}</li>)}</ol><div className="site-card-bottom"><span>Tu siguiente versión empieza aquí.</span><Icon name="arrow" size={20} /></div></div><span className="site-float-note"><Icon name="chart" size={21} /><span>Más perspectiva.<strong>Más confianza.</strong></span></span><span className="site-art-spark" aria-hidden="true">✳</span></div>

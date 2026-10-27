@@ -1,11 +1,10 @@
 "use server";
-import { getServerSession } from "next-auth";
 import { revalidatePath } from "next/cache";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { emailConfiguration,flushEmails } from "@/lib/email";
 export async function retryEmails() {
-  const session=await getServerSession(authOptions);
+  const session=await getAppSession();
   if(!session||session.user.role!=="ADMIN")return {ok:false,error:"No autorizado."};
   if(!emailConfiguration().configured)return {ok:false,error:"El transporte de correo no está configurado."};
   // Process one bounded batch. Keep provider idempotency protection within 24 hours.

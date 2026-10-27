@@ -1,6 +1,5 @@
-import { getServerSession } from "next-auth";
 import { Prisma } from "@prisma/client";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { activeAttempt, AttemptError, writeAnswer } from "@/lib/student/attempt-service";
 
@@ -19,7 +18,7 @@ function audioFormat(bytes: Uint8Array): string | null {
 }
 
 export async function POST(request: Request, { params }: Context) {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session || session.user.role !== "STUDENT") return Response.json({ error: "No autorizado." }, { status: 401 });
   const origin = request.headers.get("origin");
   if (origin) {
@@ -86,7 +85,7 @@ export async function POST(request: Request, { params }: Context) {
 }
 
 export async function GET(_request: Request, { params }: Context) {
-  const session = await getServerSession(authOptions);
+  const session = await getAppSession();
   if (!session) return new Response(null, { status: 401 });
   const { attemptId, questionId } = await params;
   const allowed = await prisma.attempt.findFirst({

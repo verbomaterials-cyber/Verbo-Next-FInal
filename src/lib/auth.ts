@@ -56,8 +56,9 @@ export const authOptions: NextAuthOptions = {
       const account = token.role === "ADMIN"
         ? await prisma.adminUser.findUnique({ where: { id: token.uid }, select: { passwordHash: true } })
         : token.role === "TEACHER"
-          ? await prisma.teacher.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true } })
-          : await prisma.student.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true } });
+          ? await prisma.teacher.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true, fullName: true } })
+          : await prisma.student.findUnique({ where: { id: token.uid }, select: { passwordHash: true, isActive: true, fullName: true } });
+      if (account && "fullName" in account && typeof account.fullName === "string") token.name = account.fullName;
       const stamp = account ? createHash("sha256").update(account.passwordHash).digest("hex") : "";
       if (user) token.authStamp = stamp;
       token.invalid = !account || ("isActive" in account && !account.isActive) || token.authStamp !== stamp;

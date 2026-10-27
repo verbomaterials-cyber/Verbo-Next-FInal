@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export function Brand({ href = "/", inverse = false }: { href?: string; inverse?: boolean }) {
-  return <Link href={href} className={`verbo-brand ${inverse ? "verbo-brand-inverse" : ""}`} aria-label="Verbo NEXT · Inicio">
+  return <Link prefetch={false} href={href} className={`verbo-brand ${inverse ? "verbo-brand-inverse" : ""}`} aria-label="Verbo NEXT · Inicio">
     <Image src="/brand/verbo-symbol.png" alt="" width={31} height={33} />
     <span>Verbo <strong>NEXT<span className="brand-period">.</span></strong></span>
   </Link>;

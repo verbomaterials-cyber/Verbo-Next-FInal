@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { ExamMark } from "@/components/brand";
 import { Icon } from "@/components/icons";
@@ -9,12 +8,12 @@ import { portalDate, practiceScore } from "@/lib/portal";
 import { mexicoWeek } from "@/lib/study-plan";
 
 export default async function StudentHome() {
-  const session = await getServerSession(authOptions), studentId = session!.user.id;
-  const [student, enrollments, counts, recent, active, latestResult] = await Promise.all([
-    prisma.student.findUniqueOrThrow({ where: { id: studentId }, select: { fullName: true } }),
+  const session = await getAppSession(), studentId = session!.user.id;
+  const student = { fullName: session!.user.name ?? "Alumno" };
+  const [enrollments, counts, recent, active, latestResult] = await Promise.all([
     prisma.enrollment.findMany({ where: { studentId }, include: { examType: { select: { id: true, name: true, slug: true, totalDurationMinutes: true } } }, orderBy: { createdAt: "asc" } }),
     prisma.attempt.groupBy({ by: ["status"], where: { studentId }, _count: { _all: true } }),
-    prisma.attempt.findMany({ where: { studentId }, orderBy: [{ startedAt: "desc" }, { id: "desc" }], take: 4, include: { examVersion: { select: { label: true, examType: { select: { name: true, slug: true } } } } } }),
+    prisma.attempt.findMany({ where: { studentId }, orderBy: [{ startedAt: "desc" }, { id: "desc" }], take: 4, select: { id:true,status:true,startedAt:true,completedAt:true,overallScore:true,examVersion: { select: { label: true, examType: { select: { name: true, slug: true } } } } } }),
     prisma.attempt.findFirst({ where: { studentId, status: "IN_PROGRESS", examVersion: { examType: { enrollments: { some: { studentId, isBlocked: false } } } } }, orderBy: { startedAt: "desc" }, select: { id: true, examVersion: { select: { label: true, examType: { select: { name: true } } } } } }),
     prisma.attempt.findFirst({ where: { studentId, status: "COMPLETED" }, orderBy: { completedAt: "desc" }, select: { id: true, overallScore: true, examVersion: { select: { label: true, examType: { select: { name: true } } } } } }),
   ]);

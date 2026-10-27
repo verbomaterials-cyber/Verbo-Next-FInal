@@ -199,3 +199,9 @@
 .teacher-student-card>div { display:flex; align-items:center; flex-wrap:wrap; gap:12px; font-size:11px; color:#71838b; }
 .teacher-student-card>strong { display:flex; align-items:center; justify-content:space-between; gap:15px; padding-top:22px; margin-top:22px; border-top:1px solid #e4ece0; font-size:13px; font-weight:650; }
 @media(max-width:760px) { .study-card { padding:23px; } .study-steps { grid-template-columns:1fr; gap:22px; } .study-steps li { display:flex; gap:15px; } .study-steps li>span { flex-shrink:0; margin:0; } .study-numbers { gap:12px; } .study-numbers strong { font-size:22px; } .study-numbers .study-target-date { font-size:16px; } .study-numbers span { font-size:10px; } .teacher-stats { gap:10px; } .teacher-stats .admin-stat { padding:14px; } .teacher-stats .admin-stat span { font-size:10px; } .study-home { gap:16px; padding:20px; } .study-home>.text-link { margin-left:64px; } .portal-mobile-nav { overflow-x:auto; justify-content:space-between; } .portal-mobile-nav a { flex:1 0 auto; min-width:45px; padding-left:8px; padding-right:8px; } }
+/* Feedback without speculative page requests or a layout shift. */
+.portal-nav a, .portal-mobile-nav a { position: relative; }
+.portal-navigation-hint { position: absolute; right: 10px; top: 8px; width: 12px; height: 12px; opacity: 0; border: 2px solid #b7ccae; border-top-color: currentColor; border-radius: 50%; }
+.portal-navigation-hint.is-pending { opacity: 1; animation: portal-spin .8s linear infinite; }
+@keyframes portal-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .portal-navigation-hint.is-pending { animation: none; } }
