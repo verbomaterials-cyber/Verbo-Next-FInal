@@ -61,7 +61,8 @@ async function main(){
     assert.equal((await action("updateStudent",[studentIds[0],{fullName:"Alumno temporal 1",email:studentEmails[0],teacherId:teacherIds[1]}],"/admin/alumnos")).ok,true);
     if(official)await db.emailDelivery.update({where:{eventKey:`attempt:${attempts[0].id}:submitted:teacher`},data:{status:"PENDING"}});
     await login(teacherEmails[0]);assert.equal((await request(own)).status,404);assert.equal((await request(ownReview)).status,404);assert.equal((await request(audioPath)).status,404);
-    assert.equal((await action("reviewResponse",[{responseId:spoken.id,verdict:"correct",reviewNotes:"Must be rejected",rubricScore:4}],"/profesor")).ok,false);
+    assert.equal((await action("reviewResponse",[{responseId:spoken.id,verdict:"correct",reviewNotes:"Must be rejected",rubricScore:4}],ownReview)).ok,false);
+    assert.equal((await db.response.findUniqueOrThrow({where:{id:spoken.id}})).isCorrect,null,"revoked teacher must not change the response");
     await login(teacherEmails[1]);await warm(own);await warm(ownReview);assert.equal((await action("reviewResponse",[{responseId:spoken.id,verdict:"correct",reviewNotes:"Seguimiento del nuevo profesor.",rubricScore:4}],ownReview)).ok,true);
     const teacherNotice=await db.emailDelivery.findUniqueOrThrow({where:{eventKey:`attempt:${attempts[0].id}:reviewed:teacher`}});assert.equal(teacherNotice.recipient,teacherEmails[1]);assert.ok(teacherNotice.text.includes(`/profesor/revision/${attempts[0].id}`));
     checks.push("reassignment immediately revokes previous teacher access to pages, audio and mutations; review notice uses the new teacher and portal");
@@ -83,6 +84,7 @@ async function main(){
   }
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});
+
 
 
 
