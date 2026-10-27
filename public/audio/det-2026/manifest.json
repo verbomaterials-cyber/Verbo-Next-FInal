@@ -1,0 +1,1016 @@
+{
+  "engine": "Piper 2023.11.14-2",
+  "synthesis": "offline",
+  "lengthScale": 1.35,
+  "credits": "/creditos-audio",
+  "clips": [
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-1-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "11b3f6402e0df29d42a684f927061b93a336c84377622dae17e0f388ce322000",
+      "sha256": "5c2d4a631796c8dcbfcf9c35f7cb44895f1dc0fb44daa4c2f82c0bea64203824"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-1-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "9fc354915b8233d761131631bbcaf9685ca317461f22cae48cd480053bd4ea87",
+      "sha256": "0767361f8b2d1206d8f281e1168f56599ac12bd33ca9aa74aae7165d006aab7c"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-1-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "5ca82a2ec802894e29b4be671f20e181f917e917da1cc843b24e924d460a026b",
+      "sha256": "0b4e0db4d8db90f2e68d97d835b2f12905eb09eb6a64ac1dcf45e3468477a4b7"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-2-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "7cc2b13d81abf23e0f6b7e2b42d260ca29101f8bd6a6e0b7e06c21542ff369bf",
+      "sha256": "2e94910cd150971e913779309fc594bebb7e9cf4a755d113a1580095953984f3"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-2-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "68ec8ae6dd54ed49943799aa768a6c86d4f862c0372d055fffd606ea79fcf67d",
+      "sha256": "2bde99c5c9fe0a8f3d41f7dedfaf2055459e90eed46527a4583e16303a98fd09"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-2-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "b83bb0032173a57d22aa44b006440d9b5324f7e6822c0b906c59cd21047b163d",
+      "sha256": "29f67bef56caa671460246a5defd378dad2b7561fbc8dacbccbace8aa228737c"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-3-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "e0ba192ad12b7f0eb42f874bf6abbcf8b7335683587631bdbb95e4933069da59",
+      "sha256": "5fb58ba20b712e3b5be0dd5077f91893da83cc830d3a771c7a8b9537c139c9e8"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-3-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "6285f4050e35308f6214d48c0f4a06bd478798d4fee6bd2f59c2333c1f8d2e3e",
+      "sha256": "2b417f6c9b6f31c5ef5ddff42a8e497bed71b6ff477994319e6ba166689fb3e5"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-3-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "7d76a2ac495cc49aa3b84aad7a82461ed6f1b5d200e91b5a6589f4e9398696f8",
+      "sha256": "608b78eff7701c328314eddeb6a40c57eb29d677449a26c47a1788742820a32e"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-4-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "30b17ce19eff6e5ef28574e1341211d12164cb3307f33f99eae8ad52a667e96f",
+      "sha256": "0f436895a7f393e435d27ae6ec57cd10183537b84bcd3db2f34f85558a5c8466"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-4-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "d0b937652f51c556c18551c9c0a760d971dee45ca90f13e512d77dacea0899db",
+      "sha256": "b488720d27b6d3c216c55da3665268837acec13f95e1e65d62fe5d6d0c57f013"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-4-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "a9f0e35b0d81a98f06d35be6396681e0f0a9e8aeece3f44e218f7365fe44e3b2",
+      "sha256": "5a5c29fd9a903ebfd829de572587ac5b8ae10334700a83852ec65eafb4d811ab"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-5-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "6f10f5139d62f361794b76a5e4588e7e949e91f92307a66062d6f19aa3fd29a6",
+      "sha256": "66824de4cd7af609e7182123c0a4248437b5f3655bdd285e248a5754f221766f"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-5-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "94853361eea21b36cea32eb4f22959d5748bb2a7f4b3c923e1a9220c10d095cc",
+      "sha256": "17640d634ec69deb9feab81d2b767e8b06906417e942f150f529357ece9e8a8d"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-5-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "107db80f60db97e249f1d2218d124a2932e57e01737af67206f46a9c5bca9b45",
+      "sha256": "6c8e6cd79da604f400d5723fbb01f68d7bdd03bb87f9dda490bc5aad1e1673ea"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-6-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "784003c8c9d5326c10264bcf5fa9da1d95e073b1eb49408b56f6e4a0b8fae32f",
+      "sha256": "5140ffff342414eb52be19f6fad56cfb7a83f8dd43b97d48d1095a7a3cc5ff02"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-6-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "839189f29e7052b90dcfb313696af3eb1b17f4d41c32e29c9f189a4385c6dd91",
+      "sha256": "58c56fbc01efe9ff4cdeaa61b6be9acebe98f91c96e2d9594e1cd9fec2c0ff81"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/dictation-6-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "95250e8e61835783e76a81e4800913589469a750873ca7fb736b139e5527a68c",
+      "sha256": "8037e3b6331a6b44636a8611d60eff253cf900df2fd2e2392343ecb0544c956d"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-1-scenario.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "684e03edc67fedb9eb93f3e03bebec47b3cf32135925e4053d9bf7a5e0c6a0e3",
+      "sha256": "05e33becf6c77658c074337c099f8006f016357324083db7cd5478f7fd3b7fa4"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-1-turn-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "37b880721a612e6366623f8f7cbeea049cf5124258988ae6d60d7d842cdd4972",
+      "sha256": "c9f6619e3bbd31f15c60b6fe6ed809f2779a5bf4d6018a00fa841f2cb5c69261"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-1-turn-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "23fc2899f10239156d105e12db68f4125408bbeced287caa8a0060837aa140bb",
+      "sha256": "683ce368a2438c14ce99f23fada20b13319d755fe585504d7ca71898a15fc03d"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-1-turn-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "7ce6a80d8f0d00eace76ed006c4e5897d9a26e0986690f33315d67281e152b4f",
+      "sha256": "f7c5a2af26373bdec995bff1606b5b94f512e85beae968d75d53b7d671f6abdd"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-1-turn-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "6e6a49bc38eeb708049587a1134308972efa7474201b161e70ad314bc723ecaa",
+      "sha256": "36a0f5801cdcfd2ae89591b2320841accb3f290bf6f6f245100946c4626f9e92"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-1-turn-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "4fd5ba3da9a8dfd05645256914e95b981c0d7e4eb10e1b8bbbb0f6a1e739412a",
+      "sha256": "eeb6b0becc7f65ecdda55bf93e2ad5a759da88856b918930afa1b6146fa84785"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-2-scenario.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "32067ab2e1f362768c28f312b9b196eff28bd09817bc1355fc7ab4e4faa7a989",
+      "sha256": "5ad29494da16ca3a6e3f9593f799c88d1154da0576a7e8a07a7cadc110590c4f"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-2-turn-1.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "0985f291d1695d2a85a623b62f168c0078e499eaf353fb9fd8537da00cc2ecca",
+      "sha256": "9824d175e44c191f3ce277f3d0971f52cab899971519042fb3caafb5aabe195f"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-2-turn-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "394d206347b9e98b834c901d657709d617c438a5c751649b5613230ecebde687",
+      "sha256": "505b69401f27bfa10ec6bb501cbb1cdbb534b246f2c95fd49b0ff88ea4f32286"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-2-turn-3.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "08fb62646668c19adfc6d1acd3e21909bbf250e530bdf8ac4a486622003f3361",
+      "sha256": "7065fa2382307e262a4cc55c3003094e84be4cdb5877b123165b85a4f249614f"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-2-turn-4.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "7bcbadf482e81e6071d6527cd63090e87f8a361f528b1a2ec4f446c9df606ea2",
+      "sha256": "d745ffa60a60b6903af11cbaa2c2f32100e3febb1ef711e3638f88a6be5dd91e"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/listening-2-turn-5.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "74399e7d7b33c0ce7b6dbc4958933a02aa4fe84fb2cbd70a03cbb7ac2adf51b3",
+      "sha256": "6638cff914d26f282f1b2bffd14a446ad98a7d19322556b124b2c8f73eb526bc"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/interview-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "06024a4043e6b54130be8359e40518f6f57aa5003d2dcdc640729636cef4b01f",
+      "sha256": "eeba159a46e2d2eab46e2391deaa83b75824857c00530f981c51c5a7f55333c8"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/interview-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "f8b6c5d7702a12669a3111a66afcfa8560e28909185b09aea39ff06acb5ec239",
+      "sha256": "893dccfe1803a0b9f140f75b07ec09c92e3f06dbefb811894098dcd2b895e141"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/interview-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "d114b91343a555f85d414a2abeb2df8a1badb8e9b2c343d42ef7334238dc1ea1",
+      "sha256": "09504ab46c213b63b8837c90ceffb676ef95d003aa8936ecde02e8b582d916e5"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/interview-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "4f977c096b5ce35cd565bad2f4259cdba77544631605f2d794224a55887e8951",
+      "sha256": "edbc4a27a8e2f4c3538ffcb3f5c8b50cfc51217c27a4b934d2ccfdc0b302c264"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/interview-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "37f4fe88c9056287965ac2cfcf11f641c0be5b132653bd8b755c5f1da3156535",
+      "sha256": "36ff4319b12da91b1225869e57bb43a89e6815b300bec57e721bc7c8b5e43a79"
+    },
+    {
+      "path": "/audio/det-2026/form-diagnostic/interview-6.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "7cb1487f4b2de39274fd797f148c6464658affbd281e3d3c2eefbca0c2e1096f",
+      "sha256": "f1e98a1e0839fbe278575550c5b37088e308b3431ac066b3f8be68d68a080850"
+    },
+    {
+      "path": "/audio/det-2026/dictation-1-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "eaed56a4968708c0a0b04e3a0747190dcfc56ce57a1469349ad585c047eeac3e",
+      "sha256": "b40f8dd9098d573642ccc8971516bab8421551a7cbc9a408dbf1c8b1444b2b38"
+    },
+    {
+      "path": "/audio/det-2026/dictation-1-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "994712cf0b6d55b134776270f02efe2552e9d29f8cae711e15ddc72aa630d768",
+      "sha256": "85bae645174812df0698b318ec409524e4e8a1516939f40e8ea91aafc85a9d2d"
+    },
+    {
+      "path": "/audio/det-2026/dictation-1-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "80f602a69f69fbebcb6c4d58b46487751ded97a78e083a4fce9091e49f45eee6",
+      "sha256": "50fa9a695f7a193bda9e588d179ca4dda2f39ab748ee58c2098f0c2d8c6d08ce"
+    },
+    {
+      "path": "/audio/det-2026/dictation-2-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "f19233b7d5bdafc09cd79c3833c039d936f0ff86770b39725ae8268d4b1bab58",
+      "sha256": "0a5b19e9c910e202e030efe7b926fffbc69755344d9f81084f4180130f18c295"
+    },
+    {
+      "path": "/audio/det-2026/dictation-2-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "632b6b97b67c9c4ac06c306876450afae6740deb506503ee2597a22ef1aecc65",
+      "sha256": "2ba82a3da6432263022d120e77ceb0eec71869fd1820dc6bf757fa097fce4309"
+    },
+    {
+      "path": "/audio/det-2026/dictation-2-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "35288d74bd5be65fb0dfb9803d1dcdb797e16095bf9541c6e34578b13a8987ba",
+      "sha256": "dcb2a680d0a92f3bd84e1e656c88a0cfef9d1c1651c0708c95e215ff1a1ffe87"
+    },
+    {
+      "path": "/audio/det-2026/dictation-3-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8d4e7fa6d4b456fc00e7b50c68c8b4f3c10b39727e001ebc0444dec1156faed4",
+      "sha256": "431d8eab6a9aef9e37d279b6444ac80ea0f86d5d920e7e25f3462ebf52486fe7"
+    },
+    {
+      "path": "/audio/det-2026/dictation-3-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8caea56e35a03aceca20590fae879dfd6ed2b23ffc2678b9f9b7dd14d9b2a5ee",
+      "sha256": "a00d05198c0d88eb96f219bb54ce12861cd0ad5949918967ac8d2eee118108bc"
+    },
+    {
+      "path": "/audio/det-2026/dictation-3-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "9a7b971692f203b7770a477afc33fd1127539195745acf2f2e8584de76ce96f3",
+      "sha256": "8f7f5346874fe30bfa142c3b3b9f184bc6ea0ef3a0dbc79b048c86f0019c032f"
+    },
+    {
+      "path": "/audio/det-2026/dictation-4-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "07871cb8cf4e5be8417c6064e3e6c15cac5f5bd2b1b2517fdc6c6f02c7a1fef7",
+      "sha256": "130bf2dcb947e943e7144ba4c828699d4eaec5ce6ab3b446d31ebfea6bebadef"
+    },
+    {
+      "path": "/audio/det-2026/dictation-4-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "34ab44dc62872de482d44fdd5d2bf62fdcff55c40ac31eeaa2ea26d7bc73911b",
+      "sha256": "0c9599db71f913d8db356e766a03ec6881c122973d56453f22576ee870a34522"
+    },
+    {
+      "path": "/audio/det-2026/dictation-4-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "d7a5b6260b7cb6be878c2d795dd4a460f837ce13d420a2cfd6b63b3a1b32767a",
+      "sha256": "2ac09116d935b844860fb02b281441159d2eb7c4d3b6fa46d8f0df0e3014896e"
+    },
+    {
+      "path": "/audio/det-2026/dictation-5-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "ed4c15dbbb1eba13a02cbc080a60ddc9edc9c58dabd93f9d5d7cb5f8b6f202a6",
+      "sha256": "8c0e3896f1f8b6371c121a98777c3134f5e19e3d3fdd12b48f854cd1e6d50a1a"
+    },
+    {
+      "path": "/audio/det-2026/dictation-5-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "ceb21fecb7605d49a33e28065bbce462c30e2967e197446cabc677aa3b760996",
+      "sha256": "9a2b3cda54396240c511077660897a172b07ed79cb2cd49c63aa49ba9c92e846"
+    },
+    {
+      "path": "/audio/det-2026/dictation-5-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "25269050660c022aebaddfef030309d15e419612b842e2f11d09c139e6c7f8c5",
+      "sha256": "1fd756826547a21d9dec89c38f4af49585df4ae64b89859c8a85e87229c5ab59"
+    },
+    {
+      "path": "/audio/det-2026/dictation-6-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "f6fb2eddf1a15d222319a2b0e361ec1043df5809cc8b976c7a51becbe7674f02",
+      "sha256": "f8e27154b9477b1876d0d5bd2668fe1ada0df5e87b1769d9b150e04b22f63e55"
+    },
+    {
+      "path": "/audio/det-2026/dictation-6-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "4d80124551039f1cd048d01edab573daf833d3a808c4b83acff80a74fb6265a3",
+      "sha256": "66a2fdc2f90fdec4cb0f0c4e51f4a5e95a5fe251ec97ac091805d5e92f315ec9"
+    },
+    {
+      "path": "/audio/det-2026/dictation-6-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "4eb7e15595d484ff4672aa04978443bdc0e22cca0ded4b70e4a8ede9e5913d2f",
+      "sha256": "26a0f744ee5ae018331be4c82947a9daabc4a65f0485d2c4fb7c7397f5af409d"
+    },
+    {
+      "path": "/audio/det-2026/listening-1-scenario.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "a465f53a137f8231915bb4f9bf43cc44a54a549ec7b7615a6a14da139d46c2ce",
+      "sha256": "921852900d0b0b7241edf461620ce5ca3ce2eda9eaf1ad34c2f751ee35aaa594"
+    },
+    {
+      "path": "/audio/det-2026/listening-1-turn-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "c61d485a6467d15f1dd23678b08c9c2b7c0cd59bf1257a9c804d84c96e5099f0",
+      "sha256": "56e2a0d12b307c1c34cc9ca0416712b704527d658fef230ee9ad399105404b6b"
+    },
+    {
+      "path": "/audio/det-2026/listening-1-turn-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "ea8e35b309217bb6b6ad1399a00081001be9b5a640106d37acfb2774001062c7",
+      "sha256": "dd902b5a1f2fefc67f80a3f96b070dfd289a54a7863c539e4abb69ae6cb803c3"
+    },
+    {
+      "path": "/audio/det-2026/listening-1-turn-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "5c1b07f124fdad6ec83de0d798d591e211ad45fba16257cc6f8ef9350a527a6b",
+      "sha256": "81068bbbfb93c75875bc85b429990dbb23f5985667da2a870ecdffac7631dc5d"
+    },
+    {
+      "path": "/audio/det-2026/listening-1-turn-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "2b0d6d4391a41d70e4fed941817fba4ee7be0efeca74d7b342cf5ae148903808",
+      "sha256": "221d26cf84d000a3a5f7b6d39410dd619f4db81c2fe00c6948a8606bacfc282d"
+    },
+    {
+      "path": "/audio/det-2026/listening-1-turn-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "45e5dbf1a56fd6f4dbd0790e87d85a10ab13bf6d478efbd127b2da5f235fac05",
+      "sha256": "5eb59dabcfe941509eab6ece6244c878aaada7b7f7dfa2b3083b78c223482345"
+    },
+    {
+      "path": "/audio/det-2026/listening-2-scenario.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "3941c114e8bc7c066668e1b415effb8054231d932def14a3593c35ae3ed46d4d",
+      "sha256": "b13890f34835ad64a253ec6c14bdcabb924b329af34c69a6aba2c73556605323"
+    },
+    {
+      "path": "/audio/det-2026/listening-2-turn-1.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "1d900b57b371e973e20e84c39cd54406a14bd93e4a9e1b4db2f5ca684fe68226",
+      "sha256": "32af9725ab0e5854120564ee29ae51833d64bcd04360c313bbdd412adfd71d90"
+    },
+    {
+      "path": "/audio/det-2026/listening-2-turn-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "c23cb8d7bfd9efbd2960a7484518dc98bb7438587f1d693e68614038a54c6c18",
+      "sha256": "92c59fbdbe4de3bd19b7ba3e49019cf309be6cba7b48d64a9dbd95e679479176"
+    },
+    {
+      "path": "/audio/det-2026/listening-2-turn-3.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "d03680569e6e1f4aaf087da1a2f51f108fd4e825c0a7cda795e9e36a734cf9ea",
+      "sha256": "ea9da04b09fb0b5732f037d6ad65ce0f459140a971b0be364493001e4eba099a"
+    },
+    {
+      "path": "/audio/det-2026/listening-2-turn-4.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "35062eacfc97d20eb1e6fe0a6565efdb93999a6a1587fda676b6b935b1479764",
+      "sha256": "931b8ed06f019dc909afd08c972dca1935f39c1bbbaa6d944a4c5c88c003475f"
+    },
+    {
+      "path": "/audio/det-2026/listening-2-turn-5.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "bec4495f3fe13bf9795abdf8ad80b99fde591ab6d2544014b6c7b2e1635b32c6",
+      "sha256": "2729e7bf1803945021eee6af424c55ecf1c61884fc1c2b6c6d5aa820cf60fbab"
+    },
+    {
+      "path": "/audio/det-2026/interview-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "9d149922668214cf3ae668f238915b175fa4a82a49935df9893996a2e91995fc",
+      "sha256": "9a82ef50301e78df2a22eaa80a1bebc3f9d721386a042a8651544e8dde110fb5"
+    },
+    {
+      "path": "/audio/det-2026/interview-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "aff95efce84d99b18d295696bd22d8d19487ebfc81a389deacfbe954e73b9992",
+      "sha256": "7a3a5e6918eeabe24e10228bfd0ef41420824754f119fddbaf24aa6586c55af4"
+    },
+    {
+      "path": "/audio/det-2026/interview-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "868ce87b6099df85bbd82ab00777a5f8f615798a05e0ff9de4079444698db3ad",
+      "sha256": "add526be14a68c65e84560afbfe5dda5a443e41e4c1d7d8dbd10c3261153a0ab"
+    },
+    {
+      "path": "/audio/det-2026/interview-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8664682f4bb9e8d0111be7481bfb9f2e1723e53de7d6a2b9bace155e872e6e62",
+      "sha256": "392999e66568e01279d9223d559b222939e7dcbda1231447e876c33d270c1204"
+    },
+    {
+      "path": "/audio/det-2026/interview-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "0b8e0f1eb1a1f71356d51d83a13398bd7f58f5c3074bd242779ed27b9db4dd42",
+      "sha256": "706c0d8d8061566c384ddb638523ae093f583c421ef9218856dc1dc9be131d8b"
+    },
+    {
+      "path": "/audio/det-2026/interview-6.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "4fa39bb2e0dc808dd077ea581a82311489aee0c310d0ee25cd50347781bbe428",
+      "sha256": "9a6a332f66ecab1896d706bb7f4095bcc9312b528a3c8454278b997aaa019609"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-1-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "147a4ec4e9766fb8e76a8a0199faefd789af1614bfdf2cdb4466292947aa13bd",
+      "sha256": "9038b75547472b8e1aa10d6d279741d7504924439bd8126df50c421e70252f04"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-1-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "0e3c77ec06e795092c7dfcbdc9306fcb1fbc50ecfde9da08c7a185b527f91b9d",
+      "sha256": "ee989eae59b484c2d758cff6aba7fe281afe5e39ec8ada444e63ffb0d5771b2b"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-1-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "bb0e08dede390014a5b7ac163c2cf0e5346c28f57666696f57b1773c6fbcec47",
+      "sha256": "3a28691cc84e63c38551b73b2d7f1cf32a841deb699617b262033f0561814d10"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-2-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8d27bb3f8bd1b145fe01e13149418c87fb0ba1601ba0467a23f54ba794aa45af",
+      "sha256": "6731f36b91d25272052dd59df43c9a71686a409eca099ea27342223821ebb8fc"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-2-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8a960c54a156963cf45a3679777bb55d93de89c57b08a4d5e8f68d899c834009",
+      "sha256": "473ad91b2cdc1fd47f3f7956f533c715c41361daed1d582d28e2ed54dc370198"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-2-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "5f7fca0ee818138b28b15dd6ddb8631cdfb96c531039313dbb08b941dcffd76f",
+      "sha256": "51db5d4388b0b8d49492fcfe23276bcbf4b2e923e54717a5016e8893cae22b7d"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-3-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "d122bff4836314cded4218ef6a718892d44979b6de9c90c5ce68bbb26d22b069",
+      "sha256": "b6e5b3f1ad742d94c5314f469fbf8cfb5bf9d983de1a6f7856d59836f2f4489f"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-3-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "e66e073d4a9963de1de5f53e67014c95947124812d1de2e6c44d5cff4c1fa0f0",
+      "sha256": "bb427c5f89ccab6290e060acc8bc1b8bcd909a89fd5d55e963dd573c1ad8ae7c"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-3-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "f80d04be5cc075a65f1f6ca6373553c529b7cce1375be18c844592a40e715f21",
+      "sha256": "ab5c2889151974875b32de3e58921dd092b611d763774a41acc66ce31fe0c705"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-4-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8877e00b8600cebf56903619d18bf7d52c855f8c1c152fd3de0bb0f861d9b561",
+      "sha256": "cdeba4d7f870b889f377f01cd0e51e50ee38ec1863bf826d145a8e69b53395a2"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-4-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "0a72bc4d055078fcf682637f34ebf6331605e8fb5b9130544a174f82ce10cad0",
+      "sha256": "293df098ff5bfa4a934367bee11a04ecbd680438dc6d61065c1eef287894238a"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-4-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "b745f42bd0c650e216ad00473bfed23254349d49dfadaff7c816c17df51e7e47",
+      "sha256": "fb42fafec58de6bfe6370d458d093a634661c4c1a13a48ebd6163879b262066f"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-5-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "3a2d015a0c3e527582e1f80a8482a1f323f95b39c02ed5879bd458736cdd9862",
+      "sha256": "ea8a8cb68d3747e4fe493964efbd712ef971b58eb6bfcfbb653e0a20f545114d"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-5-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "c1eb97e2826f70ff0d12aca470aaac8f200948c4b3045b59449b200004997ea4",
+      "sha256": "44941c4bf028361a537865c84c58de7db76727deeb2d63608c81937570d962e8"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-5-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "9a90dfc4c5da6f1a977f6e5ef91425c86ca86108c3d0c3bfcc49d75a62fda3d5",
+      "sha256": "ab888f74643064e4d84f9cf106832fa13e8ed2bc7e05a09262337447e8790aab"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-6-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "9aac8670dfb89fc2b29f487312e13a06c4233d865c67a53678825ca7d775bb4c",
+      "sha256": "b765027295b08edafc7d89522838940d0e0579201815ecc65583ad6d79334e0c"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-6-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "6071473f1c063853ebf005ff07251aaeb3946fab952533670b7c1d73bf974db0",
+      "sha256": "4b3ccf7df72bb7d22407a861592c7eb79e740afc0e1af0373c8a4296312d3d73"
+    },
+    {
+      "path": "/audio/det-2026/form-2/dictation-6-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "adc2d9788de9bf38a40e0ca50687d5e27d491209457f99ab904462cda05a0224",
+      "sha256": "bdad460a4428d2829f25854cdac4b107ba866cc2a445924dfeecb24b2f65b569"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-1-scenario.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "133242522f4047394201d16d72baf4c75c8df7735e893e45bab89c630fc8c00e",
+      "sha256": "50becf6eff2e4146263108817f75ccaa6e8cfe4580f79123c9a144a58b3eb692"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-1-turn-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "d0cc11c2f0f63439cd0f21108b3732c61d8e701beb5931833089c2bdcdf770be",
+      "sha256": "08ec674834bab7a0e328b3b3f40fa054cb70cfb607ccfc07c35ff1267123b0bf"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-1-turn-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "5a84a809ea12fd9b2d0341de24289cd75c5ca04acf396e19febff6ddcd0bd1dc",
+      "sha256": "548f7b5a4022caa7365b5307426cee060c614e04999a46eecbb5f6b2064ad322"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-1-turn-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "62c9af7df7588a03a7ba000e50d60bd1637bcf5ea922577d67ccc7d58fdcc8db",
+      "sha256": "979de1b96c51b4f646f64cde0b7c64d85988bafbfb89be1d713f8030f33fb385"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-1-turn-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "138f231f9822dfee429880654c97563ee943d6937d526cd42abb20487b6e1813",
+      "sha256": "101de8d77b9d6a62a75b6b5f0e0b941b260c0ef8b11efc50dd29cfe50d45ff68"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-1-turn-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "28426b2bc158bfe871d3216340e2be8a5612ce420c035ecba07d914d71964e70",
+      "sha256": "4c318c1e500f8e678352a5a50d9f7edc85116bd1efe217596b605bfef1923d6a"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-2-scenario.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "dffad854f2457acdcc8023cfac8b776ce7eaefc0e555fb2557d77bb036c98175",
+      "sha256": "21a06516185686155c06bc3c63d3d59235f95198bca402f0ad665a23027b98d9"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-2-turn-1.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "be30226567857fb0c5f0635324aaf696474f14d7f054313f551dde071939046b",
+      "sha256": "7cb435d83e003d1577e6865aafaba5a81db861ef5adbcb1c55617ea733707f82"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-2-turn-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "d6ece976f4c6a94f43a7209b0ffae8faf4f573726a54619d65f58c355fe47da5",
+      "sha256": "3248d34ea7accac23fffcfb430f73b8a952187e80122393e47aeb43fa60fa636"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-2-turn-3.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "322cfc687058e901b1f1987dfb3970f390cd9b8dfc6f4b2093952a3957ea4af8",
+      "sha256": "25dbc1028deb371bfda6a6b8080da694cf0fe4496a03e7a0a76ad7396042ebfc"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-2-turn-4.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "87049f431789b7c9f5a2543b640f1560357717c161afabd5f0c5275ce2e8b1b3",
+      "sha256": "99cf33f70d2d24510a59915e922dfb64cdb620bdea431d7381b4287d91df3031"
+    },
+    {
+      "path": "/audio/det-2026/form-2/listening-2-turn-5.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "9fc8ce2163e10be2970007d98f3781cfc2dc0fd974dcc8a6c5a491b65dc5ca51",
+      "sha256": "772b90252c2d15d90a6e57331c91f6414c35298d552f80f5cc9352242e3b73ad"
+    },
+    {
+      "path": "/audio/det-2026/form-2/interview-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "139cc307c8870b6246a4b4e80af36ac55b04a60831f77e9840f581907886ef5b",
+      "sha256": "b238d473287a572e564a04f3254bae9edc63e159732781220e923426ad817b56"
+    },
+    {
+      "path": "/audio/det-2026/form-2/interview-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "b5663a8b6ea7bf1bdeeac488968614de3f42b850377c93eabf19de2d4ae62e29",
+      "sha256": "cf2acb314bd30b18caf7d4cf29365956702c6f0f11d2f5c7e8e611daeb3c903f"
+    },
+    {
+      "path": "/audio/det-2026/form-2/interview-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "aa00bdec17d172ac53ccb093f99ac866cb4f97ce25df66ff037e5c00d4ef323a",
+      "sha256": "59fed14481646cf1a0a0b1ab01f6e37e41f32d90a282610ead6bbf9255e3fc33"
+    },
+    {
+      "path": "/audio/det-2026/form-2/interview-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "6234318d2ead9943a77a91c5707cca006010054c85a04365a4d74e533e98e7e3",
+      "sha256": "2820bc8358c7c6a242cb5042b92d6b9647777cd438c0a61931dc9dbfdef1b071"
+    },
+    {
+      "path": "/audio/det-2026/form-2/interview-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "e0afaf6c4e409ac25bf7ed93fbbfe6387ca9a2e499b3f013598fc562f165dbd3",
+      "sha256": "ec7ca5a88b1afe248f563c268ad5cb41de2614a153c719be47d2db08902765c9"
+    },
+    {
+      "path": "/audio/det-2026/form-2/interview-6.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "58af355f8eaa09f447134f58d0cefbb3a32824a79744eb687a8fae4122f75b44",
+      "sha256": "37f4a746c4797580ec47ebe42bbaf366e5f7167ca30c1744d83c61e9f3192cec"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-1-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "01ca20db88d1dbe1882bdcfcace3bbf66df9d9208761d7e22520dab058cea56e",
+      "sha256": "df599b22ab662d80cca68e40ba267527817cecd40815d6aec5da52575411df4b"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-1-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "ecf4d82b4730f651b217364ff42cb258e117b55037de0d23c87a4944e9913fd2",
+      "sha256": "405b2e2871ff361d14bb5a5d749a35d553609fc86cf55c3645c5fe0bb2e73b7e"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-1-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "0c4aa5f57c2836230d1a324a7e8fca933c2609bad784a530a1a4775aad146ec4",
+      "sha256": "fc01f58437c2771c4683f1d26205f39fcfe1ee02faee8983a89924545f2df8a3"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-2-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "cdef5a8562d5f7120687dcc5ca29abb9abb85e7a97341c5f2890aa52c0a109eb",
+      "sha256": "0ffdd05789ab582cc8b825201b5b8b781563bfe68a5da4d4bf97aa1f39f65870"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-2-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "e9020a596af72b3c3887d943197bc06c2f962e9c93d2a568a62f778106251967",
+      "sha256": "c5e97ef695f826b15ee97740522eb9bd4dd2298f3a003ca81544c07c6fb90290"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-2-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "f34c66578bfccf39d983f7a926dfeaa39af119b60d1b537e3e6dad9ab87130f2",
+      "sha256": "67680bba03c49aaf4c847db59f82abf98107d9fdf7fbd6df5ea412a3ce286e2b"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-3-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "f1e253feb19287bd9176885ede9d96914acac005a317ba3b2a65aa813b7f7637",
+      "sha256": "36a64ee8788b6ee696fb9ed60eeb647e31aaec46ce00d78e8054edf5ac4ae303"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-3-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "6f815b181a207dafc9f239e02cbc05df8c9217cde39ff57bb3b644950b8c744c",
+      "sha256": "f547b4d60fb328bb07349d2a403019e89539d3d3f6a74c9d361fd3d5fd533823"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-3-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "f9dd1c9865425d8d650f8c220652a9c84a06ee338a90674a38692873f5b93929",
+      "sha256": "0f724fbd11c5c5277713b93fedc4bb8c6b393da74755be61077eb2e31931fc4d"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-4-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "dfada58e703060ef4ce246630d12b875182bbcfbf5442170e0ed2fe266c7b716",
+      "sha256": "a6f597c11f7dde00837a9eb78970ef2e9e9a8fe88f585b2a66b82b0d37021ff6"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-4-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "99db2f4334d13bd6a0b7a8275422622c753cb84e2c3929b0249032a00dca284b",
+      "sha256": "809a2c77c99c07bde7d1f797a9633de645978d0ff61fa912570af579708e6285"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-4-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "ac3ea2752307ac1f5123b9fa604726f36dfd3edc3ea91b433d3eab79d1967495",
+      "sha256": "ebd3001194a2458ad434b2237f526e0fd468d9eb4a9aec2ae60c22a8d08afe09"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-5-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "e39386754f8c547f9c5480add55489f9b3dad152873db6f5eef5e4be0ed3c311",
+      "sha256": "0f751ae3f46f829f7ad773f2a6cd029c23365e47d2ebcf3be196b9b74fae8592"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-5-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "5d3fc03bdc9b0e36bb59032e91d4a597c7d0aee49ce178c8b94d6a7d321921a3",
+      "sha256": "03e8e60dc7a42e491d6d39e98d6da18985232d137b7620ac5643198bb3576cd5"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-5-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "5af5bdc68f449da8c9e4f0f04b5a6b36a3c3428cd66399d37ab050cb2cdccfd1",
+      "sha256": "c4e23164c10b8062d57a6f2a8b1721ea021b771f9121128c0e7731f4a0da7b61"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-6-0.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "3aec59a58b2df09a604cfd02df7cf84f007aaef1334f74c95d2c54cb94d84f74",
+      "sha256": "66e6e34f82b06511ba8dfc12f346cbcd270d6ca40120581a1ea674cf93fc97cb"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-6-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "fef901c24984f9252c3ab57bd3620488351a0f9337a26a9e3e9d2a6392d5bda5",
+      "sha256": "c10fd98f2d2e2f5150db8f5c2cd5dacddf7fdc48592cba30912f400147c4b9ad"
+    },
+    {
+      "path": "/audio/det-2026/form-3/dictation-6-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "4d40a54dcb259a4f5b280dcbf46cbdd484561c3e7f19d4c8caed79ac61bcde8f",
+      "sha256": "b55a8520b08b6df9113658bfe4def616e10ecd6bc8c96fe8b3681a29e4b8db45"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-1-scenario.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "abd0e4e002d146dc7dc7c781cb2e42d67170f9c1fa18b3d3821b7a5ae45db04b",
+      "sha256": "acb2d54a99b4324b6210209e34cd0a420b0a47925284f3d46deb4e11ac613063"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-1-turn-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "b19fb9e8157a1106e47a9b565ad3a57cb0347b86a902940799ab2242847a1d75",
+      "sha256": "2dd449033e197ccabc889dda7646b58404c7da319b6adf6188ad5534ac840523"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-1-turn-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "267564141209a1e136fcfc64393b6fd1b275de2ec638b50bd5714e7ed5f4c452",
+      "sha256": "e44466dda015affe289b7af5971355f0b69bf3171d4765787817672bc8a5c67d"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-1-turn-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "e93923ac02097da5af3f136148f6293bc8d3b014236e6870910f0556f01d5241",
+      "sha256": "2ee2fba28c3edb1f07f5b6eb8a69b198f0d451ada073917bc6060d59b24e319e"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-1-turn-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "2b923e413b3c379d808d8d8cfeba3ac66e104babc1a394c7aa8ed7f841d95a45",
+      "sha256": "e902409c7f51714286128ecf892bdb44999298ed66be26d39a346c8fe0d6e24d"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-1-turn-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "4462e7eb51bc29e3e0142014df413260155b140c8b25b9fddadd0e022b852d74",
+      "sha256": "8251bf39cf2c1d7949e4f136371ed6455f0891c105b94780b77cdc5bb35eefc2"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-2-scenario.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "2d6ed5bb36ef95e07ec4b78bfa8e1ba89ef1f319afafc688fb02011c43ff1d7e",
+      "sha256": "94eca7c4f89d04cc3abc6cbd1e3ca1b1cee130b4d63687208feb43fb2a2a134f"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-2-turn-1.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "ab52c318d3166c135d3bf7ce092ae8952dccc06afcf914a95595f9309719639c",
+      "sha256": "60489d3d5d3fd2fdf751faac605b388f2d840c4f6e0c8b8afe7c4c367883b644"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-2-turn-2.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "c3112f44278b5a8b6c38e90fe3669364fbf1a859c1fd522afcc5a59224ecf82a",
+      "sha256": "88413c6343eb27bcf6a2396ca2f055c422d1dd9f3ca1023bed463a294754f187"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-2-turn-3.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "96598db160f27e26fcac36bdc1e815a49525f53d7fc1dad7be4b372ed9805422",
+      "sha256": "56e50db4f3b1e4698034d15d0b52b3bc5ed37e8072d5601d49da2c9c3bbc5e84"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-2-turn-4.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "00b76c6dd6230cc6b814e549322e23731a3298de452f6d51058675c3c036ea3b",
+      "sha256": "95a297af170bcf82ca6c9626ff8736bbd9038e0868477e1f369e5e62aa2e6b7d"
+    },
+    {
+      "path": "/audio/det-2026/form-3/listening-2-turn-5.wav",
+      "voice": "en_US-libritts_r-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "9b037890f8d65401dbc382f7b2a760f0ab659ea253c2efc463b2ff3bc6c36a55",
+      "sha256": "1306ccfa26273a53770a4f6bc217618915da1a5eb83e3366b801f77d726c2f0c"
+    },
+    {
+      "path": "/audio/det-2026/form-3/interview-1.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "a586d08277d297d38012583f28443b5fa8edab79a9c1814c1bc9d4a4baa9f9af",
+      "sha256": "52b726bd0590009193f2ea2fb92f6c66cba3e28c6713c20a5787272cac544858"
+    },
+    {
+      "path": "/audio/det-2026/form-3/interview-2.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8aa06fab5b2fbc07198240a763f47f8b1af399dc84f399305cdb6a5ca942edf3",
+      "sha256": "f6673e223d88bbe8c6253170b5b3967a76cced57203176e383a49d484e74c108"
+    },
+    {
+      "path": "/audio/det-2026/form-3/interview-3.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "8eb3991bd20340ba5b7e6e5e029d9699aeb4a2b1ae8baebe4e067ab7dd983259",
+      "sha256": "209944d3928aa183fae8c372cbdfcb4d4e15b4c1a0abaf7b8460e54cd14cb17a"
+    },
+    {
+      "path": "/audio/det-2026/form-3/interview-4.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "15c86f875fb14db8b79e32f4c7f7643bf290a1f3a4127d3ec9caaf87ac9ef414",
+      "sha256": "0a1e980afc4a6bb44646a73eaec3d1f9e8a4c4def8b076e6f7fe9caff0e90261"
+    },
+    {
+      "path": "/audio/det-2026/form-3/interview-5.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "257077d8652f1291df452d6698d1e735e6207a050ac9c292c16cf7217401912d",
+      "sha256": "2f70d4f8168b239893e0e9971d1189a3ff599b3a1844e8267849303c366dc80b"
+    },
+    {
+      "path": "/audio/det-2026/form-3/interview-6.wav",
+      "voice": "en_GB-vctk-medium.onnx",
+      "speakerId": 0,
+      "textSha256": "ca6fee410b0b97ae7d30f98045d508d7c6ab6997e185cdfa0c4f41bf116eec48",
+      "sha256": "3e3ff4f83b148e300ef7f09020eeb22b8ea60b459258df13a0e0f5e31607ee29"
+    }
+  ]
+}

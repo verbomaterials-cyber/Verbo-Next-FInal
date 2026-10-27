@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+/*
+  Tokens de la plataforma Verbo NEXT (shell: login, admin, panel alumno).
+  Los motores de examen NO usan esta paleta directamente: cada examen
+  trae la suya vía ExamType.themeConfig (ver capa 5).
+  Estrategia de color: restrained — neutros con tinte del brand + un acento.
+*/
+:root {
+  --background: #f4f7f8;
+  --surface: oklch(100% 0 0);
+  --ink: #133e53;
+  --ink-muted: #526e7b;
+  --brand: #01304a;
+  --brand-strong: #002338;
+  --brand-soft: #e5eff2;
+  --line: #dce7eb;
+  --line-strong: #b8cdd6;
+  --danger: oklch(49% 0.18 27);
+  --danger-soft: oklch(96% 0.02 27);
+  --success: oklch(50% 0.13 155);
+
+  /* Escala semántica de z-index */
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-modal-backdrop: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --z-tooltip: 60;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-soft: var(--brand-soft);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-success: var(--success);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  /* Curvas con más carácter que las de CSS por defecto — ver skill emil-design-eng */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body {
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+::placeholder {
+  color: var(--ink-muted);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Barras de onda del reproductor de audio del examen */
+.wave-bar {
+  animation: wave 0.9s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+@keyframes wave {
+  from {
+    transform: scaleY(0.5);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Anillo animado del micrófono mientras graba */
+.rec-ring {
+  animation: rec-pulse 1.6s var(--ease-out-quart) infinite;
+}
+
+@keyframes rec-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.45s var(--ease-out-quart) both;
+}
+
+/* Transición suave entre preguntas del motor de examen (fade, no corte seco) */
+@keyframes q-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.q-enter {
+  animation: q-enter 0.4s var(--ease-out-quart) both;
+}
+
+/* Entrada escalonada para listas/grids del admin (tarjetas, filas) */
+.stagger-in {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: rise-in 0.4s var(--ease-out) both;
+}
+.stagger-in:nth-child(1) { animation-delay: 0ms; }
+.stagger-in:nth-child(2) { animation-delay: 40ms; }
+.stagger-in:nth-child(3) { animation-delay: 80ms; }
+.stagger-in:nth-child(4) { animation-delay: 120ms; }
+.stagger-in:nth-child(5) { animation-delay: 160ms; }
+.stagger-in:nth-child(6) { animation-delay: 200ms; }
+.stagger-in:nth-child(n+7) { animation-delay: 240ms; }
+
+/* Modal: el <dialog> nativo entra con escala+opacidad; el cierre lo
+   orquesta el componente (Modal en ui.tsx) para poder animar la salida. */
+dialog.modal-surface {
+  opacity: 0;
+  transform: scale(0.97) translateY(4px);
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out);
+}
+dialog.modal-surface[data-state="open"] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+dialog.modal-surface::backdrop {
+  background: oklch(24% 0.022 275 / 0);
+  transition: background 180ms var(--ease-out);
+}
+dialog.modal-surface[data-state="open"]::backdrop {
+  background: oklch(24% 0.022 275 / 0.4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hover-lift {
+    transition: transform 180ms var(--ease-out), border-color 180ms var(--ease-out);
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in,
+  .q-enter,
+  .stagger-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .hover-lift:hover {
+    transform: none;
+  }
+  dialog.modal-surface,
+  dialog.modal-surface[data-state="open"] {
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

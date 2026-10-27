@@ -1,0 +1,54 @@
+{
+  "name": "verbo-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "dev:local": "node scripts/dev-local.mjs",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "verify:local": "node --env-file=.env.local --import tsx scripts/verify-local.ts",
+    "toefl:plan": "node --env-file=.env.local --import tsx scripts/update-toefl-local.ts",
+    "toefl:build-content": "node --import tsx scripts/build-toefl-form.ts",
+    "toefl:install-form": "node --env-file=.env.local --import tsx scripts/install-toefl-form.ts",
+    "toefl:prepare-voices": "node scripts/prepare-local-voices.mjs",
+    "toefl:generate-audio": "node scripts/generate-toefl-neural-audio.mjs",
+    "toefl:editorial-plan": "node --env-file=.env.local --import tsx scripts/review-toefl-content.ts",
+    "det:generate-media": "node --import tsx scripts/generate-det-media.mjs",
+    "det:install": "node --env-file=.env.local --import tsx scripts/install-det-local.ts",
+    "det:verify": "node --env-file=.env.local --import tsx scripts/verify-det-local.ts",
+    "local:setup": "node scripts/local-db.mjs setup",
+    "local:start": "node scripts/local-db.mjs start",
+    "local:stop": "node scripts/local-db.mjs stop",
+    "local:status": "node scripts/local-db.mjs status",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "bcryptjs": "^3.0.3",
+    "next": "16.2.10",
+    "next-auth": "^4.24.14",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.10",
+    "prisma": "^6.19.3",
+    "tailwindcss": "^4",
+    "tsx": "^4.23.0",
+    "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+}

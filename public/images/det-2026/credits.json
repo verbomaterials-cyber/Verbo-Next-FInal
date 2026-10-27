@@ -1,0 +1,34 @@
+{
+  "license": "https://unsplash.com/license",
+  "modifications": "Downscaled for local exam display; no subject alterations.",
+  "photos": [
+    {
+      "name": "market",
+      "author": "Karel Mistrík",
+      "source": "https://unsplash.com/photos/a-person-selling-fruits-at-an-outdoor-market-52gZQu4zwrM",
+      "image": "https://images.unsplash.com/photo-1660680298766-935033b988c6?fm=jpg&w=1200&q=85&fit=max",
+      "sha256": "7859493ae45f3c05f9004d7715ff47236f133d8d15a1b97985cbaf8bf6dd8269"
+    },
+    {
+      "name": "library",
+      "author": "Caroline Andrade Rocha",
+      "source": "https://unsplash.com/photos/two-people-studying-in-a-quiet-sunlit-space-z_dLp6KnCoQ",
+      "image": "https://images.unsplash.com/photo-1752747115265-1e4cfb2c1212?fm=jpg&w=1200&q=85&fit=max",
+      "sha256": "81d7f19f25b47b434c372a78beeaa6652178eff962f27dbd593d3c0d3e1dafcc"
+    },
+    {
+      "name": "bicycle",
+      "author": "Anton Savinov",
+      "source": "https://unsplash.com/photos/a-person-fixing-a-bicycle-JcYh9G4sJPs",
+      "image": "https://images.unsplash.com/photo-1668594864261-dcb0eaa3644b?fm=jpg&w=1200&q=85&fit=max",
+      "sha256": "3c904aec61c835f97b1bb695e70bced6ddfab07bc80bbbb57cb7436c4e07e25d"
+    },
+    {
+      "name": "park",
+      "author": "Kelly Sikkema",
+      "source": "https://unsplash.com/photos/people-walking-on-park-during-daytime-eSQNlt0QmXI",
+      "image": "https://images.unsplash.com/photo-1622050956578-94fd044a0ada?fm=jpg&w=1200&q=85&fit=max",
+      "sha256": "29bc8ca1965591c0c4363017513e04b6d9c1f30f676c50ff98fe90e42de02589"
+    }
+  ]
+}

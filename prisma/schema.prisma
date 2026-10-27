@@ -1,0 +1,263 @@
+// ─────────────────────────────────────────────────────────────
+// Verbo NEXT — Plataforma de simuladores de examen
+// Diseño genérico por examen: todo lo que varía (secciones,
+// tipos de pregunta, tiempos, subscores, escala, tema visual)
+// vive en datos, no en código.
+// ─────────────────────────────────────────────────────────────
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ═══════════════ ENUMS ═══════════════
+
+enum SectionOrderMode {
+  FIXED // TOEFL: secciones en orden estricto
+  MIXED // DET: tipos de pregunta intercalados sin orden fijo
+}
+
+enum Skill {
+  READING
+  WRITING
+  LISTENING
+  SPEAKING
+}
+
+enum InputMedia {
+  TEXT
+  AUDIO
+  IMAGE
+  VIDEO
+  CONVERSATION
+}
+
+enum ResponseType {
+  MULTIPLE_CHOICE
+  DRAG_SELECT
+  FILL_BLANK
+  TYPE_TEXT
+  AUDIO_RECORDING
+  FREE_TEXT
+}
+
+enum TimingMode {
+  PER_QUESTION
+  PER_SECTION
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  COMPLETED
+  PENDING_REVIEW // tiene respuestas abiertas sin calificar
+}
+
+enum AdminRole {
+  ADMIN
+  SUPERADMIN
+}
+
+enum NotificationType {
+  ATTEMPT_PENDING_REVIEW
+}
+
+// ═══════════════ CATÁLOGO DE EXÁMENES ═══════════════
+
+model ExamType {
+  id                   String           @id @default(cuid())
+  name                 String
+  slug                 String           @unique
+  description          String?
+  totalDurationMinutes Int
+  sectionOrderMode     SectionOrderMode
+  hasAdaptiveLogic     Boolean          @default(false) // solo informativo; lógica real = fase 2
+  subscoreDefinitions  Json // ej. DET: ["Literacy","Comprehension",...]
+  scoreScale           Json // ej. DET: {min:10,max:160} | TOEFL: {band:..., total:...}
+  themeConfig          Json // paleta, timer style, layout — consumido por el motor de examen
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  sections     Section[]
+  examVersions ExamVersion[]
+  enrollments  Enrollment[]
+}
+
+model Section {
+  id              String   @id @default(cuid())
+  examTypeId      String
+  name            String // "Reading", "Adaptive Test"...
+  order           Int? // null cuando sectionOrderMode = MIXED
+  durationMinutes Int
+  skillsMeasured  Skill[]
+
+  examType      ExamType       @relation(fields: [examTypeId], references: [id], onDelete: Cascade)
+  questionTypes QuestionType[]
+
+  @@index([examTypeId])
+}
+
+model QuestionType {
+  id                 String       @id @default(cuid())
+  sectionId          String
+  name               String // "Read and Select", "Listen and Type"...
+  inputMedia         InputMedia
+  responseType       ResponseType
+  timingMode         TimingMode
+  timePerItemSeconds Int? // null si timingMode = PER_SECTION
+  prepTimeSeconds    Int? // null si no hay tiempo de preparación
+  replaysAllowed     Int? // ej. Listen and Type: 3
+  isScored           Boolean      @default(true) // false = "revisar en sesión en vivo"
+  subscoreMapping    String[] // claves de ExamType.subscoreDefinitions que alimenta
+  adminFieldSchema   Json // define dinámicamente el formulario de captura del admin
+
+  section   Section    @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  questions Question[]
+
+  @@index([sectionId])
+}
+
+model ExamVersion {
+  id          String  @id @default(cuid())
+  examTypeId  String
+  label       String // "Diagnóstico", "Simulador 1"...
+  hasFeedback Boolean @default(true) // Diagnóstico = false
+  isPublished Boolean @default(false)
+
+  examType  ExamType   @relation(fields: [examTypeId], references: [id], onDelete: Cascade)
+  questions Question[]
+  attempts  Attempt[]
+
+  @@index([examTypeId])
+}
+
+model Question {
+  id              String  @id @default(cuid())
+  questionTypeId  String
+  examVersionId   String
+  promptContent   Json // texto / urls de audio/imagen/video según inputMedia
+  correctAnswer   Json? // null si isScored = false
+  feedbackText    String? // null en versiones sin feedback
+  difficultyLevel Int? // numérico genérico (fase 2: adaptabilidad)
+  order           Int
+
+  questionType QuestionType @relation(fields: [questionTypeId], references: [id], onDelete: Restrict)
+  examVersion  ExamVersion  @relation(fields: [examVersionId], references: [id], onDelete: Cascade)
+  responses    Response[]
+  recordings   Recording[]
+
+  @@index([examVersionId, order])
+  @@index([questionTypeId])
+}
+
+// ═══════════════ USUARIOS Y ACCESO ═══════════════
+
+model Student {
+  id           String   @id @default(cuid())
+  fullName     String
+  email        String   @unique
+  passwordHash String // credencial generada por el admin
+  createdAt    DateTime @default(now())
+
+  enrollments Enrollment[]
+  attempts    Attempt[]
+}
+
+model Enrollment {
+  id               String   @id @default(cuid())
+  studentId        String
+  examTypeId       String
+  accessCode       String   @unique // generado por el admin, se pide al entrar al examen
+  attemptsAllowed  Int      @default(1)
+  attemptsUsed     Int      @default(0)
+  isBlocked        Boolean  @default(false)
+  unlockedVersions String[] // ids de ExamVersion desbloqueadas para este alumno
+  createdAt        DateTime @default(now())
+
+  student  Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  examType ExamType @relation(fields: [examTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, examTypeId]) // un enrollment por alumno por examen
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  role         AdminRole @default(ADMIN)
+  createdAt    DateTime  @default(now())
+}
+
+// ═══════════════ INTENTOS Y RESPUESTAS ═══════════════
+
+model Attempt {
+  id            String        @id @default(cuid())
+  studentId     String
+  examVersionId String
+  startedAt     DateTime      @default(now())
+  completedAt   DateTime?
+  status        AttemptStatus @default(IN_PROGRESS)
+  overallScore  Json? // formato según ExamType.scoreScale
+  subscores     Json?
+  runtimeState  Json? // server-owned cursor and deadlines; survives reloads
+
+  student     Student     @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  examVersion ExamVersion @relation(fields: [examVersionId], references: [id], onDelete: Restrict)
+  responses   Response[]
+  recordings  Recording[]
+
+  @@index([studentId])
+  @@index([status]) // para la lista de PENDING_REVIEW del admin
+}
+
+model Response {
+  id            String   @id @default(cuid())
+  attemptId     String
+  questionId    String
+  answerContent Json
+  isCorrect     Boolean? // null = respuesta abierta pendiente de revisión humana
+  isFlagged     Boolean  @default(false) // el alumno la marcó como duda para la sesión en vivo
+  reviewNotes   String? // feedback manual tras la sesión
+  reviewAssessment Json? // server-authored TOEFL holistic rubric score (0–5)
+  createdAt     DateTime @default(now())
+
+  attempt  Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, questionId]) // una respuesta por pregunta por intento
+  @@index([questionId, isFlagged]) // métricas: preguntas más flaggeadas
+}
+
+// ═══════════════ NOTIFICACIONES ═══════════════
+
+model Notification {
+  id        String           @id @default(cuid())
+  type      NotificationType
+  attemptId String? // referencia suave al Attempt que la disparó
+  message   String
+  payload   Json?
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  @@index([isRead])
+}
+
+// Local and self-hosted storage: actual audio, protected by attempt ownership.
+model Recording {
+  id              String   @id @default(cuid())
+  attemptId       String
+  questionId      String
+  content         Bytes
+  mimeType        String
+  durationSeconds Int
+  createdAt       DateTime @default(now())
+
+  attempt  Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
+
+  @@unique([attemptId, questionId])
+}

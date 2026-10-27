@@ -1,0 +1,9 @@
+{
+  "retrievedOn": "2026-10-25",
+  "context": "Assets reused from the Verbo website supplied by the user for the Verbo NEXT application redesign. Logos identify practice exam categories; they do not imply affiliation.",
+  "assets": [
+    { "file": "verbo-symbol.png", "origin": "https://verbolanguagesolutions.com/assets/verbo-logo-CrfEt6Ak.png" },
+    { "file": "det.png", "origin": "https://verbolanguagesolutions.com/__l5e/assets-v1/5926d2f1-0963-463a-a19c-f0e0945db9cd/duolingo-logo.png" },
+    { "file": "toefl.svg", "origin": "https://verbolanguagesolutions.com/__l5e/assets-v1/978c93ea-d0d2-46f9-b099-390daa4d36e2/toefl-logo.svg" }
+  ]
+}

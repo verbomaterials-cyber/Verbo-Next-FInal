@@ -1,0 +1,140 @@
+{
+  "formatVersion": "toefl-ibt-2026-01-21",
+  "purpose": "Original short diagnostic covering the twelve task types; not a full-length form.",
+  "questions": [
+    {
+      "questionType": "Complete the Words",
+      "prompt": { "text": "Many cities are creating small gardens on the roofs of public buildings. These green spaces abs[orb] rainwater and prov[ide] a home for insects. They also red[uce] the amount of heat that enters the building. However, a rooftop garden req[uires] careful planning. Engineers must make sure the roof can sup[port] the weight of soil and water." },
+      "answer": { "answers": ["orb", "ide", "uce", "uires", "port"] },
+      "feedback": "The complete words are absorb, provide, reduce, requires and support. Use both grammar and context to reconstruct the missing letters.",
+      "difficulty": 3
+    },
+    {
+      "questionType": "Read in Daily Life",
+      "prompt": {
+        "title": "Campus bicycle workshop",
+        "passage": "From: Campus Transport Office\nSubject: Bicycle repairs this Friday\n\nOur free bicycle workshop will move from the courtyard to Room 104 because rain is expected. Volunteers can fix flat tires and adjust brakes. Please reserve a time online by Thursday evening. Students without a reservation may join the waiting list at the door.",
+        "question": "What should a student do to guarantee a time at the workshop?",
+        "options": ["Join the waiting list on Friday", "Reserve a time before Friday", "Bring a bicycle to the courtyard", "Contact a volunteer after the workshop"]
+      },
+      "answer": { "options": 1 },
+      "feedback": "The email asks students to reserve online by Thursday evening. The waiting list does not guarantee a place.",
+      "difficulty": 2
+    },
+    {
+      "questionType": "Read an Academic Passage",
+      "prompt": {
+        "title": "The role of urban wetlands",
+        "passage": "Urban wetlands were once considered obstacles to construction. Many were drained so that roads and buildings could occupy the land. More recently, researchers have shown that these areas provide valuable services to cities. Their plants and soils absorb rainfall, slowing the movement of water into drainage systems during storms.\n\nWetlands also improve water quality. As water moves slowly through vegetation, suspended particles settle. Microorganisms in the soil can transform some pollutants into less harmful substances. These processes require time, which is why a wetland cannot always be replaced by a small decorative pond.\n\nRestoring wetlands, however, presents a planning challenge. Land is expensive, and residents may prefer immediate uses such as parking or housing. Supporters of restoration therefore emphasize the long-term costs that wetlands can prevent, including flood damage and the construction of larger drainage systems.",
+        "question": "Why does the author mention a small decorative pond?",
+        "options": ["To propose a cheaper alternative to wetland restoration", "To explain that all ponds remove the same pollutants", "To illustrate why the functions of a wetland are not easily reproduced", "To argue that vegetation interferes with water treatment"]
+      },
+      "answer": { "options": 2 },
+      "feedback": "The comparison emphasizes that the slow processes performed by a wetland need sufficient space and time.",
+      "difficulty": 4
+    },
+    {
+      "questionType": "Listen and Choose a Response",
+      "prompt": {
+        "audioUrl": "/audio/toefl-2026/choose-response.wav",
+        "transcript": "Could you tell me where I can return these library books?",
+        "question": "Select the best response.",
+        "options": ["The return box is beside the main entrance.", "I read that book last summer.", "Yes, the library closes at nine.", "You should bring your own notebook."]
+      },
+      "answer": { "options": 0 },
+      "feedback": "The speaker asks for a location. Only the first response identifies where to return the books.",
+      "difficulty": 2
+    },
+    {
+      "questionType": "Listen to a Conversation",
+      "prompt": {
+        "audioUrl": "/audio/toefl-2026/conversation.wav",
+        "transcript": "Hi, Maya. Have you finished the slides for our biology presentation? Almost, but the images look blurry when I enlarge them. The museum website has higher resolution versions. I used it for my project last semester. Great. I'll replace the images tonight. Could you check the captions tomorrow morning? Sure. Then we can practice together after lunch.",
+        "context": "Two students are discussing a class presentation.",
+        "question": "What will the second student do tomorrow morning?",
+        "options": ["Visit the museum", "Replace the images", "Review the captions", "Present the biology project"]
+      },
+      "answer": { "options": 2 },
+      "feedback": "The student agrees to check the captions in the morning. Practicing the presentation is planned for after lunch.",
+      "difficulty": 3
+    },
+    {
+      "questionType": "Listen to an Announcement",
+      "prompt": {
+        "audioUrl": "/audio/toefl-2026/announcement.wav",
+        "transcript": "Attention students. The east entrance to the science building will be closed on Monday while new doors are installed. Please use the north entrance next to the bus stop. The building's classrooms and laboratories will remain open as usual. Deliveries should be taken to the loading area behind the building. We expect the east entrance to reopen on Tuesday morning.",
+        "question": "What is the main purpose of the announcement?",
+        "options": ["To cancel Monday's science classes", "To explain a temporary change in building access", "To announce a new bus stop", "To ask students to help install new doors"]
+      },
+      "answer": { "options": 1 },
+      "feedback": "The announcement explains which entrance to use while the east entrance is temporarily closed.",
+      "difficulty": 2
+    },
+    {
+      "questionType": "Listen to an Academic Talk",
+      "prompt": {
+        "audioUrl": "/audio/toefl-2026/academic-talk.wav",
+        "transcript": "Today I want to discuss why some seeds remain inactive for years. A seed needs more than water to begin growing. It may also need a particular temperature or a period of exposure to cold. These requirements prevent it from growing at an unfavorable time. Consider a plant that produces seeds in autumn. If every seed began growing during a brief warm spell, the young plants could die when winter arrived. A requirement for several weeks of cold helps the seeds wait until spring. This delay is not a failure to grow. It is a survival strategy that links growth to environmental conditions.",
+        "context": "A biology instructor is explaining seed dormancy.",
+        "question": "According to the instructor, what is an advantage of a seed's need for prolonged cold?",
+        "options": ["It allows the plant to produce seeds in winter.", "It reduces the amount of water a seed needs.", "It helps prevent growth during an unsuitable season.", "It makes young plants resistant to every temperature."]
+      },
+      "answer": { "options": 2 },
+      "feedback": "The cold requirement prevents germination during a temporary warm spell before winter.",
+      "difficulty": 3
+    },
+    {
+      "questionType": "Build a Sentence",
+      "prompt": { "question": "Why did you choose the afternoon workshop?", "wordBank": ["fit", "because", "my schedule", "it", "better"], "slots": 5 },
+      "answer": { "order": [1, 3, 0, 2, 4] },
+      "feedback": "Because it fit my schedule better. The clause begins with because, followed by the subject and past-tense verb.",
+      "difficulty": 2
+    },
+    {
+      "questionType": "Write an Email",
+      "prompt": {
+        "scenario": "You are organizing a student photography exhibition. The university events coordinator has offered you a room, but it is too small for the number of visitors you expect. Write an email to the coordinator, Ms. Lee.",
+        "requiredPoints": ["Thank her for offering the room.", "Explain why you need a larger space.", "Suggest an alternative and ask whether it is available."]
+      },
+      "answer": null,
+      "feedback": "Address all three points, use a suitable greeting and closing, and make a clear, polite request.",
+      "difficulty": 3
+    },
+    {
+      "questionType": "Write for an Academic Discussion",
+      "prompt": {
+        "professorPost": "Professor Morgan: Some universities require students to complete a community service project before graduating. Others believe students should decide for themselves how to use their time outside class. Should community service be a graduation requirement? Explain your position and contribute a new idea to the discussion.",
+        "studentReplies": [
+          { "author": "Aisha", "text": "A requirement can introduce students to problems they would not otherwise notice. Working with a local organization also gives them practical experience." },
+          { "author": "Daniel", "text": "Students who work long hours may not have time for an additional requirement. Universities should encourage volunteering without making it compulsory." }
+        ],
+        "minWords": 100
+      },
+      "answer": null,
+      "feedback": "State your position, develop it with relevant detail, and respond to the discussion without copying the other students' wording.",
+      "difficulty": 4
+    },
+    {
+      "questionType": "Listen and Repeat",
+      "prompt": {
+        "audioUrl": "/audio/toefl-2026/repeat.wav",
+        "context": "You are helping with an orientation tour at a university library.",
+        "transcript": "The study rooms on the second floor must be reserved in advance."
+      },
+      "answer": null,
+      "feedback": "Repeat the complete sentence, preserving meaning, word endings and a clear speaking rhythm.",
+      "difficulty": 3
+    },
+    {
+      "questionType": "Take an Interview",
+      "prompt": {
+        "audioUrl": "/audio/toefl-2026/interview.wav",
+        "transcript": "Think about a skill you learned outside a classroom. How did you learn it, and why has it been useful to you?",
+        "topicLabel": "Learning outside the classroom"
+      },
+      "answer": null,
+      "feedback": "Answer both parts of the question. Use a specific example and explain how the skill has helped you.",
+      "difficulty": 3
+    }
+  ]
+}

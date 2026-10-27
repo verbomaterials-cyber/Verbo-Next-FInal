@@ -1,0 +1,104 @@
+/* Based on DET Help Center task screenshots, checked 2026-10-25.
+   Keep this scoped: other exam engines have their own visual language. */
+.det-exam {
+  --xaccent: #1cb0f6; --xaccent2: #168ac0; --xsurface: #fff;
+  --xink: #4b4b4b; --xmuted: #777; --xwarn: #b45e13; --xon-accent: #fff;
+  --xfont-display: var(--font-det-body), "Arial", sans-serif;
+  background: #fff; color: #4b4b4b;
+  font-family: var(--font-det-body), "Arial", sans-serif;
+  overscroll-behavior: contain;
+}
+.det-frame { display: flex; flex-direction: column; min-height: 100%; max-width: 1440px; margin: auto; }
+.det-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 106px; padding: 25px 44px; border-bottom: 2px solid #e5e5e5; }
+.det-clock { display: flex; align-items: center; gap: 10px; color: #4b4b4b; }
+.det-time { font-size: 32px; line-height: 1; font-weight: 800; font-variant-numeric: tabular-nums; }
+.det-clock-caption { font-size: 21px; }
+.det-clock-warning { color: #b45e13; }
+.det-practice-label { color: #929292; font-size: 11px; letter-spacing: .04em; }
+.det-main { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.det-instruction { margin: 56px auto 24px; padding: 0 24px; max-width: 850px; text-align: center; font-size: 25px; font-weight: 750; line-height: 1.4; }
+.det-preparation { text-align: center; color: #777; font-size: 14px; margin: 0 20px 20px; }
+.det-content { flex: 1; display: grid; align-content: start; min-width: 0; animation: det-enter 160ms ease-out both; }
+.det-single { width: min(100%, 790px); margin: 0 auto; padding: 8px 32px 32px; }
+.det-photo { grid-template-columns: 1fr 1fr; gap: 40px; padding: 12px 48px 40px; }
+.det-photograph { display: grid; align-items: start; overflow: hidden; }
+.det-reading { grid-template-columns: 1fr 1fr; align-content: stretch; min-height: 440px; }
+.det-passage { background: #fafafa; padding: 36px 42px; font-size: 18px; line-height: 1.85; border-right: 2px solid #e5e5e5; max-height: calc(100dvh - 235px); overflow: auto; scrollbar-color: #cecece #fafafa; scrollbar-width: thin; }
+.det-passage h2 { color: #777; font-size: 16px; margin-bottom: 20px; }
+.det-eyebrow { margin-bottom: 22px; font-size: 14px; font-weight: 800; letter-spacing: .06em; color: #777; }
+.det-reading .det-response { padding: 42px; }
+.det-reading .det-response h1 { font-size: 24px; line-height: 1.4; font-weight: 750; }
+.det-reading-cloze { grid-template-columns: 1fr; }
+.det-reading-cloze .det-passage { border: 0; max-height: none; min-height: 420px; }
+.det-reading-cloze h1 { color: #4b4b4b; }
+.det-writing { grid-template-columns: 1fr 1fr; gap: 48px; padding: 40px 44px; }
+.det-writing h1, .det-writing h2 { display: flex; align-items: baseline; font-size: 21px; line-height: 1.4; }
+.det-writing h1 span, .det-writing h2 span { flex-shrink: 0; background: #1cb0f6; }
+.det-writing section[data-active="false"] h1, .det-writing section[data-active="false"] h2 { color: #afafaf; }
+.det-writing section[data-active="false"] h1 span, .det-writing section[data-active="false"] h2 span { background: #afafaf; }
+.det-writing textarea { min-height: 240px; }
+.det-control { border: 2px solid #e5e5e5; border-radius: 12px; padding: 14px 16px; background: #f7f7f7; color: #4b4b4b; outline: none; transition: border-color 120ms, background-color 120ms; }
+.det-control::placeholder { color: #afafaf; }
+.det-control:focus { border-color: #1cb0f6; background: #fff; }
+.det-control:focus-visible { outline: 2px solid #1cb0f6; outline-offset: 3px; }
+.det-control:disabled { color: #afafaf; cursor: not-allowed; }
+.det-control:is(select) { padding: 5px 30px 5px 10px; font-size: 16px; color: #168ac0; background-color: #fff; min-width: 110px; cursor: pointer; }
+.det-word { text-align: center; padding: 40px 0 80px; }
+.det-word > p { font-size: clamp(35px, 6vw, 54px); font-weight: 600; margin-bottom: 60px; }
+.det-word-actions { display: flex; gap: 20px; justify-content: center; }
+.det-choice-button { display: flex; justify-content: center; align-items: center; gap: 14px; min-width: 150px; border: 2px solid #e5e5e5; border-bottom-width: 4px; border-radius: 12px; padding: 12px 22px; font-size: 16px; font-weight: 800; letter-spacing: .06em; color: #1cb0f6; background: #fff; transition: background-color 120ms, transform 100ms; cursor: pointer; }
+.det-choice-button span { font-size: 24px; font-weight: 500; line-height: 1; }
+.det-choice-button:active:not(:disabled) { transform: translateY(2px); border-bottom-width: 2px; margin-top: 2px; }
+.det-options { display: grid; gap: 12px; }
+.det-option { display: flex; gap: 14px; align-items: baseline; border: 2px solid #e5e5e5; border-radius: 12px; padding: 14px 16px; font-size: 16px; line-height: 1.5; cursor: pointer; transition: background-color 120ms, border-color 120ms; }
+.det-option-selected { border-color: #84d8ff; background: #ddf4ff; color: #168ac0; }
+.det-option:has(:focus-visible) { outline: 2px solid #1cb0f6; outline-offset: 3px; }
+.det-option input { width: 17px; height: 17px; flex-shrink: 0; accent-color: #1cb0f6; }
+.det-option:has(:disabled) { cursor: default; }
+.det-highlight-answer { padding: 20px; border: 2px solid #e5e5e5; border-radius: 14px; background: #f7f7f7; min-height: 95px; font-size: 18px; line-height: 1.7; overflow-wrap: anywhere; }
+.det-highlight-answer:empty { color: #afafaf; }
+.det-keyboard-help { color: #777; font-size: 12px; line-height: 1.5; }
+.det-highlight { touch-action: pan-y; }
+.det-highlight button { border-radius: 2px; transition: background-color 80ms; }
+.det-highlight button[aria-pressed="true"] { background: #ffdf69; }
+.det-highlight button:focus-visible { outline: 2px solid #1cb0f6; outline-offset: 2px; }
+.det-letter { display: inline-block; padding: 0 0 0 3px; margin: 0 2px; border: 0; border-bottom: 2px solid #afafaf; border-radius: 3px 3px 0 0; font-family: monospace; font-size: 19px; letter-spacing: .16em; background: repeating-linear-gradient(90deg,#f0f0f0 0,#f0f0f0 calc(1ch + .16em - 2px),#fff calc(1ch + .16em - 2px),#fff calc(1ch + .16em)); color: #4b4b4b; }
+.det-letter:focus { border-color: #1cb0f6; outline: 2px solid #84d8ff; outline-offset: 2px; }
+.det-audio { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 24px 0 30px; min-height: 100px; }
+.det-audio-play { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; background: #1cb0f6; box-shadow: 0 4px 0 #1899d6; color: #fff; cursor: pointer; transition: transform 100ms, background-color 120ms; }
+.det-audio-play:active:not(:disabled) { transform: translateY(3px); box-shadow: 0 1px 0 #1899d6; }
+.det-audio-play:disabled { background: #e5e5e5; box-shadow: 0 4px 0 #cecece; color: #777; cursor: default; }
+.det-audio-playing { display: flex; align-items: center; justify-content: center; gap: 4px; height: 30px; }
+.det-audio-playing i { width: 4px; height: 24px; background: currentColor; border-radius: 3px; animation: det-wave 750ms ease-in-out infinite alternate; }
+.det-audio-playing i:nth-child(2n) { animation-delay: -250ms; height: 16px; }
+.det-audio-playing i:nth-child(3n) { animation-delay: -500ms; }
+.det-partner { display: flex; flex-direction: column; align-items: center; padding: 10px 0 20px; }
+.det-partner-eyes { transform-origin: 60px 55px; animation: det-blink 7s infinite; }
+.det-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: auto; padding: 25px 44px; min-height: 100px; border-top: 2px solid #e5e5e5; background: #fff; }
+.det-continue { min-width: 180px; padding: 14px 28px 12px; border-radius: 12px; border-bottom: 4px solid #1899d6; background: #1cb0f6; font-size: 15px; font-weight: 800; letter-spacing: .07em; color: #fff; cursor: pointer; transition: background-color 120ms, transform 100ms; }
+.det-continue:disabled { background: #e5e5e5; border-color: #e5e5e5; color: #afafaf; cursor: not-allowed; }
+.det-continue:active:not(:disabled) { transform: translateY(3px); border-bottom-width: 1px; margin-top: 3px; }
+.det-exam footer { padding: 9px 20px; border-top: 1px solid #f2f2f2; }
+.det-preview { top: 54px; }
+@media (hover:hover) { .det-choice-button:hover { background: #f7f7f7; } .det-option:hover:not(:has(:disabled)) { background: #f7f7f7; } .det-option-selected:hover:not(:has(:disabled)) { background: #ddf4ff; } .det-continue:hover:not(:disabled),.det-audio-play:hover:not(:disabled) { background: #35b9f8; } }
+@media (max-width: 760px) {
+  .det-header { min-height: 80px; padding: 20px; }
+  .det-time { font-size: 27px; } .det-clock-caption { font-size: 15px; }
+  .det-practice-label { max-width: 80px; text-align: right; font-size: 10px; }
+  .det-instruction { margin-top: 34px; font-size: 22px; }
+  .det-reading,.det-photo,.det-writing { grid-template-columns: 1fr; }
+  .det-passage { max-height: 42dvh; border-right: 0; border-bottom: 2px solid #e5e5e5; padding: 24px; font-size: 17px; }
+  .det-reading .det-response { padding: 26px 24px; }
+  .det-reading .det-response h1 { font-size: 21px; }
+  .det-photo,.det-writing { padding: 16px 24px 32px; gap: 24px; }
+  .det-writing section[data-active="false"]:last-child { display: none; }
+  .det-single { padding-inline: 24px; }
+  .det-word { padding-top: 35px; } .det-word-actions { gap: 12px; }
+  .det-choice-button { min-width: 125px; }
+  .det-actions { padding: 20px 24px; }
+  .det-continue { min-width: 145px; }
+}
+@keyframes det-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes det-wave { from { transform: scaleY(.4); } to { transform: scaleY(1); } }
+@keyframes det-blink { 0%,43%,47%,100% { transform: scaleY(1); } 45% { transform: scaleY(.1); } }
+@media (prefers-reduced-motion:reduce) { .det-exam *, .det-exam *::before, .det-exam *::after { animation: none !important; transition: none !important; } }

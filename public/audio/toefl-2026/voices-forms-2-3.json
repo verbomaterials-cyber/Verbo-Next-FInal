@@ -1,0 +1,1129 @@
+{
+  "engine": "Piper 2023.11.14-2",
+  "synthesis": "offline",
+  "lengthScale": 1.35,
+  "attribution": "/audio/toefl-2026/VOICE-CREDITS.md",
+  "clips": [
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-01.wav",
+      "seconds": 1.8,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "607920548bfe146f5231198f92a97c9551577774c2c135f70d23a47fc4eb1af6"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-02.wav",
+      "seconds": 1.87,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "b59bad178c2c02086303d6b6fc5faa7daeb8305e2b05f6032f28e9ee4ed833ac"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-03.wav",
+      "seconds": 1.58,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "1370fabb8b3a04eff4e3bc3b298c2498ad310c17338ccf778814e0e1c1955399"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-04.wav",
+      "seconds": 1.35,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "cbef81dd89018fb606fee5199a35572f581b998c5fba464494cc90fff409d28f"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-05.wav",
+      "seconds": 1.63,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "1deb27c46366e6df71f5a8fdfe0d720596728e14d4a9aa44be7cf0800d05d28a"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-06.wav",
+      "seconds": 1.82,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "408d7dfd7c2a3663cd71eb56e93cd8367c55095d77597eddd81f14e07b3e8047"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-07.wav",
+      "seconds": 1.99,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "c0bfc17e28e4070e907483f1bd2c021cbe599c89399d9a6738568d025a6052d4"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-08.wav",
+      "seconds": 1.47,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "c5c7e3cbbf74e179aed10a1c5876d5934add87d6fe56240ceab616a31b9ca7ce"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-09.wav",
+      "seconds": 1.61,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "5209b99d39d6542dd1ad71316500bdf87865c1bf8e506f3439f1e28aa4e36aab"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-10.wav",
+      "seconds": 1.84,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "be3080c1b5e05557ba2f7e18c12d684be8610658d8299b71834c353f9f89f48f"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-conv-1.wav",
+      "seconds": 22.73,
+      "voices": [
+        "US B",
+        "GB A"
+      ],
+      "locales": [
+        "en-US",
+        "en-GB"
+      ],
+      "sha256": "1a0755b2624c84957e5be74117245c1b5ab819f61cc45d233ced513fff107673"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-conv-2.wav",
+      "seconds": 22.49,
+      "voices": [
+        "GB A",
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "38711ae120ed6e0f77ce33822b4fb27e49fc0e3830d0481c26211e0b7621b7fe"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-conv-3.wav",
+      "seconds": 21.74,
+      "voices": [
+        "GB B",
+        "US A"
+      ],
+      "locales": [
+        "en-GB",
+        "en-US"
+      ],
+      "sha256": "b59da582f2ac6fa5c7d0bda38a1a74d76b136384a0363c33454a24e425ad1a77"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-ann-1.wav",
+      "seconds": 24.16,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "7b19ce3ebd31d956f0c3cbc787f5603af0b051a040889d28944fb08703e80fb0"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-talk-1.wav",
+      "seconds": 46.05,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "2fe4754c68c5ec87578fb128a94139b9d6ea761c504280eb2d965771ea9ffd81"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-r-talk-2.wav",
+      "seconds": 53.77,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "0af0c0e2ee80ae82b193e880f487974c4aea1d5d051f046e4b34b3925df01914"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-01.wav",
+      "seconds": 1.64,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "319f0555902a9b1dbbd1467241af93d40b33a40648c8831592b02a65f5e27204"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-02.wav",
+      "seconds": 1.35,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "e2ea742932909c13a6e176a377ec4ebc021185047eadc60e973a64b8641da2af"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-03.wav",
+      "seconds": 1.2,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "76127e6b74c4afb2043494b71fa7be8fb11a55e36875b09964a6ff1bfd7b01b6"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-04.wav",
+      "seconds": 1.49,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "fc35987bc14f2b5f7a6befb0640a1358f8305050c4fc12250adb57b4f494868d"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-05.wav",
+      "seconds": 1.54,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "787059f3fc843ef1973366167de6a03ca1dc20b668e78e9716e073b711699146"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-06.wav",
+      "seconds": 1.27,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "9dfacbb7a9fdb4dde16cfce00109b238a52ecd4598221c20e595c1044c9d22be"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-07.wav",
+      "seconds": 1.82,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "6782d034827fd8096875fdf63d4d4f56f195d7dff457d36688430f6258308db5"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-08.wav",
+      "seconds": 1.51,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "a4df31ddeb2623ef0e4f994d1f564e1f2edb190206e2ac68ec1a4a81fe30749d"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-09.wav",
+      "seconds": 1.13,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "5bf5658fe584b6c6d7535561882e3c46383be9649e8b8d3f62e4bed5eb57c86b"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-conv-1.wav",
+      "seconds": 13.03,
+      "voices": [
+        "GB B",
+        "US A"
+      ],
+      "locales": [
+        "en-GB",
+        "en-US"
+      ],
+      "sha256": "559e5367e2bedc54ab41f46bbb8f8c9a954807af7382fbc8c7b17ecfa0ae6c24"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-conv-2.wav",
+      "seconds": 12.41,
+      "voices": [
+        "US A",
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "307340921159d6763cf95ae07e94e9854830cd390b0e2115976e65b2973fdf48"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-ann-1.wav",
+      "seconds": 17.75,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "0f0cb7da4ee59192b0024733515ca8476932c9ab895efcf2ade5edca3378f761"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-l-talk-1.wav",
+      "seconds": 37.91,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "edd62329f8db91892144f107b513a41a25d6a0eacef94898d0703ba80386c9ea"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-01.wav",
+      "seconds": 2.36,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "10eee3f776e989a3e64def5c035638293d53dec13cf21ab2585fcf1af463a299"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-02.wav",
+      "seconds": 1.93,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "b4cb10cc5df1ce261160b7be827dfe169121c15610fa03563be18df17140dcd8"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-03.wav",
+      "seconds": 2.14,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "c7ff4cdc9c4558ed227fedd037720ec257583160ec70c99456aaacf225de0a09"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-04.wav",
+      "seconds": 1.94,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "415e4f4d434404599e514cc53324184627a8fc5eec269ce599b4a6c9aab17f15"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-05.wav",
+      "seconds": 2.44,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "1d2ea9923cfaba5cf207eb0724273074de6f116fe8e0e78213f93abe127695e7"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-conv-1.wav",
+      "seconds": 29.71,
+      "voices": [
+        "US A",
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "96242d55d585518093b0d2286ce716b35237b3f8cc948d4c628b09c91925163b"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-conv-2.wav",
+      "seconds": 26.73,
+      "voices": [
+        "US B",
+        "GB A"
+      ],
+      "locales": [
+        "en-US",
+        "en-GB"
+      ],
+      "sha256": "7198098972fdecbcda2c657e3395789873b426d03a4a1ca6c6181b86036f04e5"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-ann-1.wav",
+      "seconds": 28.12,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "edb8f95148e7ab627bca219e73814f63a63e21e237262a3c5c839d729753cc9d"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-talk-1.wav",
+      "seconds": 53.25,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "8f351a8385fc1fca78af6e3aa29b753437d5a95bfda911d779c0edfcd8d5257c"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-l-u-talk-2.wav",
+      "seconds": 60.37,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "d2df67c935cc45fdb9248c48cadd0c199f8a17c7e15a323f5176846695dcea9e"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-repeat-1.wav",
+      "seconds": 2.98,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "0fbd619b44977aef73aaf6203dd893359f01f22e52627f882f1706361f520c7e"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-repeat-2.wav",
+      "seconds": 2.35,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "39d5b4cbd39831226e159a955e0aec680d85f2f41534f3bd24e9917b01b45ce5"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-repeat-3.wav",
+      "seconds": 2.66,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "57e3deae7248872776a916a784350a7ebfe0732bf54d1ab4dd7cd6f0a97ba7b5"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-repeat-4.wav",
+      "seconds": 3.17,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "88b3e3bb795852e4a9af1d65a6235e7efaa62b6003c42412accb611b3a431c56"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-repeat-5.wav",
+      "seconds": 3.1,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "22e19a2c75fe52cf652fb231a35cb5346f181d291d62b99c57d25bf95c17a65f"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-repeat-6.wav",
+      "seconds": 3.88,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "ca6bbfb3db7962637c1bef4edfa9559d40e396b5b0d40dad85c0e83bbedd63b7"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-repeat-7.wav",
+      "seconds": 5.27,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "1b2a6693584293eabb1482147a546f4e01a1241c652acd4f9710a91401a9b523"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-interview-1.wav",
+      "seconds": 10.76,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "973194d224f3b9a9c898455cc1915dde2ecb99863a30e7b5a9c28d33e1fa1126"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-interview-2.wav",
+      "seconds": 10.61,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "1e639d4ef68c6f7ccb3a2c17d55835af50cc847751f05f24dd6b2528c032ac23"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-interview-3.wav",
+      "seconds": 8.27,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "f67cf3ed8394924bc20852002d4ffb27b09d580bb47063c5e1df326a971b4c48"
+    },
+    {
+      "path": "/audio/toefl-2026/form-2/f2-s-interview-4.wav",
+      "seconds": 9.92,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "d0f21c37bdb4d11a6d548f56a1b85ecc90cd6584d25cba46ff45b53733ffdab4"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-01.wav",
+      "seconds": 1.76,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "fa32ca0524b3ffbe98f5d31f59c00a685632e01151f57cd909a90486fe31a009"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-02.wav",
+      "seconds": 1.57,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "649e945a153ca8fb254f171e0ec82a2bcdb18d2c1bd2eae3474d6f6c3336267a"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-03.wav",
+      "seconds": 1.66,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "ede325b50e0ee8162e32a2e3ed0a3b0b17bdc938dbbe9be5a24e946ac67201e8"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-04.wav",
+      "seconds": 1.79,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "87e71910bd0da3fcb5d31e1ae699ea1febaf0bffd38a94638c0b28a81a9c9fcb"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-05.wav",
+      "seconds": 2.04,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "036088fb5b6536ad3f467a00a1daaeab8c30e680af78ff8063340554741e993b"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-06.wav",
+      "seconds": 2.12,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "ca99bd8255f53617acafcca67c244484db5eb13a051d6331f4a0a357877e2111"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-07.wav",
+      "seconds": 1.75,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "9ab99ca191794495d7f9d6d37c8d43e46b3024784dc8a6e3a08243812a3ed73e"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-08.wav",
+      "seconds": 1.78,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "a35e1605df796bfbdf4056d57b4c5e20de558ede2725f13b9a2da1a068be9cb9"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-09.wav",
+      "seconds": 1.93,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "9418d4b4e032938259437a7445d4c5f4631003a69e5f3bf003aa3c3631ce9ee4"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-10.wav",
+      "seconds": 1.77,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "378625ec77296caf923040bd39201ac1e0f47b5dc1f8c3ca349bce8aa2f43c7b"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-conv-1.wav",
+      "seconds": 22.23,
+      "voices": [
+        "GB A",
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "384086b623254b3a388d11c6c099107b2915dead31133010876ee4f026880109"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-conv-2.wav",
+      "seconds": 24.59,
+      "voices": [
+        "GB B",
+        "US A"
+      ],
+      "locales": [
+        "en-GB",
+        "en-US"
+      ],
+      "sha256": "76f33294ebc7ffe9fb45aa0055a0d721c0ade6bfe01c53714c7abd63216392e3"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-conv-3.wav",
+      "seconds": 24.52,
+      "voices": [
+        "US A",
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "9b53c2575446c443600df66086cd6e1c7f8ee16d488ce33c20d8d8f0378c3cef"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-ann-1.wav",
+      "seconds": 18.96,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "b236eb7dc0a45ae3dbddc1ad12aa4298376f449fc22b369fa9a13d4fdee13afa"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-talk-1.wav",
+      "seconds": 50.16,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "ec9cea4d87414f7d877c4e96e4bfa3140f0dd803cce4808b1eb0915536b7599d"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-r-talk-2.wav",
+      "seconds": 50.71,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "eb6c62ae8073e8c32daa5c3c10ae20be6a63a3202a3d2ec665ebd1e8e164d47b"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-01.wav",
+      "seconds": 1.94,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "ecf6dac7765e01220d271d55e4022a4bbd681de4f6fc32771e6dada477d9d08c"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-02.wav",
+      "seconds": 1.37,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "d28318f69dcad393a015476e946cbae2a0481d354da41f10cdb3e6933cd69c20"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-03.wav",
+      "seconds": 1.51,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "31218a3cbae108bc796f5fae37ce2d375a5c4bc30f792757657401d676547a6b"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-04.wav",
+      "seconds": 1.26,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "c9cbf17f20d9290a7facff1063f30df3d7f927cdc474ba44382414785c8f4654"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-05.wav",
+      "seconds": 1.28,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "c3ae561b54546d92efc00f7971a645988ad6282f014baa6cb41231c69432530f"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-06.wav",
+      "seconds": 1.23,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "72786c6e0fb8c525a900ca65de242cb5f715a08d4931d9d50365ca235d461c3d"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-07.wav",
+      "seconds": 1.39,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "a91fb0f8ed805f9d1bbaf6e25bca75a71fdf8281be39cbd447f43e70d39a18aa"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-08.wav",
+      "seconds": 1.35,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "101d079ad1a4c46e25ebc5ec9bb26c95092c12d69dae25d598cf4a9abd40ddee"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-09.wav",
+      "seconds": 1.36,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "16c384a4bbd8b7c7b27c0bb291a6cfefc6a657f69e5be5af4454c8f8471dfd69"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-conv-1.wav",
+      "seconds": 12.01,
+      "voices": [
+        "US A",
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "877a657e553eb7fec6c80eb4fa496647ef3531b12e4d67c396b0bf1f16822e2c"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-conv-2.wav",
+      "seconds": 11.41,
+      "voices": [
+        "US B",
+        "GB A"
+      ],
+      "locales": [
+        "en-US",
+        "en-GB"
+      ],
+      "sha256": "4058e8b4d6fac8597e2a7aa2c936473bc189e86f072d2c7a8c4a0c84f03ee477"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-ann-1.wav",
+      "seconds": 18.01,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "7f93758ccd52abdf3df5b475ef4e412287969287c665d6b94767771784d57c7c"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-l-talk-1.wav",
+      "seconds": 36.8,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "4bc21118b5190d3f51ccfee9dec15308216405408b96ce98c47f4ee580e189d0"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-01.wav",
+      "seconds": 1.92,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "8792e9445eedb61c914f084b31be9992190b457b5063eb994a143385e54927c4"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-02.wav",
+      "seconds": 2.4,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "5737ca974c141ee4b88f802b4f5c6e210ec8be773025ace51a7e82959b1ddfbb"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-03.wav",
+      "seconds": 2.07,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "5dda8a829f3d17053da480572e68007b5d0010ff66971a6937db03348b87419d"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-04.wav",
+      "seconds": 2.19,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "8a507f1d9e9124b34c63b5a7109f2558a32374201d2b662af938fd87a1ae35bd"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-05.wav",
+      "seconds": 2.22,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "20824707834b9b8f1197c045482e2e2dc0145af42091a23cef173b243c37329e"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-conv-1.wav",
+      "seconds": 26.86,
+      "voices": [
+        "US B",
+        "GB A"
+      ],
+      "locales": [
+        "en-US",
+        "en-GB"
+      ],
+      "sha256": "1656cd5a1d7089c8cd661ab8aab8a26f687178546576d5a35335f87746e43939"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-conv-2.wav",
+      "seconds": 25.64,
+      "voices": [
+        "GB A",
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "6fea91dca9290bc0f959eacc4b70a165a7bf5c508ed623b91da46c1d3477ab2a"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-ann-1.wav",
+      "seconds": 27.81,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "2d298260aad4d636d5ba9c124cfc810bb0ea9bc01f687b07a454450ed30fd481"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-talk-1.wav",
+      "seconds": 60.16,
+      "voices": [
+        "GB B"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "722c90314cb4451958ad34ceaea43b4405b27ca8e4a7128bc233aa968e078be4"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-l-u-talk-2.wav",
+      "seconds": 58.9,
+      "voices": [
+        "US A"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "24d0860ce9e6065c2892887f5d61bc9e0b2b0eedc3411f18196fb13f046dd137"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-repeat-1.wav",
+      "seconds": 2.53,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "d558821acf40fc353b5fe39d8b92fdb45eff0d3d517c73e136554e37b65a2d72"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-repeat-2.wav",
+      "seconds": 2.12,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "d6564f40ffc3c0c2187a8d42185828448a285756812a30cb1e85dd2298f5a82a"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-repeat-3.wav",
+      "seconds": 2.79,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "9307157ea34d727cfee3564cc4345a8732914891e38c6553bf4141dfb23c348e"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-repeat-4.wav",
+      "seconds": 2.73,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "cfa90f05d959f13f677256fc0028dccd24776700f7a2998b6857d60f959824cf"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-repeat-5.wav",
+      "seconds": 2.74,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "75bd02bca204f362031ea8a1a4db8f1f935c3aad43e334063fe06a3429f46a30"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-repeat-6.wav",
+      "seconds": 3.82,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "7d76815bd88cbc22d0b5bdcbe75528e7785876d9c2a511baa659d6e5e5bc7b6c"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-repeat-7.wav",
+      "seconds": 4.44,
+      "voices": [
+        "GB A"
+      ],
+      "locales": [
+        "en-GB"
+      ],
+      "sha256": "c87d21502ee4c51594e6a69a2747a2b063e0dd864b3ecbf091d90666cc844cbe"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-interview-1.wav",
+      "seconds": 8.64,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "0c5a3fd48aabf49c146e0e32c74fa3eb8f710b7f9ebbf9f9c9b90e174e120a48"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-interview-2.wav",
+      "seconds": 9.31,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "8ae94c2f7770de579d93f821ce83aa85c26e46b41d16d07b44073dc999ef1bdb"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-interview-3.wav",
+      "seconds": 8.63,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "7d22c2024459a7fe4417512f7100779eb344210bc67381d9e866bec6905e13a3"
+    },
+    {
+      "path": "/audio/toefl-2026/form-3/f3-s-interview-4.wav",
+      "seconds": 11.16,
+      "voices": [
+        "US B"
+      ],
+      "locales": [
+        "en-US"
+      ],
+      "sha256": "e871c4d1cfe65e4fa22764907f9d473c88c53c6f089fb562ca5c7aeb86f1deef"
+    }
+  ]
+}

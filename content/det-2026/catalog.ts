@@ -1,0 +1,33 @@
+import type { AdminFieldSchema } from "../../src/lib/exam-config";
+export const detSchema: AdminFieldSchema = { version: 1, fields: [
+  { key: "instruction", label: "Instrucción", type: "textarea", target: "prompt", required: true },
+  { key: "text", label: "Texto (letras faltantes entre corchetes)", type: "textarea", target: "prompt" },
+  { key: "passage", label: "Pasaje", type: "textarea", target: "prompt" },
+  { key: "title", label: "Título", type: "text", target: "prompt" },
+  { key: "audioUrl", label: "Audio", type: "audio", target: "prompt" },
+  { key: "imageUrl", label: "Foto", type: "image", target: "prompt" },
+  { key: "imageAlt", label: "Descripción accesible", type: "text", target: "prompt" },
+  { key: "options", label: "Opciones", type: "options", target: "prompt" },
+  { key: "_det", label: "Metadatos de entrega (conservar al editar)", type: "text", target: "prompt", studentHidden: true },
+] };
+export const detTypes = [
+  ["Read and Select", "MULTIPLE_CHOICE", "TEXT", 5, "Reading"],
+  ["Fill in the Blanks", "FILL_BLANK", "TEXT", 20, "Reading"],
+  ["Read and Complete", "FILL_BLANK", "TEXT", 180, "Reading"],
+  ["Listen and Type", "TYPE_TEXT", "AUDIO", 60, "Listening"],
+  ["Interactive Reading: Complete the Sentences", "MULTIPLE_CHOICE", "TEXT", 420, "Reading"],
+  ["Interactive Reading: Complete the Passage", "MULTIPLE_CHOICE", "TEXT", 420, "Reading"],
+  ["Interactive Reading: Highlight the Answer", "DRAG_SELECT", "TEXT", 420, "Reading"],
+  ["Interactive Reading: Identify the Idea", "MULTIPLE_CHOICE", "TEXT", 420, "Reading"],
+  ["Interactive Reading: Title the Passage", "MULTIPLE_CHOICE", "TEXT", 420, "Reading"],
+  ["Interactive Listening: Listen and Complete", "FILL_BLANK", "AUDIO", 390, "Listening"],
+  ["Interactive Listening: Listen and Respond", "MULTIPLE_CHOICE", "CONVERSATION", 390, "Listening"],
+  ["Interactive Listening: Summarize the Conversation", "FREE_TEXT", "TEXT", 75, "Writing"],
+  ["Write About the Photo", "FREE_TEXT", "IMAGE", 60, "Writing"],
+  ["Interactive Writing", "FREE_TEXT", "TEXT", 300, "Writing"],
+  ["Speak About the Photo", "AUDIO_RECORDING", "IMAGE", 90, "Speaking"],
+  ["Read, Then Speak", "AUDIO_RECORDING", "TEXT", 90, "Speaking"],
+  ["Interactive Speaking", "AUDIO_RECORDING", "AUDIO", 35, "Speaking"],
+  ["Writing Sample", "FREE_TEXT", "TEXT", 300, "Writing"],
+  ["Speaking Sample", "AUDIO_RECORDING", "TEXT", 180, "Speaking"],
+] as const;

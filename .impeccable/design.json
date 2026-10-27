@@ -1,0 +1,652 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T00:58:51.119Z",
+  "title": "Design System: Verbo NEXT",
+  "extensions": {
+    "colorMeta": {
+      "brand": {
+        "role": "primary",
+        "displayName": "Azul petróleo Verbo",
+        "canonical": "#01304a",
+        "tonalRamp": [
+          "oklch(15% 0.0249 239.89)",
+          "oklch(26% 0.0432 239.89)",
+          "oklch(38% 0.0631 239.89)",
+          "oklch(50% 0.0665 239.89)",
+          "oklch(62% 0.0665 239.89)",
+          "oklch(74% 0.0665 239.89)",
+          "oklch(85% 0.0554 239.89)",
+          "oklch(95% 0.0185 239.89)"
+        ]
+      },
+      "brand-strong": {
+        "role": "primary",
+        "displayName": "Azul profundo de hover compartido",
+        "canonical": "#002338",
+        "tonalRamp": [
+          "oklch(15% 0.0210 240.08)",
+          "oklch(26% 0.0364 240.08)",
+          "oklch(38% 0.0532 240.08)",
+          "oklch(50% 0.0560 240.08)",
+          "oklch(62% 0.0560 240.08)",
+          "oklch(74% 0.0560 240.08)",
+          "oklch(85% 0.0467 240.08)",
+          "oklch(95% 0.0156 240.08)"
+        ]
+      },
+      "brand-soft": {
+        "role": "primary",
+        "displayName": "Azul suave",
+        "canonical": "#e5eff2",
+        "tonalRamp": [
+          "oklch(15% 0.0043 217.54)",
+          "oklch(26% 0.0074 217.54)",
+          "oklch(38% 0.0108 217.54)",
+          "oklch(50% 0.0114 217.54)",
+          "oklch(62% 0.0114 217.54)",
+          "oklch(74% 0.0114 217.54)",
+          "oklch(85% 0.0095 217.54)",
+          "oklch(95% 0.0032 217.54)"
+        ]
+      },
+      "verbo-orange": {
+        "role": "secondary",
+        "displayName": "Naranja de marca",
+        "canonical": "#ed7729",
+        "tonalRamp": [
+          "oklch(15% 0.0632 49.18)",
+          "oklch(26% 0.1095 49.18)",
+          "oklch(38% 0.1601 49.18)",
+          "oklch(50% 0.1685 49.18)",
+          "oklch(62% 0.1685 49.18)",
+          "oklch(74% 0.1685 49.18)",
+          "oklch(85% 0.1404 49.18)",
+          "oklch(95% 0.0468 49.18)"
+        ]
+      },
+      "verbo-lime": {
+        "role": "secondary",
+        "displayName": "Lima de marca",
+        "canonical": "#59cc01",
+        "tonalRamp": [
+          "oklch(15% 0.0857 137.49)",
+          "oklch(26% 0.1486 137.49)",
+          "oklch(38% 0.2172 137.49)",
+          "oklch(50% 0.2287 137.49)",
+          "oklch(62% 0.2287 137.49)",
+          "oklch(74% 0.2287 137.49)",
+          "oklch(85% 0.1906 137.49)",
+          "oklch(95% 0.0635 137.49)"
+        ]
+      },
+      "lime-light": {
+        "role": "secondary",
+        "displayName": "Lima clara",
+        "canonical": "#c4f586",
+        "tonalRamp": [
+          "oklch(15% 0.0558 128.55)",
+          "oklch(26% 0.0968 128.55)",
+          "oklch(38% 0.1414 128.55)",
+          "oklch(50% 0.1489 128.55)",
+          "oklch(62% 0.1489 128.55)",
+          "oklch(74% 0.1489 128.55)",
+          "oklch(85% 0.1241 128.55)",
+          "oklch(95% 0.0414 128.55)"
+        ]
+      },
+      "lime-hover": {
+        "role": "secondary",
+        "displayName": "Lima de hover",
+        "canonical": "#d3fba3",
+        "tonalRamp": [
+          "oklch(15% 0.0451 128.40)",
+          "oklch(26% 0.0783 128.40)",
+          "oklch(38% 0.1144 128.40)",
+          "oklch(50% 0.1204 128.40)",
+          "oklch(62% 0.1204 128.40)",
+          "oklch(74% 0.1204 128.40)",
+          "oklch(85% 0.1003 128.40)",
+          "oklch(95% 0.0334 128.40)"
+        ]
+      },
+      "display-green": {
+        "role": "secondary",
+        "displayName": "Verde de titular",
+        "canonical": "#338000",
+        "tonalRamp": [
+          "oklch(15% 0.0613 137.85)",
+          "oklch(26% 0.1062 137.85)",
+          "oklch(38% 0.1552 137.85)",
+          "oklch(50% 0.1633 137.85)",
+          "oklch(62% 0.1633 137.85)",
+          "oklch(74% 0.1633 137.85)",
+          "oklch(85% 0.1361 137.85)",
+          "oklch(95% 0.0454 137.85)"
+        ]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Fondo del portal",
+        "canonical": "#f4f7f8",
+        "tonalRamp": [
+          "oklch(15% 0.0013 219.53)",
+          "oklch(26% 0.0023 219.53)",
+          "oklch(38% 0.0033 219.53)",
+          "oklch(50% 0.0035 219.53)",
+          "oklch(62% 0.0035 219.53)",
+          "oklch(74% 0.0035 219.53)",
+          "oklch(85% 0.0029 219.53)",
+          "oklch(95% 0.0010 219.53)"
+        ]
+      },
+      "welcome-background": {
+        "role": "neutral",
+        "displayName": "Fondo de bienvenida",
+        "canonical": "#f5f8f7",
+        "tonalRamp": [
+          "oklch(15% 0.0013 174.48)",
+          "oklch(26% 0.0022 174.48)",
+          "oklch(38% 0.0033 174.48)",
+          "oklch(50% 0.0034 174.48)",
+          "oklch(62% 0.0034 174.48)",
+          "oklch(74% 0.0034 174.48)",
+          "oklch(85% 0.0029 174.48)",
+          "oklch(95% 0.0010 174.48)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Superficie blanca",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0.0000 0.00)",
+          "oklch(26% 0.0000 0.00)",
+          "oklch(38% 0.0000 0.00)",
+          "oklch(50% 0.0000 0.00)",
+          "oklch(62% 0.0000 0.00)",
+          "oklch(74% 0.0000 0.00)",
+          "oklch(85% 0.0000 0.00)",
+          "oklch(95% 0.0000 0.00)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#133e53",
+        "tonalRamp": [
+          "oklch(15% 0.0222 233.58)",
+          "oklch(26% 0.0384 233.58)",
+          "oklch(38% 0.0562 233.58)",
+          "oklch(50% 0.0591 233.58)",
+          "oklch(62% 0.0591 233.58)",
+          "oklch(74% 0.0591 233.58)",
+          "oklch(85% 0.0493 233.58)",
+          "oklch(95% 0.0164 233.58)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Tinta secundaria",
+        "canonical": "#526e7b",
+        "tonalRamp": [
+          "oklch(15% 0.0145 228.15)",
+          "oklch(26% 0.0251 228.15)",
+          "oklch(38% 0.0367 228.15)",
+          "oklch(50% 0.0386 228.15)",
+          "oklch(62% 0.0386 228.15)",
+          "oklch(74% 0.0386 228.15)",
+          "oklch(85% 0.0321 228.15)",
+          "oklch(95% 0.0107 228.15)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Línea",
+        "canonical": "#dce7eb",
+        "tonalRamp": [
+          "oklch(15% 0.0049 221.43)",
+          "oklch(26% 0.0084 221.43)",
+          "oklch(38% 0.0123 221.43)",
+          "oklch(50% 0.0130 221.43)",
+          "oklch(62% 0.0130 221.43)",
+          "oklch(74% 0.0130 221.43)",
+          "oklch(85% 0.0108 221.43)",
+          "oklch(95% 0.0036 221.43)"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Línea firme",
+        "canonical": "#b8cdd6",
+        "tonalRamp": [
+          "oklch(15% 0.0098 225.38)",
+          "oklch(26% 0.0169 225.38)",
+          "oklch(38% 0.0247 225.38)",
+          "oklch(50% 0.0260 225.38)",
+          "oklch(62% 0.0260 225.38)",
+          "oklch(74% 0.0260 225.38)",
+          "oklch(85% 0.0217 225.38)",
+          "oklch(95% 0.0072 225.38)"
+        ]
+      },
+      "nav-active": {
+        "role": "neutral",
+        "displayName": "Navegación activa",
+        "canonical": "#1b465e",
+        "tonalRamp": [
+          "oklch(15% 0.0235 236.31)",
+          "oklch(26% 0.0407 236.31)",
+          "oklch(38% 0.0595 236.31)",
+          "oklch(50% 0.0626 236.31)",
+          "oklch(62% 0.0626 236.31)",
+          "oklch(74% 0.0626 236.31)",
+          "oklch(85% 0.0522 236.31)",
+          "oklch(95% 0.0174 236.31)"
+        ]
+      },
+      "nav-muted": {
+        "role": "neutral",
+        "displayName": "Navegación atenuada",
+        "canonical": "#bdd0da",
+        "tonalRamp": [
+          "oklch(15% 0.0093 230.49)",
+          "oklch(26% 0.0162 230.49)",
+          "oklch(38% 0.0236 230.49)",
+          "oklch(50% 0.0249 230.49)",
+          "oklch(62% 0.0249 230.49)",
+          "oklch(74% 0.0249 230.49)",
+          "oklch(85% 0.0207 230.49)",
+          "oklch(95% 0.0069 230.49)"
+        ]
+      },
+      "danger": {
+        "role": "semantic",
+        "displayName": "Peligro",
+        "canonical": "oklch(49% 0.18 27)",
+        "tonalRamp": [
+          "oklch(15% 0.0675 27.00)",
+          "oklch(26% 0.1170 27.00)",
+          "oklch(38% 0.1710 27.00)",
+          "oklch(50% 0.1800 27.00)",
+          "oklch(62% 0.1800 27.00)",
+          "oklch(74% 0.1800 27.00)",
+          "oklch(85% 0.1500 27.00)",
+          "oklch(95% 0.0500 27.00)"
+        ]
+      },
+      "danger-soft": {
+        "role": "semantic",
+        "displayName": "Peligro suave",
+        "canonical": "oklch(96% 0.02 27)",
+        "tonalRamp": [
+          "oklch(15% 0.0075 27.00)",
+          "oklch(26% 0.0130 27.00)",
+          "oklch(38% 0.0190 27.00)",
+          "oklch(50% 0.0200 27.00)",
+          "oklch(62% 0.0200 27.00)",
+          "oklch(74% 0.0200 27.00)",
+          "oklch(85% 0.0167 27.00)",
+          "oklch(95% 0.0056 27.00)"
+        ]
+      },
+      "success": {
+        "role": "semantic",
+        "displayName": "Éxito",
+        "canonical": "oklch(50% 0.13 155)",
+        "tonalRamp": [
+          "oklch(15% 0.0487 155.00)",
+          "oklch(26% 0.0845 155.00)",
+          "oklch(38% 0.1235 155.00)",
+          "oklch(50% 0.1300 155.00)",
+          "oklch(62% 0.1300 155.00)",
+          "oklch(74% 0.1300 155.00)",
+          "oklch(85% 0.1083 155.00)",
+          "oklch(95% 0.0361 155.00)"
+        ]
+      }
+    },
+    "tonalRampProvenance": {
+      "source": "Synthesized preview metadata from each canonical color in DESIGN.md, with fixed OKLCH lightness steps and reduced chroma near black and white.",
+      "usage": "Preview only. These ramps are not implemented CSS tokens, new product states or approved palette extensions."
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titular de bienvenida; variante móvil de 43px e interlínea 1.12."
+      },
+      "page-title": {
+        "displayName": "Título de página",
+        "purpose": "Encabezado del portal; variante móvil de 29px."
+      },
+      "section-title": {
+        "displayName": "Título de sección",
+        "purpose": "Secciones del panel."
+      },
+      "card-title": {
+        "displayName": "Título de tarjeta",
+        "purpose": "Nombre del examen dentro del catálogo."
+      },
+      "body": {
+        "displayName": "Texto",
+        "purpose": "Familia base real; sin tamaño único impuesto."
+      },
+      "body-support": {
+        "displayName": "Texto de apoyo",
+        "purpose": "Descripción bajo el título de página."
+      },
+      "action-label": {
+        "displayName": "Acción",
+        "purpose": "Etiqueta del botón de portal."
+      },
+      "mono": {
+        "displayName": "Mono disponible",
+        "purpose": "Geist Mono cargada globalmente; dentro del portal las cifras usan Hanken Grotesk y tabular-nums."
+      }
+    },
+    "shadows": [
+      {
+        "name": "elevation-low",
+        "value": "0 3px 12px -5px rgb(1 48 74 / 12%)",
+        "purpose": "Variable real --elevation-low: tarjetas, actividad y perfil."
+      },
+      {
+        "name": "elevation-high",
+        "value": "0 18px 48px -20px rgb(1 48 74 / 25%)",
+        "purpose": "Variable real --elevation-high: hover de tarjeta con puntero fino."
+      },
+      {
+        "name": "portal-button",
+        "value": "0 5px 14px -7px rgb(1 48 74 / 45%)",
+        "purpose": "Botón principal del portal."
+      },
+      {
+        "name": "portal-button-hover",
+        "value": "0 9px 20px -10px rgb(1 48 74 / 50%)",
+        "purpose": "Hover de .next-button, incluidas variantes por cascada."
+      },
+      {
+        "name": "lime-button",
+        "value": "0 6px 16px -8px rgb(12 52 14 / 40%)",
+        "purpose": "Botón lima en reposo."
+      },
+      {
+        "name": "account-dropdown",
+        "value": "0 12px 36px -12px rgb(1 48 74 / 35%)",
+        "purpose": "Menú flotante de cuenta."
+      },
+      {
+        "name": "journey",
+        "value": "0 24px 60px -35px rgb(1 48 74 / 55%)",
+        "purpose": "Recorrido interactivo."
+      },
+      {
+        "name": "welcome-orb",
+        "value": "0 16px 24px -18px rgb(1 48 74 / 35%)",
+        "purpose": "Esferas de bienvenida."
+      },
+      {
+        "name": "signin-orb",
+        "value": "0 15px 25px -9px #001d2d",
+        "purpose": "Esfera de la órbita de acceso."
+      }
+    ],
+    "motion": [
+      {
+        "name": "motion-enter",
+        "value": "cubic-bezier(.22, 1, .36, 1)",
+        "purpose": "Variable real --motion-enter: entradas y respuestas del portal."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Curva de controles compartidos y modal."
+      },
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Curva global de rise-in; el portal desactiva su .rise-in."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.77, 0, 0.175, 1)",
+        "purpose": "Curva disponible en @theme inline."
+      },
+      {
+        "name": "control-transition",
+        "value": "150ms",
+        "purpose": "Fondos, bordes y estados de botones, navegación y campos."
+      },
+      {
+        "name": "arrow-transition",
+        "value": "180ms",
+        "purpose": "Desplazamiento de flechas con puntero fino."
+      },
+      {
+        "name": "card-transition",
+        "value": "200ms",
+        "purpose": "Transformación y sombra de tarjeta de examen."
+      },
+      {
+        "name": "welcome-reveal",
+        "value": "650ms",
+        "purpose": "clip-path de inset(0 0 100% 0) a inset(0 0 0 0), translateY(12px) a none."
+      },
+      {
+        "name": "journey-change",
+        "value": "220ms",
+        "purpose": "Opacidad .3 a 1 y translateY(5px) a none al cambiar examen."
+      },
+      {
+        "name": "route-draw",
+        "value": "550ms",
+        "purpose": "Conexión de scaleX(.2) a scaleX(1), opacidad .2 a 1."
+      },
+      {
+        "name": "auth-enter",
+        "value": "350ms",
+        "purpose": "Formulario: opacidad .3 a 1 y translateX(10px) a none."
+      },
+      {
+        "name": "menu-enter",
+        "value": "180ms",
+        "purpose": "Menú: opacidad .2 a 1 y scale(.96) translateY(-4px) a none."
+      },
+      {
+        "name": "portal-enter",
+        "value": "220ms",
+        "purpose": "Ruta: opacidad .5 a 1 y translateY(5px) a none."
+      },
+      {
+        "name": "orb-float-welcome-one",
+        "value": "7s ease-in-out infinite alternate",
+        "purpose": "Esfera verde de bienvenida: translateY(-9px) rotate(-9deg) a translateY(11px) rotate(9deg)."
+      },
+      {
+        "name": "orb-float-welcome-two",
+        "value": "9s ease-in-out infinite alternate-reverse",
+        "purpose": "Esfera naranja de bienvenida."
+      },
+      {
+        "name": "orb-float-signin",
+        "value": "6s ease-in-out infinite alternate",
+        "purpose": "Esfera del acceso."
+      },
+      {
+        "name": "modal-transition",
+        "value": "180ms",
+        "purpose": "Modal compartido: escala .97 y translateY(4px) a identidad; cierre orquestado a 160ms."
+      },
+      {
+        "name": "press",
+        "value": "scale(.97)",
+        "purpose": "Presión de botones habilitados."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Welcome, signin y portal suprimen animación y transformaciones; transiciones .01ms. El global reduce animación y transición a .01ms."
+      },
+      {
+        "name": "hover-capability",
+        "value": "(hover:hover) and (pointer:fine)",
+        "purpose": "Restringe lift de tarjetas y desplazamiento de flechas del portal."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "portal-compact",
+        "value": "1100px",
+        "purpose": "max-width: barra lateral de 204px y menor relleno."
+      },
+      {
+        "name": "portal-mobile-navigation",
+        "value": "800px",
+        "purpose": "max-width: barra inferior y marca en cabecera."
+      },
+      {
+        "name": "portal-single-column",
+        "value": "580px",
+        "purpose": "max-width: recorrido vertical, catálogo/perfil/ayuda apilados y filtros a todo el ancho."
+      }
+    ],
+    "focus": [
+      {
+        "name": "default",
+        "value": "2px solid var(--brand); outline-offset: 2px",
+        "purpose": "Foco visible global sobre claro."
+      },
+      {
+        "name": "dark-context",
+        "value": "2px solid #c4f586; outline-offset: 4px",
+        "purpose": "Foco visible en .portal-sidebar, .journey y .signin-story."
+      },
+      {
+        "name": "signin-input",
+        "value": "3px solid #dceaf0; outline-offset: 1px",
+        "purpose": "Foco del campo de acceso, con borde de marca y fondo blanco."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción del portal con respuesta de fondo, sombra, flecha y presión; conserva el foco contextual de su superficie.",
+      "html": "<button type=\"button\" class=\"ds-primary\">Continuar mi preparación <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-primary{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:48px;padding:12px 23px;border:0;border-radius:10px;background:var(--brand,#01304a);color:#fff;font-size:15px;font-weight:650;box-shadow:0 5px 14px -7px rgb(1 48 74 / 45%);transition:transform 150ms var(--motion-enter,cubic-bezier(.22,1,.36,1)),background-color 150ms,box-shadow 150ms;cursor:pointer;}.ds-primary svg{transition:transform 180ms var(--motion-enter,cubic-bezier(.22,1,.36,1));}.ds-primary:focus-visible{outline:2px solid var(--brand,#01304a);outline-offset:2px;}.ds-primary:active:not(:disabled){transform:scale(.97);}.ds-primary:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;}@media(hover:hover) and (pointer:fine){.ds-primary:hover:not(:disabled){background:#12465f;box-shadow:0 9px 20px -10px rgb(1 48 74 / 50%);}.ds-primary:hover:not(:disabled) svg{transform:translateX(3px);}}@media(prefers-reduced-motion:reduce){.ds-primary,.ds-primary svg{transition-duration:.01ms!important;transform:none!important;}}"
+    },
+    {
+      "name": "Botón lima",
+      "kind": "button",
+      "refersTo": "button-lime",
+      "description": "Acción del portal con respuesta de fondo, sombra, flecha y presión; conserva el foco contextual de su superficie.",
+      "html": "<button type=\"button\" class=\"ds-lime\">Continuar mi preparación <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-lime{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:48px;padding:12px 23px;border:0;border-radius:10px;background:#c4f586;color:var(--brand,#01304a);font-size:15px;font-weight:650;box-shadow:0 6px 16px -8px rgb(12 52 14 / 40%);transition:transform 150ms var(--motion-enter,cubic-bezier(.22,1,.36,1)),background-color 150ms,box-shadow 150ms;cursor:pointer;}.ds-lime svg{transition:transform 180ms var(--motion-enter,cubic-bezier(.22,1,.36,1));}.ds-lime:focus-visible{outline:2px solid #c4f586;outline-offset:4px;}.ds-lime:active:not(:disabled){transform:scale(.97);}.ds-lime:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;}@media(hover:hover) and (pointer:fine){.ds-lime:hover:not(:disabled){background:#d3fba3;box-shadow:0 9px 20px -10px rgb(1 48 74 / 50%);}.ds-lime:hover:not(:disabled) svg{transform:translateX(3px);}}@media(prefers-reduced-motion:reduce){.ds-lime,.ds-lime svg{transition-duration:.01ms!important;transform:none!important;}}"
+    },
+    {
+      "name": "Botón de contorno",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Acción del portal con respuesta de fondo, sombra, flecha y presión; conserva el foco contextual de su superficie.",
+      "html": "<button type=\"button\" class=\"ds-outline\">Continuar mi preparación <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-outline{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:48px;padding:12px 23px;border:1px solid #9aafb8;border-radius:10px;background:transparent;color:var(--brand,#01304a);font-size:15px;font-weight:650;box-shadow:none;transition:transform 150ms var(--motion-enter,cubic-bezier(.22,1,.36,1)),background-color 150ms,box-shadow 150ms;cursor:pointer;}.ds-outline svg{transition:transform 180ms var(--motion-enter,cubic-bezier(.22,1,.36,1));}.ds-outline:focus-visible{outline:2px solid var(--brand,#01304a);outline-offset:2px;}.ds-outline:active:not(:disabled){transform:scale(.97);}.ds-outline:disabled{opacity:.5;cursor:not-allowed;box-shadow:none;}@media(hover:hover) and (pointer:fine){.ds-outline:hover:not(:disabled){background:#e8f0f2;box-shadow:0 9px 20px -10px rgb(1 48 74 / 50%);}.ds-outline:hover:not(:disabled) svg{transform:translateX(3px);}}@media(prefers-reduced-motion:reduce){.ds-outline,.ds-outline svg{transition-duration:.01ms!important;transform:none!important;}}"
+    },
+    {
+      "name": "Botón compartido ghost",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Variante del Button compartido; primary y outline comparten roles con las acciones documentadas, con la geometría más compacta descrita en DESIGN.md.",
+      "html": "<button type=\"button\" class=\"ds-shared-ghost\">Cancelar</button>",
+      "css": ".ds-shared-ghost{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;border:0;border-radius:8px;padding:8px 20px;background:transparent;color:var(--ink-muted,#526e7b);font-size:14px;font-weight:500;line-height:20px;transition:background-color 150ms var(--ease-out,cubic-bezier(.23,1,.32,1)),color 150ms var(--ease-out,cubic-bezier(.23,1,.32,1)),transform 150ms var(--ease-out,cubic-bezier(.23,1,.32,1));}.ds-shared-ghost:hover{background:var(--brand-soft,#e5eff2);color:var(--ink,#133e53);}.ds-shared-ghost:focus-visible{outline:2px solid var(--brand,#01304a);outline-offset:2px;}.ds-shared-ghost:active{transform:scale(.97);}.ds-shared-ghost:disabled:active{transform:scale(1);}@media(prefers-reduced-motion:reduce){.ds-shared-ghost{transition-duration:.01ms!important;}}"
+    },
+    {
+      "name": "Botón compartido danger",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Variante del Button compartido; primary y outline comparten roles con las acciones documentadas, con la geometría más compacta descrita en DESIGN.md.",
+      "html": "<button type=\"button\" class=\"ds-shared-danger\">Eliminar</button>",
+      "css": ".ds-shared-danger{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;border:0;border-radius:8px;padding:8px 20px;background:transparent;color:var(--danger,oklch(49% .18 27));font-size:14px;font-weight:500;line-height:20px;transition:background-color 150ms var(--ease-out,cubic-bezier(.23,1,.32,1)),color 150ms var(--ease-out,cubic-bezier(.23,1,.32,1)),transform 150ms var(--ease-out,cubic-bezier(.23,1,.32,1));}.ds-shared-danger:hover{background:var(--danger-soft,oklch(96% .02 27));}.ds-shared-danger:focus-visible{outline:2px solid var(--brand,#01304a);outline-offset:2px;}.ds-shared-danger:active{transform:scale(.97);}.ds-shared-danger:disabled:active{transform:scale(1);}@media(prefers-reduced-motion:reduce){.ds-shared-danger{transition-duration:.01ms!important;}}"
+    },
+    {
+      "name": "Campo de acceso",
+      "kind": "input",
+      "refersTo": "signin-input",
+      "description": "Campo de acceso con icono lateral, borde suave y foco sobre superficie clara.",
+      "html": "<label class=\"ds-field\">Correo electrónico<span class=\"ds-field-wrap\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 5h18v14H3Zm0 1 9 7 9-7\"/></svg><input type=\"email\" placeholder=\"Tu correo electrónico\" autocomplete=\"email\" /></span></label>",
+      "css": ".ds-field{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;display:block;color:var(--brand,#01304a);font-size:14px;font-weight:600;}.ds-field-wrap{position:relative;display:block;margin-top:9px;}.ds-field-wrap>svg{position:absolute;top:16px;left:15px;color:#718b97;}.ds-field input{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;box-sizing:border-box;width:100%;min-height:52px;padding:13px 44px;border:1px solid #bbced5;border-radius:10px;background:#f9fbfb;color:var(--brand,#01304a);font-size:16px;caret-color:#c15b13;transition:border-color 150ms,background-color 150ms;}.ds-field input::placeholder{color:var(--ink-muted,#526e7b);}.ds-field input:focus{background:#fff;border-color:var(--brand,#01304a);outline:3px solid #dceaf0;outline-offset:1px;}@media(prefers-reduced-motion:reduce){.ds-field input{transition-duration:.01ms!important;}}"
+    },
+    {
+      "name": "Navegación del portal",
+      "kind": "nav",
+      "refersTo": "portal-navigation",
+      "description": "Muestra de la barra lateral profunda; el enlace actual conserva punto naranja y foco lima.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navegación principal\"><a href=\"#mi-espacio\" aria-current=\"page\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z\"/></svg><span>Mi espacio</span><span class=\"ds-nav-dot\"></span></a><a href=\"#resultados\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4v16h16M8 15v-4m5 4V7m5 8v-6\"/></svg><span>Resultados</span></a></nav>",
+      "css": ".ds-nav{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;display:flex;flex-direction:column;gap:6px;padding:21px;background:var(--brand,#01304a);}.ds-nav a{position:relative;display:flex;align-items:center;gap:13px;padding:13px 14px;color:#bdd0da;border-radius:10px;font-size:14px;text-decoration:none;transition:background-color 150ms,color 150ms;}.ds-nav a[aria-current=page]{color:#fff;background:#1b465e;}.ds-nav-dot{margin-left:auto;width:5px;height:5px;border-radius:50%;background:#f39a58;}.ds-nav a:focus-visible{outline:2px solid #c4f586;outline-offset:4px;}@media(hover:hover) and (pointer:fine){.ds-nav a:hover{background:#174359;color:#fff;}}@media(prefers-reduced-motion:reduce){.ds-nav a{transition-duration:.01ms!important;}}"
+    },
+    {
+      "name": "Píldoras de estado",
+      "kind": "chip",
+      "refersTo": "status-pill",
+      "description": "Estados informativos del portal; no son botones ni controles de filtro.",
+      "html": "<div class=\"ds-status-set\"><span class=\"ds-status\">Listo para practicar</span><span class=\"ds-status ds-status-pending\">En revisión</span><span class=\"ds-status ds-status-progress\">En curso</span><span class=\"ds-status ds-status-blocked\">Sin acceso</span></div>",
+      "css": ".ds-status-set{display:flex;gap:6px;flex-wrap:wrap;}.ds-status{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;display:inline-flex;align-items:center;gap:6px;flex-shrink:0;padding:5px 9px;border-radius:6px;font-size:10px;font-weight:650;background:#e7f4eb;color:#2a6042;white-space:nowrap;}.ds-status-pending{color:#805710;background:#fbf0d6;}.ds-status-progress{color:#215b80;background:#e5f1fa;}.ds-status-blocked{color:#8c3d37;background:#faeae7;}"
+    },
+    {
+      "name": "Tarjeta de examen",
+      "kind": "card",
+      "refersTo": "exam-card",
+      "description": "Superficie del catálogo con elevación baja, metadatos y enlace. La muestra omite el activo original del examen.",
+      "html": "<article class=\"ds-card\"><h3>Duolingo English Test</h3><p>Una tarea a la vez. Practica lectura, escucha, escritura y expresión oral.</p><div class=\"ds-card-info\"><span><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 7v5l3 2M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0Z\"/></svg>Tiempo según simulador</span></div><a href=\"#simuladores\">Explorar simuladores <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a></article>",
+      "css": ".ds-card{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;display:flex;flex-direction:column;min-width:0;padding:27px;border-radius:15px;background:#fff;color:var(--ink,#133e53);box-shadow:var(--elevation-low,0 3px 12px -5px rgb(1 48 74 / 12%));transition:transform 200ms var(--motion-enter,cubic-bezier(.22,1,.36,1)),box-shadow 200ms var(--motion-enter,cubic-bezier(.22,1,.36,1));}.ds-card h3{font-size:21px;font-weight:700;margin:22px 0 0;letter-spacing:-.02em;}.ds-card>p{color:var(--ink-muted,#526e7b);font-size:13px;line-height:1.75;margin:8px 0 0;}.ds-card-info{display:flex;flex-wrap:wrap;gap:15px;padding:18px 0;margin-top:auto;color:var(--ink-muted,#526e7b);font-size:12px;}.ds-card-info span{display:flex;align-items:center;gap:6px;}.ds-card>a{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid #e3ecee;font-size:14px;font-weight:650;text-decoration:none;color:inherit;}.ds-card>a svg{transition:transform 180ms var(--motion-enter,cubic-bezier(.22,1,.36,1));}.ds-card>a:focus-visible{outline:2px solid var(--brand,#01304a);outline-offset:2px;}@media(hover:hover) and (pointer:fine){.ds-card:hover{transform:translateY(-3px);box-shadow:var(--elevation-high,0 18px 48px -20px rgb(1 48 74 / 25%));}.ds-card:hover>a svg{transform:translateX(4px);}}@media(prefers-reduced-motion:reduce){.ds-card,.ds-card>a svg{transition-duration:.01ms!important;transform:none!important;}}"
+    },
+    {
+      "name": "Recorrido y selector de examen",
+      "kind": "custom",
+      "refersTo": "journey",
+      "description": "Extracto de la firma de tres pasos. Muestra los estados nativos de foco y selección; el cambio real de contenido lo implementa NextJourney en React.",
+      "html": "<section class=\"ds-journey\"><div class=\"ds-journey-heading\"><h2>Cada meta tiene su recorrido.</h2><div class=\"ds-exam-switch\" role=\"group\" aria-label=\"Explora un examen\"><button type=\"button\" aria-pressed=\"true\">DET</button><button type=\"button\" aria-pressed=\"false\">TOEFL</button></div></div><ol class=\"ds-steps\"><li><span class=\"ds-node\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M21 12a9 9 0 1 1-9-9m0 4a5 5 0 1 0 5 5m-5 0 9-9m-5 0h5v5\"/></svg></span><div><h3>Encuentra tu punto de partida</h3><p>Un diagnóstico para saber dónde enfocar tu preparación.</p></div></li><li><span class=\"ds-node\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m9 5 11 7-11 7Z\"/></svg></span><div><h3>Entra en ritmo</h3><p>Lectura, escucha, escritura y expresión oral.</p></div></li><li><span class=\"ds-node\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4v16h16M8 15v-4m5 4V7m5 8v-6\"/></svg></span><div><h3>Vuelve con una nueva perspectiva</h3><p>Consulta tus resultados con tu asesor.</p></div></li></ol><a href=\"#preparacion\" class=\"ds-journey-link\">Empezar mi preparación <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></a></section>",
+      "css": ".ds-journey{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;position:relative;padding:35px 40px 26px;background:var(--brand,#01304a);color:#fff;border-radius:16px;box-shadow:0 24px 60px -35px rgb(1 48 74 / 55%);}.ds-journey-heading{display:flex;align-items:center;justify-content:space-between;gap:25px;}.ds-journey-heading h2{font-size:24px;font-weight:650;letter-spacing:-.02em;margin:0;}.ds-exam-switch{display:inline-flex;flex-shrink:0;padding:4px;gap:3px;border:1px solid #386173;border-radius:10px;}.ds-exam-switch button{font-family:var(--font-geist-sans,\"Hanken Grotesk\"),system-ui,sans-serif;min-width:71px;padding:8px 12px;border:0;background:transparent;font-size:12px;font-weight:750;border-radius:6px;color:#c2d6df;transition:background-color 150ms,color 150ms;cursor:pointer;}.ds-exam-switch button[aria-pressed=true]{background:#c4f586;color:var(--brand,#01304a);}.ds-journey :focus-visible{outline:2px solid #c4f586;outline-offset:4px;}.ds-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin:28px 0;padding:0;list-style:none;}.ds-steps li{position:relative;}.ds-steps li:not(:last-child)::after{content:\"\";position:absolute;height:1px;left:47px;right:-22px;top:19px;background:#3e6575;transform-origin:left;animation:ds-route-draw 550ms var(--motion-enter,cubic-bezier(.22,1,.36,1)) both;}.ds-node{display:grid;place-items:center;width:39px;height:39px;border:1px solid #4a7080;border-radius:50%;color:#c4f586;}.ds-steps h3{font-size:16px;font-weight:650;margin:17px 0 9px;}.ds-steps p{font-size:14px;line-height:1.7;color:#b8d1dd;margin:0;}.ds-journey-link{display:flex;align-items:center;justify-content:flex-end;gap:14px;border-top:1px solid #31586c;padding-top:22px;color:#d3f8aa;font-size:14px;font-weight:650;text-decoration:none;}@keyframes ds-route-draw{from{transform:scaleX(.2);opacity:.2;}to{transform:scaleX(1);opacity:1;}}@media(max-width:580px){.ds-journey{padding:25px 22px;}.ds-journey-heading{align-items:start;gap:15px;}.ds-journey-heading h2{font-size:21px;line-height:1.35;}.ds-exam-switch button{min-width:49px;padding:8px;font-size:10px;}.ds-steps{grid-template-columns:1fr;gap:24px;}.ds-steps li{display:flex;gap:16px;}.ds-node{flex-shrink:0;}.ds-steps li:not(:last-child)::after{top:46px;left:19px;height:calc(100% - 27px);width:1px;}.ds-steps h3{margin:0 0 7px;font-size:15px;}.ds-steps p{font-size:13px;}.ds-journey-link{justify-content:space-between;font-size:13px;}}@media(prefers-reduced-motion:reduce){.ds-journey *,.ds-journey *::after{animation:none!important;transition-duration:.01ms!important;transform:none!important;}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Tu siguiente paso",
+    "overview": "El contrato visual establecido parte de la marca de Verbo Language Solutions y de la petición de un rediseño integral con dinamismo, sombras y animaciones variadas. El sistema implementado combina azul petróleo, naranja de marca y lima con Hanken Grotesk, superficies claras y navegación profunda. «Tu siguiente paso» nombra aquí el lenguaje ya presente en la interfaz; no registra una nueva elección ni una entrevista del usuario.\n\nLa bienvenida tiene una escala amplia y un recorrido interactivo; el producto autenticado concentra la orientación en una barra lateral, títulos legibles y acciones claras. La profundidad alterna superficies tonales, sombras suaves y respuesta al puntero. El movimiento distingue aparición, cambio de contenido, expansión y ambiente, y respeta movimiento reducido. Este documento describe el portal y el acceso: los intentos de examen conservan sus interfaces específicas.",
+    "keyCharacteristics": [
+      "Azul petróleo para estructura, naranja para la firma y lima para interacción sobre oscuro.",
+      "Hanken Grotesk con titulares compactos y texto de apoyo aireado.",
+      "Superficies claras, tarjetas elevadas y navegación persistente adaptable.",
+      "Movimiento contextual y foco visible según el fondo."
+    ],
+    "rules": [
+      {
+        "name": "Portal y examen",
+        "body": "La identidad del portal no se convierte en un tema obligatorio de los simuladores; PortalShell omite las rutas /alumno/intento/**.",
+        "section": "colors"
+      },
+      {
+        "name": "Foco según superficie",
+        "body": "En la barra lateral, el recorrido y la historia del acceso, el foco visible usa lima clara y separación amplia; sobre claro conserva el contorno de marca.",
+        "section": "colors"
+      },
+      {
+        "name": "Movimiento con contexto",
+        "body": "Conservar las respuestas distintas de cada patrón y la alternativa prefers-reduced-motion; los desplazamientos de hover se reservan a punteros finos.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do reutilizar los valores y variantes existentes según su contexto de portal, acceso o administración.",
+      "Do mantener los símbolos originales de Verbo, DET y TOEFL con sus proporciones y archivos de public/brand.",
+      "Do conservar el foco visible claro sobre oscuro y la navegación móvil con su zona segura inferior.",
+      "Do mantener los filtros móviles en una columna, con selectores que ocupan el ancho disponible.",
+      "Do usar movimiento reducido y las restricciones de hover para punteros finos."
+    ],
+    "donts": [
+      "Don't aplicar la composición o la paleta del portal como una obligación visual de los motores de examen.",
+      "Don't reemplazar Hanken Grotesk por el nombre histórico de la variable --font-geist-sans.",
+      "Don't convertir los colores o las rampas de previsualización del sidecar en nuevos estados de producto.",
+      "Don't añadir estadísticas, rachas o logros ficticios para llenar tarjetas o estados vacíos."
+    ]
+  }
+}
