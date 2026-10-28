@@ -224,6 +224,7 @@ model Attempt {
   overallScore  Json? // formato según ExamType.scoreScale
   subscores     Json?
   runtimeState  Json? // server-owned cursor and deadlines; survives reloads
+  teacherReport Json? // versioned draft and published teacher feedback; drafts stay private
 
   student     Student     @relation(fields: [studentId], references: [id], onDelete: Cascade)
   examVersion ExamVersion @relation(fields: [examVersionId], references: [id], onDelete: Restrict)

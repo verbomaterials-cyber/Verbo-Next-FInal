@@ -11,6 +11,7 @@ import { RUBRIC_VERSION, toeflRubrics } from "@/lib/toefl-rubrics";
 import { detMetadata, detRubric, detListeningRubric, DET_RUBRIC_VERSION } from "@/lib/det-format";
 import { queueAttemptEmails, scheduleEmails } from "@/lib/email";
 import { canReviewStudent } from "@/lib/teacher/scope";
+import { readTeacherReport } from "@/lib/teacher/report";
 
 async function requireAdmin() {
   const session = await getAppSession();
@@ -66,6 +67,11 @@ export async function reviewResponse(input: {
     const result = await gradeAttempt(tx, response.attempt.id, {
       autoGrade: false,
     });
+    // A published interpretation belongs to a specific evaluation. Editing any
+    // answer retracts it until staff review and publish the updated report.
+    const current = await tx.attempt.findUniqueOrThrow({ where: { id: response.attempt.id }, select: { teacherReport: true } });
+    const report = readTeacherReport(current.teacherReport);
+    if (report) await tx.attempt.update({ where: { id: response.attempt.id }, data: { teacherReport: { ...report, revision: report.revision + 1, published: null } } });
     if (result.status === "COMPLETED") await queueAttemptEmails(tx, response.attempt.id, "reviewed");
     return result;
     }, { timeout: 20000 });

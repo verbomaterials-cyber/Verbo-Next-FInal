@@ -1,6 +1,6 @@
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import { answerSummary, ReviewPrompt } from "@/components/response-review-content";
 import { getAppSession } from "@/lib/session";
 import { prisma } from "@/lib/prisma";
 import { Badge } from "@/components/ui";
@@ -8,6 +8,10 @@ import { delivered, deliveryMetadata, type RouteDecision } from "@/lib/toefl-del
 import { rubricAssessmentZ } from "@/lib/toefl-rubrics";
 import { detMetadata, detDelivered, detAssessmentZ, detPoints } from "@/lib/det-format";
 import { PracticeCertificate } from "@/components/practice-certificate";
+import { buildAttemptInsights } from "@/lib/attempt-insights";
+import { AttemptSkillSummary } from "@/components/attempt-skill-summary";
+import { TeacherReportView } from "@/components/teacher-report";
+import { publishedTeacherReport } from "@/lib/teacher/report";
 import { loadExamContent } from "@/lib/exam-content";
 
 export default async function ResultPage({
@@ -35,6 +39,8 @@ export default async function ResultPage({
   const deliveredQuestions = attempt.examVersion.questions.filter((q) => delivered(deliveryMetadata(q.promptContent), routes)&&detDelivered(detMetadata(q.promptContent),q.id,detSelections));
   const fullLength = deliveredQuestions.some((q) => deliveryMetadata(q.promptContent));
 
+  const insights = buildAttemptInsights(attempt.examVersion.questions, attempt.responses, attempt.runtimeState, attempt.overallScore);
+  const teacherReport = publishedTeacherReport(attempt.teacherReport);
   const examType = attempt.examVersion.examType;
   const hasFeedback = attempt.examVersion.hasFeedback;
   const overall = (attempt.overallScore ?? {}) as {
@@ -63,6 +69,7 @@ export default async function ResultPage({
         {examType.name} · {attempt.examVersion.label}
       </p>
       <h1 className="mt-1 text-2xl font-semibold tracking-tight">Tus resultados</h1>
+      {(attempt.runtimeState as { demo?: boolean } | null)?.demo && <p className="mt-4 rounded-xl bg-brand-soft p-4 text-sm text-brand">Demostración con respuestas y evaluaciones ficticias. Los audios son tonos de prueba; estos resultados no pertenecen a un alumno real.</p>}
       {!pending && <PracticeCertificate name={attempt.student.fullName} exam={examType.name} version={attempt.examVersion.label} attemptId={attempt.id} date={attempt.completedAt ?? attempt.startedAt} overallScore={attempt.overallScore} subscores={attempt.subscores} />}
 
       {pending && (
@@ -116,6 +123,9 @@ export default async function ResultPage({
         </div>)}</dl>
         <p className="mt-4 text-xs text-ink-muted">Reading y Listening incluyen reactivos de prueba que no suman puntos. Las respuestas abiertas se evalúan de 0 a 5.</p>
       </section>}
+
+      <AttemptSkillSummary insights={insights} />
+      {teacherReport ? <TeacherReportView report={teacherReport} studentName={attempt.student.fullName} examName={`${examType.name} · ${attempt.examVersion.label}`} attemptId={attempt.id} /> : <section className="mt-6 rounded-xl border border-line p-5"><h2 className="font-semibold">Tu reporte personalizado</h2><p className="mt-2 text-sm text-ink-muted">Ya puedes consultar el resumen automático. Tu profesor revisará tus respuestas y publicará aquí sus observaciones y tu plan de estudio.</p></section>}
 
       {/* desglose por pregunta (solo versiones con feedback) */}
       {hasFeedback ? (
@@ -207,49 +217,4 @@ export default async function ResultPage({
       {fullLength && <Link href="/alumno/progreso/toefl-ibt" className="mt-5 ml-4 inline-block text-sm font-medium text-brand underline-offset-4 hover:underline">Comparar mis resultados →</Link>}
     </div>
   );
-}
-
-function answerSummary(
-  answer: Record<string, unknown>,
-  prompt: Record<string, unknown>,
-): string {
-  if(typeof answer.options==="number" && prompt.options && typeof prompt.options==="object" && Array.isArray((prompt.options as {options?:unknown}).options))return String((prompt.options as {options:string[]}).options[answer.options]??"—");
-  if(typeof answer.start==="number"&&typeof answer.end==="number"&&typeof prompt.passage==="string")return prompt.passage.split(/\s+/).slice(answer.start,answer.end+1).join(" ");
-  if(Array.isArray(answer.choices)&&Array.isArray(prompt.blanks))return answer.choices.map((v,i)=>(prompt.blanks as {options:string[]}[])[i]?.options[Number(v)]??"—").join(" · ");
-  if(Array.isArray(answer.accepted))return answer.accepted.map(v=>Array.isArray(v)?v.join(" / "):String(v)).join(" · ");
-  if(typeof answer.transcript==="string")return answer.transcript;
-  if (Array.isArray(answer.order) && Array.isArray(prompt.wordBank)) return answer.order.map((index) => (prompt.wordBank as string[])[Number(index)] ?? "?").join(" ");
-  if (typeof answer.text === "string") return `“${truncate(answer.text, 160)}”`;
-  if (answer.recorded === true) return `grabación de audio (${answer.durationSeconds}s)`;
-  if (answer.recorded === false) return "sin audio (micrófono no disponible)";
-  if (Array.isArray(answer.answers)) return (answer.answers as string[]).join(" · ");
-
-  // índices elegidos → texto de las opciones si existe en el prompt
-  for (const [key, value] of Object.entries(answer)) {
-    const options = prompt[key];
-    if (Array.isArray(options) && options.every((o) => typeof o === "string")) {
-      const opts = options as string[];
-      if (typeof value === "number") return `“${opts[value] ?? value}”`;
-      if (Array.isArray(value))
-        return (value as number[]).map((i) => `“${opts[i] ?? i}”`).join(", ");
-    }
-  }
-  return truncate(JSON.stringify(answer), 120);
-}
-
-function ReviewPrompt({ prompt, correct }: { prompt: Record<string, unknown>; correct: Record<string, unknown> | null }) {
-  return <div className="mt-3 space-y-3 rounded-lg bg-background p-4 text-sm leading-relaxed">
-    {["instruction", "title", "passage", "text", "question", "scenario", "professorPost"].map((key) => typeof prompt[key] === "string" && <p key={key} className="whitespace-pre-wrap">{String(prompt[key])}</p>)}
-    {typeof prompt.imageUrl==="string"&&<Image unoptimized src={prompt.imageUrl} alt="Foto del ejercicio" width={600} height={450} className="h-auto max-h-72 w-auto object-contain"/>}
-    {typeof prompt._transcript==="string"&&<p><b>Transcripción: </b>{prompt._transcript}</p>}
-    {Array.isArray(prompt.requiredPoints) && <ul className="list-disc pl-5">{prompt.requiredPoints.map((point, index) => <li key={index}>{String(point)}</li>)}</ul>}
-    {Array.isArray(prompt.studentReplies) && prompt.studentReplies.map((reply, index) => { const entry = reply as { author: string; text: string }; return <p key={index}><b>{entry.author}: </b>{entry.text}</p>; })}
-    {typeof prompt.audioUrl === "string" && <audio preload="none" controls className="w-full" src={prompt.audioUrl} aria-label="Audio de la consigna" />}
-    {typeof prompt.transcript === "string" && <p className="whitespace-pre-wrap"><b>Transcripción: </b>{prompt.transcript}</p>}
-    {correct && <p><b>Solución: </b>{answerSummary(correct, prompt)}</p>}
-  </div>;
-}
-
-function truncate(s: string, n: number): string {
-  return s.length > n ? `${s.slice(0, n)}…` : s;
 }

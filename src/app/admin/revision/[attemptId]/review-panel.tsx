@@ -23,10 +23,14 @@ type OpenResponse = {
 };
 
 export function ReviewPanel({ responses }: { responses: OpenResponse[] }) {
+  const firstPending = responses.find(r => r.isCorrect === null)?.id;
   return (
     <div className="space-y-5">
       {responses.map((r) => (
-        <ResponseCard key={r.id} response={r} />
+        <details key={r.id} open={r.id === firstPending} className="rounded-xl border border-line bg-surface p-4">
+          <summary className="cursor-pointer text-sm font-medium">#{r.questionOrder} · {r.typeName} · {r.isCorrect === null ? "Por revisar" : "Evaluada"}{r.isFlagged ? " · Duda del alumno" : ""}</summary>
+          <div className="mt-4"><ResponseCard response={r} /></div>
+        </details>
       ))}
     </div>
   );
@@ -149,7 +153,7 @@ function promptSummary(prompt: Record<string, unknown>): string {
   const parts: string[] = [];
   if(Array.isArray(prompt.blanks))parts.push(...prompt.blanks.map(b=>String(b.text??"")));
   for (const value of Object.values(prompt)) {
-    if (typeof value === "string" && value.trim() && !value.startsWith("data:") && !value.startsWith("http")) {
+    if (typeof value === "string" && value.trim() && !value.startsWith("data:") && !value.startsWith("http") && !value.startsWith("/audio/")) {
       parts.push(value);
     }
   }
